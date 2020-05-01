@@ -4,7 +4,7 @@ using UnityEngine;
 
 public sealed class FlashLightModel : BaseObjectScene
 {
-    [SerializeField] private float _speed = 11;
+    [SerializeField] private float _speed = 10;
     [SerializeField] private float _batteryChargeMax;
 
     private Light _light;
@@ -22,6 +22,8 @@ public sealed class FlashLightModel : BaseObjectScene
         _goFollow = Camera.main.transform;
         _vecOffset = Transform.position - _goFollow.position;
         BatteryChargeCurrent = _batteryChargeMax;
+        
+        _light.enabled = false;
     }
 
     public void Switch(FlashLightActiveType value)
