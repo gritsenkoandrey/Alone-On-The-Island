@@ -28,7 +28,6 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
 
         _flashLightModel.Switch(FlashLightActiveType.On);
         _flashLightUi.SetActive(true);
-
     }
 
     public override void Off()
@@ -42,6 +41,7 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
 
         _flashLightModel.Switch(FlashLightActiveType.Off);
         _flashLightUi.SetActive(false);
+
     }
 
     // update
@@ -49,12 +49,15 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
     {
         if (!IsActive)
         {
+            // Adding battery power
+            _flashLightModel.AddBatteryCharge();
             return;
         }
-        else
-        {
-            // todo add Battery
-        }
+
+        //else
+        //{
+        //    // todo add Battery
+        //}
 
         _flashLightModel.Rotation();
 

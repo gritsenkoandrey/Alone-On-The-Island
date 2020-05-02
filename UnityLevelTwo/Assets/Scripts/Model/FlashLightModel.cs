@@ -4,8 +4,8 @@ using UnityEngine;
 
 public sealed class FlashLightModel : BaseObjectScene
 {
-    [SerializeField] private float _speed = 10;
-    [SerializeField] private float _batteryChargeMax;
+    [SerializeField] private float _speed = 10.0f;
+    [SerializeField] private float _batteryChargeMax = 10.0f;
 
     private Light _light;
     private Transform _goFollow;
@@ -22,8 +22,9 @@ public sealed class FlashLightModel : BaseObjectScene
         _goFollow = Camera.main.transform;
         _vecOffset = Transform.position - _goFollow.position;
         BatteryChargeCurrent = _batteryChargeMax;
-        
-        _light.enabled = false;
+
+        // turn off the light when the game starts
+        //_light.enabled = false;
     }
 
     public void Switch(FlashLightActiveType value)
@@ -54,6 +55,16 @@ public sealed class FlashLightModel : BaseObjectScene
         if (BatteryChargeCurrent > 0)
         {
             BatteryChargeCurrent -= Time.deltaTime;
+            return true;
+        }
+        return false;
+    }
+
+    public bool AddBatteryCharge()
+    {
+        if (BatteryChargeCurrent < _batteryChargeMax)
+        {
+            BatteryChargeCurrent += Time.deltaTime;
             return true;
         }
         return false;

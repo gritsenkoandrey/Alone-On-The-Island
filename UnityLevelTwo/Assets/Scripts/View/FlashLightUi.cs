@@ -9,7 +9,11 @@ public sealed class FlashLightUi : MonoBehaviour
 
     public float Text
     {
-        set => _text.text = $"{value:0.0}";
+        //set => _text.text = $"{value:0.0}";
+        set
+        {
+            _text.text = $"{value:0.0}";
+        }
     }
 
     private void Awake()
