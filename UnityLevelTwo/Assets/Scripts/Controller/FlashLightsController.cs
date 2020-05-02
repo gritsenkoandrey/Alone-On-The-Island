@@ -3,8 +3,15 @@
 
 public sealed class FlashLightsController : BaseController, IExecute, IInitialization
 {
+    #region Fields
+
     private FlashLightModel _flashLightModel;
     private FlashLightUi _flashLightUi;
+
+    #endregion
+
+
+    #region Methods
 
     // awake
     public void Initialization()
@@ -47,10 +54,9 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
     // update
     public void Execute()
     {
-        if (!IsActive)
+        // Adding battery power
+        if (!IsActive && _flashLightModel.AddBatteryCharge())
         {
-            // Adding battery power
-            _flashLightModel.AddBatteryCharge();
             return;
         }
 
@@ -61,7 +67,7 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
 
         _flashLightModel.Rotation();
 
-        if (_flashLightModel.EditBatteryCharge())
+        if (IsActive && _flashLightModel.EditBatteryCharge())
         {
             _flashLightUi.Text = _flashLightModel.BatteryChargeCurrent;
         }
@@ -70,4 +76,6 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
             Off();
         }
     }
+
+    #endregion
 }

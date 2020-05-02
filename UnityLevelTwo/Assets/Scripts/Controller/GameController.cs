@@ -3,7 +3,14 @@
 
 public sealed class GameController : MonoBehaviour
 {
+    #region Fields
+
     private Controllers _controllers;
+
+    #endregion
+
+
+    #region UnityMethods
 
     private void Start()
     {
@@ -18,4 +25,6 @@ public sealed class GameController : MonoBehaviour
             _controllers[i].Execute();
         }
     }
+
+    #endregion
 }

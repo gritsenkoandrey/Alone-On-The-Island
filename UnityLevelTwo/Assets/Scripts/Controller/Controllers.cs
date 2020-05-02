@@ -3,17 +3,29 @@
 
 public sealed class Controllers : IInitialization
 {
+    #region Fields
+
     private readonly IExecute[] _executeControllers;
+
+    #endregion
+
+
+    #region Properties
 
     public int Length => _executeControllers.Length;
 
     public IExecute this[int index] => _executeControllers[index];
 
+    #endregion
+
+
+    #region ClassLifeCycles
+
     public Controllers()
     {
         IMotor motor = default;
 
-        if (Application.platform == RuntimePlatform.PS4)
+        if (Application.platform == RuntimePlatform.Android)
         {
             //
         }
@@ -32,6 +44,11 @@ public sealed class Controllers : IInitialization
         _executeControllers[2] = ServiceLocator.Resolve<InputController>();
     }
 
+    #endregion
+
+
+    #region Methods
+
     public void Initialization()
     {
         foreach (var controller in _executeControllers)
@@ -45,4 +62,6 @@ public sealed class Controllers : IInitialization
         ServiceLocator.Resolve<PlayerController>().On();
         ServiceLocator.Resolve<InputController>().On();
     }
+
+    #endregion
 }

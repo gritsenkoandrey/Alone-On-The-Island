@@ -4,7 +4,14 @@ using UnityEngine;
 
 public static class ServiceLocatorMonoBehaviour
 {
+    #region Fields
+
     private static Dictionary<object, object> _serviceContainer = null;
+
+    #endregion
+
+
+    #region Methods
 
     public static T GetService<T>(bool createObjectIfNotFound = true) where T : Object
     {
@@ -42,4 +49,6 @@ public static class ServiceLocatorMonoBehaviour
         }
         return (T)_serviceContainer[typeof(T)];
     }
+
+    #endregion
 }

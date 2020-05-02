@@ -4,7 +4,14 @@ using System.Collections.Generic;
 
 public static class ServiceLocator
 {
+    #region Fields
+
     private static readonly Dictionary<Type, object> _serviceContainer = new Dictionary<Type, object>();
+
+    #endregion
+
+
+    #region Methods
 
     public static void SetService<T> (T value) where T : class
     {
@@ -19,4 +26,6 @@ public static class ServiceLocator
     {
         return (T)_serviceContainer[typeof(T)];
     }
+
+    #endregion
 }

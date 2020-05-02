@@ -3,7 +3,14 @@
 
 public sealed class InputController : BaseController, IExecute
 {
+    #region Fields
+
     private KeyCode _activeFlashLight = KeyCode.F;
+
+    #endregion
+
+
+    #region Methods
 
     public void Execute()
     {
@@ -16,4 +23,6 @@ public sealed class InputController : BaseController, IExecute
             ServiceLocator.Resolve<FlashLightsController>().Switch();
         }
     }
+
+    #endregion
 }

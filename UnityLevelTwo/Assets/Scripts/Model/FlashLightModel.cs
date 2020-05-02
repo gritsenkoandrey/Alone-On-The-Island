@@ -4,6 +4,8 @@ using UnityEngine;
 
 public sealed class FlashLightModel : BaseObjectScene
 {
+    #region Fields
+
     [SerializeField] private float _speed = 10.0f;
     [SerializeField] private float _batteryChargeMax = 10.0f;
 
@@ -12,7 +14,17 @@ public sealed class FlashLightModel : BaseObjectScene
 
     private Vector3 _vecOffset;
 
+    #endregion
+
+
+    #region Properties
+
     public float BatteryChargeCurrent { get; private set; }
+
+    #endregion
+
+
+    #region UnityMethods
 
     protected override void Awake()
     {
@@ -26,6 +38,11 @@ public sealed class FlashLightModel : BaseObjectScene
         // turn off the light when the game starts
         //_light.enabled = false;
     }
+
+    #endregion
+
+
+    #region Methods
 
     public void Switch(FlashLightActiveType value)
     {
@@ -69,4 +86,6 @@ public sealed class FlashLightModel : BaseObjectScene
         }
         return false;
     }
+
+    #endregion
 }
