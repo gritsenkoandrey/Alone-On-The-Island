@@ -1,5 +1,22 @@
 ﻿public abstract class BaseController
 {
+    #region Fields
+
+    protected UiInterface UiInterface;
+
+    #endregion
+
+
+    #region ClassLifeCycles
+
+    protected BaseController()
+    {
+        UiInterface = new UiInterface();
+    }
+
+    #endregion
+
+
     #region Properties
 
     public bool IsActive { get; private set; }
@@ -24,7 +41,7 @@
         IsActive = false;
     }
 
-    public void Switch()
+    public void Switch(params BaseObjectScene[] obj)
     {
         if (!IsActive)
         {

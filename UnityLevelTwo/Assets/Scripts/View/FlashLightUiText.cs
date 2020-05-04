@@ -2,12 +2,11 @@
 using UnityEngine.UI;
 
 
-public sealed class FlashLightUi : MonoBehaviour
+public sealed class FlashLightUiText : MonoBehaviour
 {
     #region Fields
 
     private Text _text;
-    //todo image
 
     #endregion
 

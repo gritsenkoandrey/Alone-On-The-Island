@@ -37,11 +37,13 @@ public sealed class Controllers : IInitialization
         ServiceLocator.SetService(new PlayerController(motor));
         ServiceLocator.SetService(new FlashLightsController());
         ServiceLocator.SetService(new InputController());
+        ServiceLocator.SetService(new SelectionController());
 
-        _executeControllers = new IExecute[3];
+        _executeControllers = new IExecute[4];
         _executeControllers[0] = ServiceLocator.Resolve<PlayerController>();
         _executeControllers[1] = ServiceLocator.Resolve<FlashLightsController>();
         _executeControllers[2] = ServiceLocator.Resolve<InputController>();
+        _executeControllers[3] = ServiceLocator.Resolve<SelectionController>();
     }
 
     #endregion
@@ -61,6 +63,7 @@ public sealed class Controllers : IInitialization
 
         ServiceLocator.Resolve<PlayerController>().On();
         ServiceLocator.Resolve<InputController>().On();
+        ServiceLocator.Resolve<SelectionController>().On();
     }
 
     #endregion

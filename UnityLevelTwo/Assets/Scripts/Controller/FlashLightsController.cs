@@ -6,7 +6,6 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
     #region Fields
 
     private FlashLightModel _flashLightModel;
-    private FlashLightUi _flashLightUi;
 
     #endregion
 
@@ -17,7 +16,9 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
     public void Initialization()
     {
         _flashLightModel = Object.FindObjectOfType<FlashLightModel>();
-        _flashLightUi = Object.FindObjectOfType<FlashLightUi>();
+
+        UiInterface.LightUiText.SetActive(false);
+        UiInterface.LightUiBar.SetActive(false);
     }
 
     public override void On()
@@ -26,6 +27,7 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
         {
             return;
         }
+
         if (_flashLightModel.BatteryChargeCurrent <= 0)
         {
             return;
@@ -34,8 +36,40 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
         base.On();
 
         _flashLightModel.Switch(FlashLightActiveType.On);
-        _flashLightUi.SetActive(true);
+        UiInterface.LightUiText.SetActive(true);
+        UiInterface.LightUiBar.SetActive(true);
+        UiInterface.LightUiBar.SetColor(Color.green);
     }
+
+    //public override void On(params BaseObjectScene[] flashLight)
+    //{
+    //    if (IsActive)
+    //    {
+    //        return;
+    //    }
+
+    //    if (flashLight.Length > 0)
+    //    {
+    //        _flashLightModel = flashLight[0] as FlashLightModel;
+    //    }
+
+    //    if (_flashLightModel == null)
+    //    {
+    //        return;
+    //    }
+
+    //    if (_flashLightModel.BatteryChargeCurrent <= 0)
+    //    {
+    //        return;
+    //    }
+
+    //    base.On();
+
+    //    _flashLightModel.Switch(FlashLightActiveType.On);
+    //    UiInterface.LightUiText.SetActive(true);
+    //    UiInterface.LightUiBar.SetActive(true);
+    //    UiInterface.LightUiBar.SetColor(Color.green);
+    //}
 
     public override void Off()
     {
@@ -47,8 +81,8 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
         base.Off();
 
         _flashLightModel.Switch(FlashLightActiveType.Off);
-        _flashLightUi.SetActive(false);
-
+        UiInterface.LightUiText.SetActive(false);
+        UiInterface.LightUiBar.SetActive(false);
     }
 
     // update
@@ -60,16 +94,16 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
             return;
         }
 
-        //else
-        //{
-        //    // todo add Battery
-        //}
-
-        _flashLightModel.Rotation();
-
-        if (IsActive && _flashLightModel.EditBatteryCharge())
+        if (_flashLightModel.EditBatteryCharge())
         {
-            _flashLightUi.Text = _flashLightModel.BatteryChargeCurrent;
+            UiInterface.LightUiText.Text = _flashLightModel.BatteryChargeCurrent;
+            UiInterface.LightUiBar.Fill = _flashLightModel.Charge;
+            _flashLightModel.Rotation();
+
+            if (_flashLightModel.LowBattery())
+            {
+                UiInterface.LightUiBar.SetColor(Color.red);
+            }
         }
         else
         {

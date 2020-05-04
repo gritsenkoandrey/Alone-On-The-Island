@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static UnityEngine.Random;
 
 
 public sealed class FlashLightModel : BaseObjectScene
@@ -8,6 +9,9 @@ public sealed class FlashLightModel : BaseObjectScene
 
     [SerializeField] private float _speed = 10.0f;
     [SerializeField] private float _batteryChargeMax = 10.0f;
+    [SerializeField] private float _intensity = 1.5f;
+    private float _share;
+    private float _takeAwayTheIntensity;
 
     private Light _light;
     private Transform _goFollow;
@@ -18,6 +22,11 @@ public sealed class FlashLightModel : BaseObjectScene
 
 
     #region Properties
+
+    public float Charge
+    {
+        get { return BatteryChargeCurrent / _batteryChargeMax; }
+    }
 
     public float BatteryChargeCurrent { get; private set; }
 
@@ -37,6 +46,10 @@ public sealed class FlashLightModel : BaseObjectScene
 
         // turn off the light when the game starts
         //_light.enabled = false;
+
+        _light.intensity = _intensity;
+        _share = _batteryChargeMax / 4.0f;
+        _takeAwayTheIntensity = _intensity / (_batteryChargeMax * 100.0f);
     }
 
     #endregion
@@ -67,14 +80,38 @@ public sealed class FlashLightModel : BaseObjectScene
         Transform.rotation = Quaternion.Lerp(Transform.rotation, _goFollow.rotation, _speed * Time.deltaTime);
     }
 
+    //public bool EditBatteryCharge()
+    //{
+    //    if (BatteryChargeCurrent > 0)
+    //    {
+    //        BatteryChargeCurrent -= Time.deltaTime;
+    //        return true;
+    //    }
+    //    return false;
+    //}
+
     public bool EditBatteryCharge()
     {
         if (BatteryChargeCurrent > 0)
         {
             BatteryChargeCurrent -= Time.deltaTime;
+
+            if (BatteryChargeCurrent < _share)
+            {
+                _light.enabled = Range(0, 100) >= Range(0, 10);
+            }
+            else
+            {
+                _light.intensity -= _takeAwayTheIntensity;
+            }
             return true;
         }
         return false;
+    }
+
+    public bool LowBattery()
+    {
+        return BatteryChargeCurrent <= _batteryChargeMax / 2.0f;
     }
 
     public bool AddBatteryCharge()
