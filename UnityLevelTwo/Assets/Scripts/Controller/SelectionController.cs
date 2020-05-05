@@ -37,7 +37,7 @@ public sealed class SelectionController : BaseController, IExecute
         // если UI не обновлена, то обновляю ее
         else if (!_nullString)
         {
-            UiInterface.SelectionObjMessageUi.Text = String.Empty; // String
+            UiInterface.SelectionObjMessageUi.Text = String.Empty;
             _nullString = true;
             _dedicateObj = null;
             _isSelectedObj = false;
@@ -78,7 +78,7 @@ public sealed class SelectionController : BaseController, IExecute
         }
         else
         {
-            UiInterface.SelectionObjMessageUi.Text = String.Empty; // String
+            UiInterface.SelectionObjMessageUi.Text = String.Empty;
             _isSelectedObj = false;
         }
         _dedicateObj = obj;

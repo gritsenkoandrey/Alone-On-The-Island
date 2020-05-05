@@ -11,17 +11,6 @@ public readonly struct InfoCollision
     #endregion
 
 
-    #region ClassLifeCycless
-
-    public InfoCollision(float damage, Vector3 direction = default)
-    {
-        _damage = damage;
-        _direction = direction;
-    }
-
-    #endregion
-
-
     #region Properties
 
     public Vector3 Direction
@@ -35,4 +24,16 @@ public readonly struct InfoCollision
     }
 
     #endregion
+
+
+    #region ClassLifeCycless
+
+    public InfoCollision(float damage, Vector3 direction = default)
+    {
+        _damage = damage;
+        _direction = direction;
+    }
+
+    #endregion
+
 }

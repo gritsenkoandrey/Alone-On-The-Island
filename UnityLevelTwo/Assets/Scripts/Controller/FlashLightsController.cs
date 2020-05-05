@@ -15,15 +15,23 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
     // awake
     public void Initialization()
     {
-        _flashLightModel = Object.FindObjectOfType<FlashLightModel>();
-
         UiInterface.LightUiText.SetActive(false);
         UiInterface.LightUiBar.SetActive(false);
     }
 
-    public override void On()
+    public override void On(params BaseObjectScene[] flashLight)
     {
         if (IsActive)
+        {
+            return;
+        }
+
+        if (flashLight.Length > 0)
+        {
+            _flashLightModel = flashLight[0] as FlashLightModel;
+        }
+
+        if (_flashLightModel == null)
         {
             return;
         }
@@ -33,43 +41,13 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
             return;
         }
 
-        base.On();
+        base.On(_flashLightModel);
 
         _flashLightModel.Switch(FlashLightActiveType.On);
         UiInterface.LightUiText.SetActive(true);
         UiInterface.LightUiBar.SetActive(true);
         UiInterface.LightUiBar.SetColor(Color.green);
     }
-
-    //public override void On(params BaseObjectScene[] flashLight)
-    //{
-    //    if (IsActive)
-    //    {
-    //        return;
-    //    }
-
-    //    if (flashLight.Length > 0)
-    //    {
-    //        _flashLightModel = flashLight[0] as FlashLightModel;
-    //    }
-
-    //    if (_flashLightModel == null)
-    //    {
-    //        return;
-    //    }
-
-    //    if (_flashLightModel.BatteryChargeCurrent <= 0)
-    //    {
-    //        return;
-    //    }
-
-    //    base.On();
-
-    //    _flashLightModel.Switch(FlashLightActiveType.On);
-    //    UiInterface.LightUiText.SetActive(true);
-    //    UiInterface.LightUiBar.SetActive(true);
-    //    UiInterface.LightUiBar.SetColor(Color.green);
-    //}
 
     public override void Off()
     {
@@ -89,8 +67,9 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
     public void Execute()
     {
         // Adding battery power
-        if (!IsActive && _flashLightModel.AddBatteryCharge())
+        if (!IsActive)
         {
+            //_flashLightModel.AddBatteryCharge();
             return;
         }
 

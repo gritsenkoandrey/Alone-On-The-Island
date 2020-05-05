@@ -34,7 +34,9 @@ public sealed class InputController : BaseController, IExecute
         {
             ServiceLocator.Resolve<FlashLightsController>().Switch(ServiceLocator.Resolve<Inventory>().FlashLight);
         }
+
         // реализовать выбор оружия колесиком мыши
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SelectWeapon(0);

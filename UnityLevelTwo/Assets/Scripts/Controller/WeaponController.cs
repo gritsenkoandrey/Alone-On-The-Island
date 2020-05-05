@@ -24,7 +24,7 @@
         {
             return;
         }
-        base.On();
+        base.On(_weapon);
         _weapon.IsVisible = true;
         UiInterface.WeaponUiText.SetActive(true);
         UiInterface.WeaponUiText.ShowData(_weapon.Clip.CountAmmunition, _weapon.CountClip);

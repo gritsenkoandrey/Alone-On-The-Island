@@ -11,13 +11,16 @@ public abstract class BaseObjectScene : MonoBehaviour
 
     private bool _isVisible;
 
+    [HideInInspector] public Rigidbody Rigidbody;
+    [HideInInspector] public Transform Transform;
+
     #endregion
 
 
     #region Properties
 
-    public Rigidbody Rigidbody { get; private set; }
-    public Transform Transform { get; private set; }
+    //public Rigidbody Rigidbody { get; private set; }
+    //public Transform Transform { get; private set; }
 
     // слой объекта
     public int Layer
@@ -26,7 +29,7 @@ public abstract class BaseObjectScene : MonoBehaviour
         set
         {
             _layer = value;
-            AskLayer(Transform, _layer);
+            AskLayer(transform, _layer);
         }
     }
 
@@ -75,7 +78,7 @@ public abstract class BaseObjectScene : MonoBehaviour
     protected virtual void Awake()
     {
         Rigidbody = GetComponent<Rigidbody>();
-        Transform = transform;
+        Transform = GetComponent<Transform>();
     }
 
     #endregion
@@ -149,6 +152,26 @@ public abstract class BaseObjectScene : MonoBehaviour
         foreach (var body in rigidbodies)
         {
             body.isKinematic = false;
+        }
+    }
+
+    // Замораживает или размораживает физическую трансформацию объекта
+    // "rigidbodyConstraints" - Трансформацию которую нужно заморозить
+    public void ConstraintsrigidBody(RigidbodyConstraints rigidbodyConstraints)
+    {
+        var rigidbodies = GetComponentsInChildren<Rigidbody>();
+        foreach (var body in rigidbodies)
+        {
+            body.constraints = rigidbodyConstraints;
+        }
+    }
+
+    public void SetActive(bool value)
+    {
+        IsVisible = value;
+        if (TryGetComponent<Collider>(out var component))
+        {
+            component.enabled = value;
         }
     }
 

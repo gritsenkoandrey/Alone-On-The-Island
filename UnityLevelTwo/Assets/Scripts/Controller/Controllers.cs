@@ -23,27 +23,21 @@ public sealed class Controllers : IInitialization
 
     public Controllers()
     {
-        IMotor motor = default;
-
-        if (Application.platform == RuntimePlatform.Android)
-        {
-            //
-        }
-
-        else
-        {
-            motor = new UnitMotor(ServiceLocatorMonoBehaviour.GetService<CharacterController>());
-        }
+        IMotor motor = new UnitMotor(ServiceLocatorMonoBehaviour.GetService<CharacterController>());
+        ServiceLocator.SetService(new TimeRemainingController());
+        ServiceLocator.SetService(new Inventory());
         ServiceLocator.SetService(new PlayerController(motor));
         ServiceLocator.SetService(new FlashLightsController());
+        ServiceLocator.SetService(new WeaponController());
         ServiceLocator.SetService(new InputController());
         ServiceLocator.SetService(new SelectionController());
 
-        _executeControllers = new IExecute[4];
+        _executeControllers = new IExecute[5];
         _executeControllers[0] = ServiceLocator.Resolve<PlayerController>();
         _executeControllers[1] = ServiceLocator.Resolve<FlashLightsController>();
         _executeControllers[2] = ServiceLocator.Resolve<InputController>();
         _executeControllers[3] = ServiceLocator.Resolve<SelectionController>();
+        _executeControllers[4] = ServiceLocator.Resolve<TimeRemainingController>();
     }
 
     #endregion
@@ -61,6 +55,7 @@ public sealed class Controllers : IInitialization
             }
         }
 
+        ServiceLocator.Resolve<Inventory>().Initialization();
         ServiceLocator.Resolve<PlayerController>().On();
         ServiceLocator.Resolve<InputController>().On();
         ServiceLocator.Resolve<SelectionController>().On();
