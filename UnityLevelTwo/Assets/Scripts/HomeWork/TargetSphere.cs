@@ -2,22 +2,22 @@
 using UnityEngine;
 
 
-public sealed class Aim : MonoBehaviour, ICollision, ISelectObj
+public class TargetSphere : MonoBehaviour, ICollision, ISelectObj
 {
     #region Fields
 
     public event Action OnPointChange = delegate { };
 
-    [SerializeField] private float _hp = 100;
+    [SerializeField] private float _hp = 10.0f;
+
     private bool _isDead;
-    private float _timeToDestroy = 10.0f;
+    private float _timeToDestroy = 1f;
 
     #endregion
 
 
     #region Methods
 
-    // дописать поглощение урона
     public void CollisionEnter(InfoCollision info)
     {
         if (_isDead)

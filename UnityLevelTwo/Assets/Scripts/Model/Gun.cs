@@ -17,8 +17,8 @@
         }
 
         // todo pool object
-        var temAmmunition = Instantiate(Ammunition, _barrel.position, _barrel.rotation);
-        temAmmunition.AddForce(_barrel.forward * _force);
+        var temAmmunition = Instantiate(Ammunition, _barrelOne.position, _barrelOne.rotation);
+        temAmmunition.AddForce(_barrelOne.forward * _force);
         Clip.CountAmmunition--;
         _isReady = false;
         _timeRemaining.AddTimeRemaining();

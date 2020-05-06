@@ -9,6 +9,7 @@ public sealed class InputController : BaseController, IExecute
     private KeyCode _cancel = KeyCode.Escape;
     private KeyCode _reloadClip = KeyCode.R;
     private int _mouseButton = (int)MouseButton.LeftButton;
+    //private int _mouse = (int)Input.GetAxis("Mouse ScrollWheel");
 
     #endregion
 
@@ -17,6 +18,7 @@ public sealed class InputController : BaseController, IExecute
     public InputController()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        //_mouse = (int)MouseButton.CenterButton;
     }
 
     #endregion
@@ -35,11 +37,19 @@ public sealed class InputController : BaseController, IExecute
             ServiceLocator.Resolve<FlashLightsController>().Switch(ServiceLocator.Resolve<Inventory>().FlashLight);
         }
 
+        //if (Input.GetMouseButtonDown(_mouse))
+        //{
+
+        //}
         // реализовать выбор оружия колесиком мыши
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SelectWeapon(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SelectWeapon(1);
         }
         if (Input.GetMouseButton(_mouseButton))
         {

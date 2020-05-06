@@ -6,15 +6,19 @@ using UnityEngine;
 public sealed class SelectionController : BaseController, IExecute
 {
     private readonly Camera _mainCamera;
-    private readonly Vector2 _center;
-    // дистанция на которую будет бить луч
-    private readonly float _dedicateDistance = 20.0f;
     // выделенный объект
     private GameObject _dedicateObj;
-    // выбранный объект
-    private ISelectObj _selectedObj;
+
+    private readonly Vector2 _center;
+
+    // дистанция на которую будет бить луч
+    private readonly float _dedicateDistance = 20.0f;
     private bool _nullString;
     private bool _isSelectedObj;
+
+    // выбранный объект
+    private ISelectObj _selectedObj;
+
 
     public SelectionController()
     {

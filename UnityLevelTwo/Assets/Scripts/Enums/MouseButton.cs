@@ -2,5 +2,6 @@
 {
     None = byte.MaxValue,
     LeftButton = 0,
-    RightButton = 1
+    RightButton = 1,
+    CenterButton = 2
 }

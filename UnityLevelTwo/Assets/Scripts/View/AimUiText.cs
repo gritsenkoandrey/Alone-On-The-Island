@@ -7,7 +7,9 @@ public sealed class AimUiText : MonoBehaviour
     #region Fields
 
     private Aim[] _aims;
+    private TargetSphere[] _sphere;
     private Text _text;
+
     private int _countPoint;
 
     #endregion
@@ -18,6 +20,7 @@ public sealed class AimUiText : MonoBehaviour
     private void Awake()
     {
         _aims = FindObjectsOfType<Aim>();
+        _sphere = FindObjectsOfType<TargetSphere>();
         _text = GetComponent<Text>();
     }
 
@@ -27,6 +30,11 @@ public sealed class AimUiText : MonoBehaviour
         {
             aim.OnPointChange += UpdatePoint;
         }
+
+        foreach (var sphere in _sphere)
+        {
+            sphere.OnPointChange += UpdatePoint;
+        }
     }
 
     private void OnDisable()
@@ -34,6 +42,11 @@ public sealed class AimUiText : MonoBehaviour
         foreach (var aim in _aims)
         {
             aim.OnPointChange -= UpdatePoint;
+        }
+
+        foreach (var sphere in _sphere)
+        {
+            sphere.OnPointChange -= UpdatePoint;
         }
     }
 

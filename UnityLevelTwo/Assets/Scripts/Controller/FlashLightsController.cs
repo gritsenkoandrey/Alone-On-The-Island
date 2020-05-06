@@ -15,6 +15,8 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
     // awake
     public void Initialization()
     {
+        _flashLightModel = Object.FindObjectOfType<FlashLightModel>();
+
         UiInterface.LightUiText.SetActive(false);
         UiInterface.LightUiBar.SetActive(false);
     }
@@ -67,9 +69,8 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
     public void Execute()
     {
         // Adding battery power
-        if (!IsActive)
+        if (!IsActive && _flashLightModel.AddBatteryCharge())
         {
-            //_flashLightModel.AddBatteryCharge();
             return;
         }
 

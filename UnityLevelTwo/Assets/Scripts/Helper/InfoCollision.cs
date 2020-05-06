@@ -35,5 +35,4 @@ public readonly struct InfoCollision
     }
 
     #endregion
-
 }
