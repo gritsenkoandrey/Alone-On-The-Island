@@ -74,7 +74,7 @@ public sealed class FlashLightsController : BaseController, IExecute, IInitializ
             return;
         }
 
-        if (_flashLightModel.EditBatteryCharge())
+        if (IsActive && _flashLightModel.EditBatteryCharge())
         {
             UiInterface.LightUiText.Text = _flashLightModel.BatteryChargeCurrent;
             UiInterface.LightUiBar.Fill = _flashLightModel.Charge;

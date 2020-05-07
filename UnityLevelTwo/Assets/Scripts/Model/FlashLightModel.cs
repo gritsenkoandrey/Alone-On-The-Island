@@ -43,10 +43,6 @@ public sealed class FlashLightModel : BaseObjectScene
         _goFollow = Camera.main.transform;
         _vecOffset = Transform.position - _goFollow.position;
         BatteryChargeCurrent = _batteryChargeMax;
-
-        // turn off the light when the game starts
-        //_light.enabled = false;
-
         _light.intensity = _intensity;
         _share = _batteryChargeMax / 4.0f;
         _takeAwayTheIntensity = _intensity / (_batteryChargeMax * 100.0f);
@@ -80,16 +76,6 @@ public sealed class FlashLightModel : BaseObjectScene
         Transform.rotation = Quaternion.Lerp(Transform.rotation, _goFollow.rotation, _speed * Time.deltaTime);
     }
 
-    //public bool EditBatteryCharge()
-    //{
-    //    if (BatteryChargeCurrent > 0)
-    //    {
-    //        BatteryChargeCurrent -= Time.deltaTime;
-    //        return true;
-    //    }
-    //    return false;
-    //}
-
     public bool EditBatteryCharge()
     {
         if (BatteryChargeCurrent > 0)
@@ -119,6 +105,10 @@ public sealed class FlashLightModel : BaseObjectScene
         if (BatteryChargeCurrent < _batteryChargeMax)
         {
             BatteryChargeCurrent += Time.deltaTime;
+            if (_light.intensity < _intensity)
+            {
+                _light.intensity += _takeAwayTheIntensity;
+            }
             return true;
         }
         return false;
