@@ -2,16 +2,37 @@
 using UnityEngine;
 
 
-public class TargetSphere : MonoBehaviour, ICollision, ISelectObj
+public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjImage
 {
     #region Fields
 
-    public event Action OnPointChange = delegate { };
-
-    [SerializeField] private float _hp = 10.0f;
+    [SerializeField] private float _hp = 50.0f;
+    private float _timeToDestroy = 5.0f;
 
     private bool _isDead;
-    private float _timeToDestroy = 1f;
+
+    public event Action OnPointChange = delegate { };
+
+    #endregion
+
+
+    #region Properties
+
+    public float CurrentHealth { get; private set; }
+
+    public float FillHealth
+    {
+        get { return CurrentHealth / _hp; }
+    }
+
+    #endregion
+
+    #region UnityMethods
+
+    protected override void Awake()
+    {
+        CurrentHealth = _hp;
+    }
 
     #endregion
 
@@ -24,11 +45,11 @@ public class TargetSphere : MonoBehaviour, ICollision, ISelectObj
         {
             return;
         }
-        if (_hp > 0)
+        if (CurrentHealth > 0)
         {
-            _hp -= info.Damage;
+            CurrentHealth -= info.Damage;
         }
-        if (_hp <= 0)
+        if (CurrentHealth <= 0)
         {
             if (!TryGetComponent<Rigidbody>(out _))
             {
@@ -42,7 +63,17 @@ public class TargetSphere : MonoBehaviour, ICollision, ISelectObj
 
     public string GetMessage()
     {
-        return $"{gameObject.name} - {_hp}";
+        return $"{gameObject.name} - {CurrentHealth}";
+    }
+
+    public float GetImage()
+    {
+        return FillHealth;
+    }
+
+    public bool LowHealth()
+    {
+        return CurrentHealth <= _hp / 2.0f;
     }
 
     #endregion

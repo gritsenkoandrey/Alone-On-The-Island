@@ -5,7 +5,7 @@ public abstract class AmmunitionRPG : BaseObjectScene
 {
     #region Fields
 
-    [SerializeField] private float _timeToDestract = 5;
+    [SerializeField] private float _timeToDestract = 2;
     [SerializeField] private float _baseDamage = 100;
 
     protected float _currentDamage;
@@ -50,6 +50,10 @@ public abstract class AmmunitionRPG : BaseObjectScene
     private void LossOfDamage()
     {
         _currentDamage -= _lossOfDamageAtTime;
+        if (_currentDamage < 0)
+        {
+            _currentDamage = 0;
+        }
     }
 
     protected void DestroyAmmunition()

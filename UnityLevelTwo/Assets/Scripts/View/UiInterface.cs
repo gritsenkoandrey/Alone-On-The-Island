@@ -9,7 +9,7 @@ public sealed class UiInterface
     private FlashLightUiBar _flashLightUiBar;
     private WeaponUiText _weaponUiText;
     private SelectionObjMessageUi _selectionObjMessageUi;
-    //private SelectionObjMessageUiBar _selectionObjMessageUiBar;
+    private SelectionObjMessageUiImage _selectionObjMessageUiImage;
 
     #endregion
 
@@ -64,17 +64,17 @@ public sealed class UiInterface
         }
     }
 
-    //public SelectionObjMessageUiBar SelectionObjMessageUiBar
-    //{
-    //    get
-    //    {
-    //        if (!_selectionObjMessageUiBar)
-    //        {
-    //            _selectionObjMessageUiBar = Object.FindObjectOfType<SelectionObjMessageUiBar>();
-    //        }
-    //        return _selectionObjMessageUiBar;
-    //    }
-    //}
+    public SelectionObjMessageUiImage SelectionObjMessageUiImage
+    {
+        get
+        {
+            if (!_selectionObjMessageUiImage)
+            {
+                _selectionObjMessageUiImage = Object.FindObjectOfType<SelectionObjMessageUiImage>();
+            }
+            return _selectionObjMessageUiImage;
+        }
+    }
 
     #endregion
 }
