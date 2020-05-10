@@ -14,6 +14,14 @@ public sealed class Bullet : Ammunition
         if (setDamage != null)
         {
             setDamage.CollisionEnter(new InfoCollision(_currentDamage, Rigidbody.velocity));
+
+            // наработка для уменьшающего луча
+            //if (!TryGetComponent<Transform>(out _))
+            //{
+            //    collision.gameObject.AddComponent<Transform>();
+            //}
+            //collision.gameObject.transform.localScale -= new Vector3(0.1f, 0.1f, 0);
+
         }
         DestroyAmmunition();
     }

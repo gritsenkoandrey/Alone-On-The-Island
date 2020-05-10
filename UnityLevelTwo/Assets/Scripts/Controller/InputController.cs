@@ -8,8 +8,8 @@ public sealed class InputController : BaseController, IExecute
     private KeyCode _activeFlashLight = KeyCode.F;
     private KeyCode _cancel = KeyCode.Escape;
     private KeyCode _reloadClip = KeyCode.R;
+    private KeyCode _removeWeapon = KeyCode.T;
     private int _mouseButton = (int)MouseButton.LeftButton;
-    //private int _mouse = (int)Input.GetAxis("Mouse ScrollWheel");
 
     #endregion
 
@@ -18,7 +18,6 @@ public sealed class InputController : BaseController, IExecute
     public InputController()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        //_mouse = (int)MouseButton.CenterButton;
     }
 
     #endregion
@@ -32,25 +31,22 @@ public sealed class InputController : BaseController, IExecute
         {
             return;
         }
+
         if (Input.GetKeyDown(_activeFlashLight))
         {
             ServiceLocator.Resolve<FlashLightsController>().Switch(ServiceLocator.Resolve<Inventory>().FlashLight);
         }
 
-        //if (Input.GetMouseButtonDown(_mouse))
-        //{
-
-        //}
-        // реализовать выбор оружия колесиком мыши
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SelectWeapon(0);
         }
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             SelectWeapon(1);
         }
+
         if (Input.GetMouseButton(_mouseButton))
         {
             if (ServiceLocator.Resolve<WeaponController>().IsActive)
@@ -58,11 +54,13 @@ public sealed class InputController : BaseController, IExecute
                 ServiceLocator.Resolve<WeaponController>().Fire();
             }
         }
+
         if (Input.GetKeyDown(_cancel))
         {
             ServiceLocator.Resolve<WeaponController>().Off();
             ServiceLocator.Resolve<FlashLightsController>().Off();
         }
+
         if (Input.GetKeyDown(_reloadClip))
         {
             if (ServiceLocator.Resolve<WeaponController>().IsActive)
@@ -70,16 +68,51 @@ public sealed class InputController : BaseController, IExecute
                 ServiceLocator.Resolve<WeaponController>().ReloadClip();
             }
         }
+
+        if (Input.GetKeyDown(_removeWeapon))
+        {
+            ServiceLocator.Resolve<WeaponController>().Off();
+            ServiceLocator.Resolve<Inventory>().RemoveWeapon();
+        }
+
+        // todo manager
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            MouseScroll(MouseScrollWheel.Up);
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            MouseScroll(MouseScrollWheel.Down);
+        }
     }
 
-    private void SelectWeapon(int i)
+    private void SelectWeapon(int index)
+    {
+        var tempWeapon = ServiceLocator.Resolve<Inventory>().SelectWeapon(index);
+        SelectWeapon(tempWeapon);
+
+        //ServiceLocator.Resolve<WeaponController>().Off();
+        //var tempWeapon = ServiceLocator.Resolve<Inventory>().Weapons[i]; // todo инкапсулировать
+        //if (tempWeapon != null)
+        //{
+        //    ServiceLocator.Resolve<WeaponController>().On(tempWeapon);
+        //}
+    }
+
+    private void SelectWeapon(Weapon weapon)
     {
         ServiceLocator.Resolve<WeaponController>().Off();
-        var tempWeapon = ServiceLocator.Resolve<Inventory>().Weapons[i]; // todo инкапсулировать
-        if (tempWeapon != null)
+        if (weapon != null)
         {
-            ServiceLocator.Resolve<WeaponController>().On(tempWeapon);
+            ServiceLocator.Resolve<WeaponController>().On(weapon);
         }
+    }
+
+    private void MouseScroll(MouseScrollWheel value)
+    {
+        var tempWeapon = ServiceLocator.Resolve<Inventory>().SelectWeapon(value);
+        SelectWeapon(tempWeapon);
     }
 
     #endregion
