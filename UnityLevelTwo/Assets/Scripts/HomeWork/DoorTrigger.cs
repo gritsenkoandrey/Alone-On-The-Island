@@ -5,28 +5,30 @@ public sealed class DoorTrigger : Door
 {
     #region Fields
 
-    private Door _door;
+    private CharacterController _character;
 
     #endregion
 
 
     #region UnityMethods
 
-    private void Start()
-    {
-        _door = FindObjectOfType<Door>();
-    }
-
     private void OnTriggerEnter(Collider collider)
     {
-        _door.Activate();
+        _character = collider.GetComponent<CharacterController>();
+        if (_character)
+        {
+            Activate();
+        }
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        _door.Deactivate();
+        _character = collider.GetComponent<CharacterController>();
+        if (_character)
+        {
+            Deactivate();
+        }
     }
-
 
     #endregion
 }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public abstract class Door : BaseObjectScene
+public abstract class Door : BaseObjectScene, ISelectObj, ISelectObjImage
 {
     #region Fields
 
@@ -50,6 +50,16 @@ public abstract class Door : BaseObjectScene
             transform.position = _pos;
             _isOpen = false;
         }
+    }
+
+    public string GetMessage()
+    {
+        return $"{gameObject.name}";
+    }
+
+    public float GetImage()
+    {
+        return default;
     }
 
     #endregion
