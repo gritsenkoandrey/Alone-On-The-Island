@@ -3,10 +3,17 @@
 
 public abstract class Door : BaseObjectScene
 {
+    #region Fields
+
     [SerializeField] private Vector3 _doorPosition;
     private Vector3 _pos;
 
     private bool _isOpen = false;
+
+    #endregion
+
+
+    #region Fields
 
     //public void Operate()
     //{
@@ -29,7 +36,7 @@ public abstract class Door : BaseObjectScene
     {
         if (!_isOpen)
         {
-             _pos = transform.position + _doorPosition;
+            _pos = transform.position + _doorPosition;
             transform.position = _pos;
             _isOpen = true;
         }
@@ -44,4 +51,6 @@ public abstract class Door : BaseObjectScene
             _isOpen = false;
         }
     }
+
+    #endregion
 }

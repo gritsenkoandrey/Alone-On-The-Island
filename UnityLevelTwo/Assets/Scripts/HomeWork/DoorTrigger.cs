@@ -3,7 +3,14 @@
 
 public sealed class DoorTrigger : Door
 {
+    #region Fields
+
     private Door _door;
+
+    #endregion
+
+
+    #region UnityMethods
 
     private void Start()
     {
@@ -19,4 +26,7 @@ public sealed class DoorTrigger : Door
     {
         _door.Deactivate();
     }
+
+
+    #endregion
 }
