@@ -65,7 +65,14 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
 
     public string GetMessage()
     {
-        return $"{gameObject.name} - {CurrentHealth}";
+        if (CurrentHealth > 0)
+        {
+            return $"{gameObject.name} - {CurrentHealth}";
+        }
+        else
+        {
+            return "Target Destroyed";
+        }
     }
 
     public float GetImage()

@@ -95,7 +95,15 @@ public sealed class SelectionController : BaseController, IExecute
         {
             UiInterface.SelectionObjMessageUi.Text = _selectedObj.GetMessage();
             UiInterface.SelectionObjMessageUiImage.Fill = _selectedObjImage.GetImage();
-            UiInterface.SelectionObjMessageUiImage.SetColor(Color.green);
+
+            if (_selectedObjImage.GetImage() > 0.5f)
+            {
+                UiInterface.SelectionObjMessageUiImage.SetColor(Color.green);
+            }
+            else
+            {
+                UiInterface.SelectionObjMessageUiImage.SetColor(Color.red);
+            }
 
             _isSelectedObj = true;
         }
