@@ -4,17 +4,34 @@ using UnityEngine.UI;
 
 public sealed class SelectionObjMessageUiImage : MonoBehaviour
 {
+    #region Fields
+
     private Image _image;
+
+    #endregion
+
+
+    #region Properties
 
     public float Fill
     {
         set { _image.fillAmount = value; }
     }
 
+    #endregion
+
+
+    #region UnityMethods
+
     private void Awake()
     {
         _image = GetComponent<Image>();
     }
+
+    #endregion
+
+
+    #region Methods
 
     public void SetActive(bool value)
     {
@@ -25,4 +42,6 @@ public sealed class SelectionObjMessageUiImage : MonoBehaviour
     {
         _image.color = value;
     }
+
+    #endregion
 }

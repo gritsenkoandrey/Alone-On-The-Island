@@ -1,6 +1,6 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
 
 
 // ответственность данного класса - это выделить объект
