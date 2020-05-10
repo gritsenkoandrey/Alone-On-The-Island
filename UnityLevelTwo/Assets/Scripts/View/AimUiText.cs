@@ -8,6 +8,7 @@ public sealed class AimUiText : MonoBehaviour
 
     private Aim[] _aims;
     private TargetSphere[] _sphere;
+    private Wall[] _wall;
     private Text _text;
 
     private int _countPoint;
@@ -21,6 +22,7 @@ public sealed class AimUiText : MonoBehaviour
     {
         _aims = FindObjectsOfType<Aim>();
         _sphere = FindObjectsOfType<TargetSphere>();
+        _wall = FindObjectsOfType<Wall>();
         _text = GetComponent<Text>();
     }
 
@@ -35,6 +37,11 @@ public sealed class AimUiText : MonoBehaviour
         {
             sphere.OnPointChange += UpdatePoint;
         }
+
+        foreach (var wall in _wall)
+        {
+            wall.OnPointChange += UpdatePoint;
+        }
     }
 
     private void OnDisable()
@@ -48,6 +55,12 @@ public sealed class AimUiText : MonoBehaviour
         {
             sphere.OnPointChange -= UpdatePoint;
         }
+
+        foreach (var wall in _wall)
+        {
+            wall.OnPointChange -= UpdatePoint;
+        }
+
     }
 
     #endregion
