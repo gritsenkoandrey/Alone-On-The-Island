@@ -14,7 +14,8 @@ public sealed class BodyBot : MonoBehaviour, ICollision
 
     public void CollisionEnter(InfoCollision info)
     {
-        OnApplyDamageChange?.Invoke(info);
+        OnApplyDamageChange?.Invoke(new InfoCollision
+            (info.Damage, info.Contact, info.ObjCollision, info.Direction));
     }
 
     #endregion

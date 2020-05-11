@@ -16,6 +16,8 @@ public sealed class Bot : BaseObjectScene, IExecute
     private float _waitTime = 3.0f;
     private float _timeToDestroy = 10.0f;
 
+    private float _detectedDistance = 30.0f;
+
     private StateBot _statebot;
     private ITimeRemaining _timeRemaining;
     public event Action<Bot> OnDieChange;
@@ -107,7 +109,7 @@ public sealed class Bot : BaseObjectScene, IExecute
     public void Execute()
     {
         // паттерн State
-        // если умерли, то ничего не делаем
+        // если бот умер, то ничего не делаем
         if (StateBot == StateBot.Died)
         {
             return;
@@ -153,11 +155,17 @@ public sealed class Bot : BaseObjectScene, IExecute
             {
                 Weapon.Fire();
             }
+            else if (!Vision.VisionM(transform, Target) && (transform.position - Target.position).sqrMagnitude < _detectedDistance * 35)
+            {
+                StateBot = StateBot.Patrol;
+                _point = Patrol.GenericPoint(transform);
+                MovePoint(_point);
+                Agent.stoppingDistance = 0;
+            }
             else
             {
                 MovePoint(Target.position);
             }
-
             // todo потеря персонажа
         }
     }
@@ -174,6 +182,11 @@ public sealed class Bot : BaseObjectScene, IExecute
         if (Hp > 0)
         {
             Hp -= info.Damage;
+            //if (info.Damage > 0)
+            //{
+            //    Debug.Log(info.Damage);
+            //    StateBot = StateBot.Detected;
+            //}
         }
 
         if (Hp <= 0)
@@ -188,7 +201,7 @@ public sealed class Bot : BaseObjectScene, IExecute
                 {
                     tempRbChild = child.gameObject.AddComponent<Rigidbody>();
                 }
-                //tempRbChild.AddForce(info.Dir * Random.Range(10, 300));
+                tempRbChild.AddForce(info.Direction * 100);
                 Destroy(child.gameObject, _timeToDestroy);
             }
             OnDieChange?.Invoke(this);
@@ -198,6 +211,11 @@ public sealed class Bot : BaseObjectScene, IExecute
     public void MovePoint(Vector3 point)
     {
         Agent.SetDestination(point);
+    }
+
+    public void ChangeState()
+    {
+
     }
 
     #endregion
