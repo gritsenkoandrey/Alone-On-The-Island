@@ -110,18 +110,30 @@ public abstract class BaseObjectScene : MonoBehaviour
         {
             component.enabled = _isVisible;
         }
+
+        //var component = renderer.gameObject.GetComponent<Renderer>();
+        //if (component)
+        //{
+        //    component.enabled = _isVisible;
+        //}
     }
 
     private void AskColor(Transform obj, Color color)
     {
-        foreach (var currentMaterial in obj.GetComponent<Renderer>().materials)
+        if (obj.TryGetComponent<Renderer>(out var renderer))
         {
-            currentMaterial.color = color;
+            foreach (var currentMaterial in renderer.materials)
+            {
+                currentMaterial.color = color;
+            }
+
         }
+
         if (obj.childCount <= 0)
         {
             return;
         }
+
         foreach (Transform d in obj)
         {
             AskColor(d, color);

@@ -13,7 +13,8 @@ public sealed class Bullet : Ammunition
 
         if (setDamage != null)
         {
-            setDamage.CollisionEnter(new InfoCollision(_currentDamage, Rigidbody.velocity));
+            setDamage.CollisionEnter(new InfoCollision(_currentDamage, collision.contacts[0],
+                collision.transform, Rigidbody.velocity));
 
             // наработка для уменьшающего луча
             //if (!TryGetComponent<Transform>(out _))

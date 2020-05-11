@@ -7,6 +7,8 @@ public readonly struct InfoCollision
 
     private readonly Vector3 _direction;
     private readonly float _damage;
+    private readonly ContactPoint _contact;
+    private readonly Transform _objCollision;
 
     #endregion
 
@@ -23,14 +25,26 @@ public readonly struct InfoCollision
         get { return _damage; }
     }
 
+    public ContactPoint Contact
+    {
+        get { return _contact; }
+    }
+
+    public Transform ObjCollision
+    {
+        get { return _objCollision; }
+    }
+
     #endregion
 
 
     #region ClassLifeCycless
 
-    public InfoCollision(float damage, Vector3 direction = default)
+    public InfoCollision(float damage, ContactPoint contact, Transform objCollision, Vector3 direction = default)
     {
         _damage = damage;
+        _contact = contact;
+        _objCollision = objCollision;
         _direction = direction;
     }
 

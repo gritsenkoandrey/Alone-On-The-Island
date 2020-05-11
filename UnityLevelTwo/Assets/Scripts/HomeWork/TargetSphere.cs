@@ -79,10 +79,10 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
         return FillHealth;
     }
 
-    public bool LowHealth()
-    {
-        return CurrentHealth <= _hp / 2.0f;
-    }
+    //public bool LowHealth()
+    //{
+    //    return CurrentHealth <= _hp / 2.0f;
+    //}
 
     #endregion
 }

@@ -61,12 +61,12 @@ public sealed class MovingPoints : MonoBehaviour
             return;
         }
 
-        //if (!_agent.Agent.hasPath)
-        //{
-        //    var point = _points.Dequeue();
-        //    _agent.MovePoint(point);
-        //    CurrentPoint = point;
-        //}
+        if (!_agent.Agent.hasPath)
+        {
+            var point = _points.Dequeue();
+            _agent.MovePoint(point);
+            CurrentPoint = point;
+        }
     }
 
     private void DrawPoint(Vector3 position)

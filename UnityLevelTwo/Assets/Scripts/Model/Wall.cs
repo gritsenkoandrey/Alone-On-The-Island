@@ -15,6 +15,7 @@ public sealed class Wall : BaseObjectScene, ISelectObj, ISelectObjImage, ICollis
 
     #endregion
 
+
     #region Properties
 
     public float CurrentHealth { get; private set; }
@@ -40,7 +41,7 @@ public sealed class Wall : BaseObjectScene, ISelectObj, ISelectObjImage, ICollis
     #region Methods
 
     // дописать поглощение урона
-    public void CollisionEnter(InfoCollision info)
+    public  void CollisionEnter(InfoCollision info)
     {
         if (_isDead)
         {
@@ -51,6 +52,7 @@ public sealed class Wall : BaseObjectScene, ISelectObj, ISelectObjImage, ICollis
             CurrentHealth -= info.Damage;
             if (!TryGetComponent<Transform>(out _))
             {
+                Debug.Log(gameObject);
                 gameObject.AddComponent<Transform>();
             }
             //gameObject.transform.localScale = new Vector3(Range(5.0f, 15.0f), Range(2.5f, 7.0f), 1.0f);
