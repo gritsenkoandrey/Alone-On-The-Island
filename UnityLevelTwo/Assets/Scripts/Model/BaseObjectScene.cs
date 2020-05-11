@@ -106,16 +106,16 @@ public abstract class BaseObjectScene : MonoBehaviour
 
     private void RendererSetActive(Transform renderer)
     {
-        if (renderer.gameObject.TryGetComponent<Renderer>(out var component))
-        {
-            component.enabled = _isVisible;
-        }
-
-        //var component = renderer.gameObject.GetComponent<Renderer>();
-        //if (component)
+        //if (renderer.gameObject.TryGetComponent<Renderer>(out var component))
         //{
         //    component.enabled = _isVisible;
         //}
+
+        var component = renderer.gameObject.GetComponent<Renderer>();
+        if (component)
+        {
+            component.enabled = _isVisible;
+        }
     }
 
     private void AskColor(Transform obj, Color color)
@@ -141,7 +141,7 @@ public abstract class BaseObjectScene : MonoBehaviour
     }
 
     // выключаем физику у объекта и его детей
-    public void DisableRigidbody()
+    public void DisableRigidBody()
     {
         var rigidbodies = GetComponentsInChildren<Rigidbody>();
         foreach (var body in rigidbodies)
@@ -151,17 +151,17 @@ public abstract class BaseObjectScene : MonoBehaviour
     }
 
     // включаем физику у объекта и его детей
-    public void EnableRigidbody(float force)
+    public void EnableRigidBody(float force)
     {
-        EnableRigidbody();
+        EnableRigidBody();
         Rigidbody.AddForce(transform.forward * force);
     }
 
     // включаем физику у объекта и его детей
-    public void EnableRigidbody()
+    public void EnableRigidBody()
     {
-        var rigidbodies = GetComponentsInChildren<Rigidbody>();
-        foreach (var body in rigidbodies)
+        var rigidBodies = GetComponentsInChildren<Rigidbody>();
+        foreach (var body in rigidBodies)
         {
             body.isKinematic = false;
         }
@@ -169,12 +169,12 @@ public abstract class BaseObjectScene : MonoBehaviour
 
     // Замораживает или размораживает физическую трансформацию объекта
     // "rigidbodyConstraints" - Трансформацию которую нужно заморозить
-    public void ConstraintsrigidBody(RigidbodyConstraints rigidbodyConstraints)
+    public void ConstraintsRigidBody(RigidbodyConstraints rigidBodyConstraints)
     {
-        var rigidbodies = GetComponentsInChildren<Rigidbody>();
-        foreach (var body in rigidbodies)
+        var rigidBodies = GetComponentsInChildren<Rigidbody>();
+        foreach (var body in rigidBodies)
         {
-            body.constraints = rigidbodyConstraints;
+            body.constraints = rigidBodyConstraints;
         }
     }
 

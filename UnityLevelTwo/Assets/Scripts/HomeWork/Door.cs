@@ -13,7 +13,7 @@ public abstract class Door : BaseObjectScene, ISelectObj, ISelectObjImage
     #endregion
 
 
-    #region Fields
+    #region Methods
 
     //public void Operate()
     //{
@@ -54,7 +54,7 @@ public abstract class Door : BaseObjectScene, ISelectObj, ISelectObjImage
 
     public string GetMessage()
     {
-        return $"{gameObject.name}";
+        return Name;
     }
 
     public float GetImage()

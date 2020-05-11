@@ -7,12 +7,10 @@ public abstract class Ammunition : BaseObjectScene
 
     [SerializeField] private float _timeToDestract = 10;
     [SerializeField] private float _baseDamage = 10;
-    // todo доделать свой урон
     protected float _currentDamage;
     private float _lossOfDamageAtTime = 0.2f;
 
-    private ITimeRemaining _timeRemaining;
-
+    //private ITimeRemaining _timeRemaining;
     public AmmunitionType Type = AmmunitionType.Bullet;
 
     #endregion
@@ -28,11 +26,15 @@ public abstract class Ammunition : BaseObjectScene
 
     private void Start()
     {
-        Destroy(gameObject, _timeToDestract);
-        // каждую секунду наш урон будет уменьшаться
-        _timeRemaining = new TimeRemaining(LossOfDamage, 1.0f, true);
-        // добавляем его в счетчик времени
-        _timeRemaining.AddTimeRemaining();
+        //Destroy(gameObject, _timeToDestract);
+        //// каждую секунду наш урон будет уменьшаться
+        //_timeRemaining = new TimeRemaining(LossOfDamage, 1.0f, true);
+        //// добавляем его в счетчик времени
+        //_timeRemaining.AddTimeRemaining();
+
+        DestroyAmmunition(_timeToDestract);
+        InvokeRepeating(nameof(LossOfDamage), 0.5f, 1);
+
     }
 
     #endregion
@@ -55,19 +57,19 @@ public abstract class Ammunition : BaseObjectScene
         _currentDamage -= _lossOfDamageAtTime;
     }
 
-    protected void DestroyAmmunition()
+    //protected void DestroyAmmunition()
+    //{
+    //    Destroy(gameObject);
+    //    _timeRemaining.RemoveTimeRemaining();
+    //    // todo вернуть в пул
+    //}
+
+    protected void DestroyAmmunition(float timeToDestruct = 0)
     {
-        Destroy(gameObject);
-        _timeRemaining.RemoveTimeRemaining();
+        Destroy(gameObject, timeToDestruct);
+        CancelInvoke(nameof(LossOfDamage));
         // todo вернуть в пул
     }
-
-    //protected void DestroyAmmunition(float timeToDestruct = 0)
-    //{
-    //    Destroy(gameObject, timeToDestruct);
-    //    CancelInvoke(nameof(LossOfDamage));
-    //    //Вернуть в пул
-    //}
 
     #endregion
 }
