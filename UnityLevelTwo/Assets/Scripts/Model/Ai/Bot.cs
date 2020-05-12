@@ -108,6 +108,7 @@ public sealed class Bot : BaseObjectScene, IExecute
 
     public void Execute()
     {
+        float distance = Vector3.Distance(transform.position, Target.position);
         // паттерн State
         // если бот умер, то ничего не делаем
         if (StateBot == StateBot.Died)
@@ -155,7 +156,8 @@ public sealed class Bot : BaseObjectScene, IExecute
             {
                 Weapon.Fire();
             }
-            else if (!Vision.VisionM(transform, Target) && (transform.position - Target.position).sqrMagnitude < _detectedDistance * 35)
+            // todo потеря персонажа
+            else if (distance > _detectedDistance)
             {
                 StateBot = StateBot.Patrol;
                 _point = Patrol.GenericPoint(transform);
@@ -166,7 +168,6 @@ public sealed class Bot : BaseObjectScene, IExecute
             {
                 MovePoint(Target.position);
             }
-            // todo потеря персонажа
         }
     }
 
@@ -178,15 +179,13 @@ public sealed class Bot : BaseObjectScene, IExecute
     private void SetDamage(InfoCollision info)
     {
         // todo реакция на поподание, например при попадании противник должен заметить игрока и атаковать
-
         if (Hp > 0)
         {
             Hp -= info.Damage;
-            //if (info.Damage > 0)
-            //{
-            //    Debug.Log(info.Damage);
-            //    StateBot = StateBot.Detected;
-            //}
+            if (info.Damage > 0)
+            {
+                StateBot = StateBot.Detected;
+            }
         }
 
         if (Hp <= 0)
