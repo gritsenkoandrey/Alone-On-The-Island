@@ -5,7 +5,7 @@ public abstract class Ammunition : BaseObjectScene
 {
     #region Fields
 
-    [SerializeField] private float _timeToDestract = 10;
+    [SerializeField] private float _timeToDestruct = 10;
     [SerializeField] private float _baseDamage = 10;
     protected float _currentDamage;
     private float _lossOfDamageAtTime = 0.2f;
@@ -32,7 +32,7 @@ public abstract class Ammunition : BaseObjectScene
         //// добавляем его в счетчик времени
         //_timeRemaining.AddTimeRemaining();
 
-        DestroyAmmunition(_timeToDestract);
+        DestroyAmmunition(_timeToDestruct);
         InvokeRepeating(nameof(LossOfDamage), 0.5f, 1);
 
     }

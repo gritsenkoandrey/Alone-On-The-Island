@@ -16,19 +16,8 @@ public sealed class BotController : BaseController, IExecute, IInitialization
 
     public void Initialization()
     {
-        for (var index = 0; index < _countBot; index++)
-        {
-            // Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform
-            // получение случайно точки воуруг нашего персонажа
-            var tempBot = Object.Instantiate(ServiceLocatorMonoBehaviour.GetService<Reference>().Bot,
-                Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform),
-                Quaternion.identity);
-
-            tempBot.Agent.avoidancePriority = index;
-            tempBot.Target = ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform;
-            //todo разных противников + можно как цель добавить других ботов (массив целей)
-            AddBotToList(tempBot);
-        }
+        EnemyBotSpawned();
+        FriendlyBotSpawned();
     }
 
     public void Execute()
@@ -64,5 +53,35 @@ public sealed class BotController : BaseController, IExecute, IInitialization
         _botList.Remove(bot);
     }
 
+    private void EnemyBotSpawned()
+    {
+        for (var index = 0; index < _countBot; index++)
+        {
+            // Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform
+            // получение случайно точки воуруг нашего персонажа
+            var tempBot = Object.Instantiate(ServiceLocatorMonoBehaviour.GetService<Reference>().Bot,
+                Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform),
+                Quaternion.identity);
+
+            tempBot.Agent.avoidancePriority = index;
+            tempBot.Target = ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform;
+            //todo разных противников + можно как цель добавить других ботов (массив целей)
+            AddBotToList(tempBot);
+        }
+    }
+
+    private void FriendlyBotSpawned()
+    {
+        for (var index = 0; index < _countBot; index++)
+        {
+            var tempBot = Object.Instantiate(ServiceLocatorMonoBehaviour.GetService<Reference>().Bot,
+                Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform),
+                Quaternion.identity);
+
+            tempBot.Agent.avoidancePriority = index;
+            tempBot.Target = ServiceLocatorMonoBehaviour.GetService<Bot>().transform;
+            AddBotToList(tempBot);
+        }
+    }
     #endregion
 }

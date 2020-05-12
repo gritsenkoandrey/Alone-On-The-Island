@@ -5,13 +5,13 @@ public abstract class AmmunitionRPG : BaseObjectScene
 {
     #region Fields
 
-    [SerializeField] private float _timeToDestract = 2;
+    [SerializeField] private float _timeToDestruct = 2;
     [SerializeField] private float _baseDamage = 100;
 
     protected float _currentDamage;
     private float _lossOfDamageAtTime = 10f;
 
-    private ITimeRemaining _timeRemaining;
+    //private ITimeRemaining _timeRemaining;
 
     public AmmunitionType Type = AmmunitionType.Rpg;
 
@@ -28,9 +28,13 @@ public abstract class AmmunitionRPG : BaseObjectScene
 
     private void Start()
     {
-        Destroy(gameObject, _timeToDestract);
-        _timeRemaining = new TimeRemaining(LossOfDamage, 0.1f, true);
-        _timeRemaining.AddTimeRemaining();
+        //Destroy(gameObject, _timeToDestruct);
+        //_timeRemaining = new TimeRemaining(LossOfDamage, 0.1f, true);
+        //_timeRemaining.AddTimeRemaining();
+
+        DestroyAmmunition(_timeToDestruct);
+        InvokeRepeating(nameof(LossOfDamage), 0.5f, 1);
+
     }
 
     #endregion
@@ -56,11 +60,18 @@ public abstract class AmmunitionRPG : BaseObjectScene
         }
     }
 
-    protected void DestroyAmmunition()
+    //protected void DestroyAmmunition()
+    //{
+    //    Destroy(gameObject);
+    //    _timeRemaining.RemoveTimeRemaining();
+    //}
+    protected void DestroyAmmunition(float timeToDestruct = 0)
     {
-        Destroy(gameObject);
-        _timeRemaining.RemoveTimeRemaining();
+        Destroy(gameObject, timeToDestruct);
+        CancelInvoke(nameof(LossOfDamage));
+        // todo вернуть в пул
     }
+
 
     #endregion
 }

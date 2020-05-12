@@ -15,10 +15,9 @@ public sealed class Bot : BaseObjectScene, IExecute
     private float _stoppingDistance = 2.0f;
     private float _waitTime = 3.0f;
     private float _timeToDestroy = 10.0f;
-
     private float _detectedDistance = 30.0f;
 
-    private StateBot _statebot;
+    private StateBot _stateBot;
     private ITimeRemaining _timeRemaining;
     public event Action<Bot> OnDieChange;
 
@@ -27,14 +26,20 @@ public sealed class Bot : BaseObjectScene, IExecute
 
     #region Properties
 
+    public float CurrentHealth { get; private set; }
+
+    public float FillHealth
+    {
+        get { return CurrentHealth / Hp; }
+    }
     public Transform Target { get; set; }
     public NavMeshAgent Agent { get; private set; }
     private StateBot StateBot
     {
-        get { return _statebot; }
+        get { return _stateBot; }
         set
         {
-            _statebot = value;
+            _stateBot = value;
             switch (value)
             {
                 case StateBot.None:
@@ -69,6 +74,7 @@ public sealed class Bot : BaseObjectScene, IExecute
         base.Awake();
         Agent = GetComponent<NavMeshAgent>();
         _timeRemaining = new TimeRemaining(ResetStateBot, _waitTime);
+        CurrentHealth = Hp;
     }
 
     private void OnEnable()
@@ -110,7 +116,6 @@ public sealed class Bot : BaseObjectScene, IExecute
     {
         float distance = Vector3.Distance(transform.position, Target.position);
         // паттерн State
-        // если бот умер, то ничего не делаем
         if (StateBot == StateBot.Died)
         {
             return;
@@ -152,17 +157,17 @@ public sealed class Bot : BaseObjectScene, IExecute
                 Agent.stoppingDistance = _stoppingDistance;
             }
 
-            if (Vision.VisionM(transform, Target))
-            {
-                Weapon.Fire();
-            }
-            // todo потеря персонажа
-            else if (distance > _detectedDistance)
+            if (distance > _detectedDistance)
             {
                 StateBot = StateBot.Patrol;
                 _point = Patrol.GenericPoint(transform);
                 MovePoint(_point);
                 Agent.stoppingDistance = 0;
+            }
+
+            if (Vision.VisionM(transform, Target))
+            {
+                Weapon.Fire();
             }
             else
             {
@@ -178,17 +183,16 @@ public sealed class Bot : BaseObjectScene, IExecute
 
     private void SetDamage(InfoCollision info)
     {
-        // todo реакция на поподание, например при попадании противник должен заметить игрока и атаковать
-        if (Hp > 0)
+        if (CurrentHealth > 0)
         {
-            Hp -= info.Damage;
+            CurrentHealth -= info.Damage;
             if (info.Damage > 0)
             {
                 StateBot = StateBot.Detected;
             }
         }
 
-        if (Hp <= 0)
+        if (CurrentHealth <= 0)
         {
             StateBot = StateBot.Died;
             Agent.enabled = false;

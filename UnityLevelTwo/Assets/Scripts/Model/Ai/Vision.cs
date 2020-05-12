@@ -6,9 +6,9 @@ public sealed class Vision
 {
     #region Fields
 
-    public float ActiveDis = 35.0f; //10
+    public float ActiveDis = 10.0f;
     // угол обзора противника
-    public float ActiveAng = 360.0f; //35
+    public float ActiveAng = 35.0f;
 
     #endregion
 
