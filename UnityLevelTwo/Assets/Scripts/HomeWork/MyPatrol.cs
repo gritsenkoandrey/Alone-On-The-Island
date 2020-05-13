@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
 
@@ -14,6 +14,8 @@ public class MyPatrol : BaseObjectScene
 
     private bool _isActive;
 
+    private NavMeshAgent _agent;
+
     #endregion
 
 
@@ -21,6 +23,7 @@ public class MyPatrol : BaseObjectScene
 
     protected override void Awake()
     {
+        _agent = GetComponent<NavMeshAgent>();
         _isActive = true;
     }
 
@@ -30,10 +33,15 @@ public class MyPatrol : BaseObjectScene
         {
             transform.Translate(0, 0, _speed * Time.deltaTime);
             var ray = new Ray(transform.position, transform.forward);
+            // todo SphereCast дорого, нужно переделать на SphereCastNonAlloc
             if (Physics.SphereCast(ray, _radius, out var hit))
             {
                 var hitObject = hit.transform.gameObject;
-                if (hit.distance < _obstacleRange)
+                if (hitObject.GetComponent<CharacterController>())
+                {
+                    _agent.SetDestination(hitObject.transform.position);
+                }
+                else if (hit.distance < _obstacleRange)
                 {
                     _angle = Random.Range(-180, 180);
                     transform.Rotate(0, _angle, 0);

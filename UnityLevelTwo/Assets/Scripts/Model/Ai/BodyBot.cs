@@ -1,23 +1,25 @@
 ﻿using System;
-using UnityEngine;
 
 
 public sealed class BodyBot : BaseObjectScene, ICollision, ISelectObj, ISelectObjImage
 {
-    private Bot _bot;
-
     #region Fields
 
+    private Bot _bot;
     public event Action<InfoCollision> OnApplyDamageChange;
 
     #endregion
 
+
+    #region UnityMethods
+
     protected override void Awake()
     {
-        //_bot = GetComponent<Bot>();
         _bot = GetComponentInParent<Bot>();
-
     }
+
+    #endregion
+
 
     #region Methods
 
@@ -31,7 +33,7 @@ public sealed class BodyBot : BaseObjectScene, ICollision, ISelectObj, ISelectOb
     {
         if (_bot.CurrentHealth > 0)
         {
-            return $"{gameObject.name} - {_bot.CurrentHealth}";
+            return $"{Name} - {_bot.CurrentHealth}";
 
         }
         else

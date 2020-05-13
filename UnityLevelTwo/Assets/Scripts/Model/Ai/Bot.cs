@@ -18,6 +18,9 @@ public sealed class Bot : BaseObjectScene, IExecute
     private float _detectedDistance = 30.0f;
     private float _distance;
 
+    // для проверки жив ли противник
+    private bool _isAlive;
+
     private StateBot _stateBot;
     private ITimeRemaining _timeRemaining;
     public event Action<Bot> OnDieChange;
@@ -185,7 +188,7 @@ public sealed class Bot : BaseObjectScene, IExecute
         if (CurrentHealth > 0)
         {
             CurrentHealth -= info.Damage;
-            if (info.Damage > 0 && info.ObjCollision == Target)
+            if (info.Damage > 0 /*&& info.ObjCollision == Target*/)
             {
                 StateBot = StateBot.Detected;
             }

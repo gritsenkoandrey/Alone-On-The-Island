@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEngine;
 
 
 public sealed class HeadBot : BaseObjectScene, ICollision, ISelectObj, ISelectObjImage
@@ -10,10 +9,17 @@ public sealed class HeadBot : BaseObjectScene, ICollision, ISelectObj, ISelectOb
     public event Action<InfoCollision> OnApplyDamageChange;
 
     #endregion
-    private void Start()
+
+
+    #region UnityMethods
+
+    protected override void Awake()
     {
         _bot = GetComponentInParent<Bot>();
     }
+
+    #endregion
+
 
     #region Methods
 
@@ -22,11 +28,12 @@ public sealed class HeadBot : BaseObjectScene, ICollision, ISelectObj, ISelectOb
         OnApplyDamageChange?.Invoke(new InfoCollision
             (info.Damage * 500, info.Contact, info.ObjCollision, info.Direction));
     }
+
     public string GetMessage()
     {
         if (_bot.CurrentHealth > 0)
         {
-            return $"{gameObject.name} - {_bot.CurrentHealth}";
+            return $"{Name} - {_bot.CurrentHealth}";
 
         }
         else

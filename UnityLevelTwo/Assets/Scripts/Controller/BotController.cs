@@ -17,7 +17,7 @@ public sealed class BotController : BaseController, IExecute, IInitialization
     public void Initialization()
     {
         EnemyBotSpawned();
-        FriendlyBotSpawned();
+        //FriendlyBotSpawned();
     }
 
     public void Execute()

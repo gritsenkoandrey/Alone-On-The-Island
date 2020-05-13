@@ -27,7 +27,6 @@ public sealed class Vision
         {
             return true;
         }
-
         return hit.transform != target;
     }
 
