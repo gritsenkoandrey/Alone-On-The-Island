@@ -1,33 +1,46 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 
-public class MyPatrol : MonoBehaviour
+public class MyPatrol : BaseObjectScene
 {
-    [SerializeField] private float _speed = 5.0f;
-    private float _obstacleRange = 2.0f;
-    private bool _isAlive;
+    #region Fields
 
-    private void Start()
+    [SerializeField] private float _speed = 10.0f;
+    [SerializeField] private float _obstacleRange = 5.0f;
+    private float _radius = 0.75f;
+    private float _angle;
+
+    private bool _isActive;
+
+    #endregion
+
+
+    #region UnityMethods
+
+    protected override void Awake()
     {
-        _isAlive = true;
+        _isActive = true;
     }
 
     private void Update()
     {
-        if (_isAlive)
+        if (_isActive)
         {
             transform.Translate(0, 0, _speed * Time.deltaTime);
-        }
-        var ray = new Ray(transform.position, transform.forward);
-        if (Physics.SphereCast(ray, 1.0f, out var hit))
-        {
-            GameObject hitObject = hit.transform.gameObject;
-
-            if (hit.distance < _obstacleRange)
+            var ray = new Ray(transform.position, transform.forward);
+            if (Physics.SphereCast(ray, _radius, out var hit))
             {
-                float angle = Random.Range(-120, 120);
-                transform.Rotate(0, angle, 0);
+                var hitObject = hit.transform.gameObject;
+                if (hit.distance < _obstacleRange)
+                {
+                    _angle = Random.Range(-180, 180);
+                    transform.Rotate(0, _angle, 0);
+                }
             }
         }
     }
+
+    #endregion
 }

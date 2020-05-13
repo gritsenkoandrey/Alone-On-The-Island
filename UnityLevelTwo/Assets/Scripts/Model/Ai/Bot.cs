@@ -16,6 +16,7 @@ public sealed class Bot : BaseObjectScene, IExecute
     private float _waitTime = 3.0f;
     private float _timeToDestroy = 10.0f;
     private float _detectedDistance = 30.0f;
+    private float _distance;
 
     private StateBot _stateBot;
     private ITimeRemaining _timeRemaining;
@@ -114,7 +115,6 @@ public sealed class Bot : BaseObjectScene, IExecute
 
     public void Execute()
     {
-        float distance = Vector3.Distance(transform.position, Target.position);
         // паттерн State
         if (StateBot == StateBot.Died)
         {
@@ -157,14 +157,6 @@ public sealed class Bot : BaseObjectScene, IExecute
                 Agent.stoppingDistance = _stoppingDistance;
             }
 
-            if (distance > _detectedDistance)
-            {
-                StateBot = StateBot.Patrol;
-                _point = Patrol.GenericPoint(transform);
-                MovePoint(_point);
-                Agent.stoppingDistance = 0;
-            }
-
             if (Vision.VisionM(transform, Target))
             {
                 Weapon.Fire();
@@ -172,6 +164,13 @@ public sealed class Bot : BaseObjectScene, IExecute
             else
             {
                 MovePoint(Target.position);
+            }
+
+            if (ChangeState())
+            {
+                _point = Patrol.GenericPoint(transform);
+                MovePoint(_point);
+                Agent.stoppingDistance = 0;
             }
         }
     }
@@ -186,7 +185,7 @@ public sealed class Bot : BaseObjectScene, IExecute
         if (CurrentHealth > 0)
         {
             CurrentHealth -= info.Damage;
-            if (info.Damage > 0)
+            if (info.Damage > 0 && info.ObjCollision == Target)
             {
                 StateBot = StateBot.Detected;
             }
@@ -216,9 +215,18 @@ public sealed class Bot : BaseObjectScene, IExecute
         Agent.SetDestination(point);
     }
 
-    public void ChangeState()
+    public bool ChangeState()
     {
-
+        if (StateBot == StateBot.Detected)
+        {
+            _distance = Vector3.Distance(transform.position, Target.position);
+            if (_distance > _detectedDistance)
+            {
+                StateBot = StateBot.Patrol;
+                return true;
+            }
+        }
+        return false;
     }
 
     #endregion
