@@ -31,6 +31,7 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
 
     protected override void Awake()
     {
+        base.Awake();
         CurrentHealth = _hp;
     }
 

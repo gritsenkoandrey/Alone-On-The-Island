@@ -13,6 +13,7 @@ public sealed class InputController : BaseController, IExecute
 
     #endregion
 
+
     #region ClassLifeCycless
 
     public InputController()

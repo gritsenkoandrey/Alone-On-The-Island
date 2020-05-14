@@ -32,6 +32,7 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
 
     protected override void Awake()
     {
+        base.Awake();
         CurrentHealth = _hp;
     }
 
@@ -80,10 +81,10 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
         return FillHealth;
     }
 
-    public bool LowHealth()
-    {
-        return CurrentHealth <= _hp / 2.0f;
-    }
+    //public bool LowHealth()
+    //{
+    //    return CurrentHealth <= _hp / 2.0f;
+    //}
 
     #endregion
 }

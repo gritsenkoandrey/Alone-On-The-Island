@@ -42,15 +42,15 @@ Projector:
   m_Enabled: 1
   serializedVersion: 2
   m_NearClipPlane: 0.1
-  m_FarClipPlane: 1.5
-  m_FieldOfView: 60
+  m_FarClipPlane: 50
+  m_FieldOfView: 100
   m_AspectRatio: 1
   m_Orthographic: 0
   m_OrthographicSize: 0.25
   m_Material: {fileID: 2100000, guid: 62b0ef922b30c5741b07101a6491d268, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
 --- !u!114 &4455703739037601079
 MonoBehaviour:
   m_ObjectHideFlags: 0

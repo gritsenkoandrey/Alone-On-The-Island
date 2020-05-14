@@ -23,6 +23,7 @@ public class MyPatrol : BaseObjectScene
 
     protected override void Awake()
     {
+        base.Awake();
         _agent = GetComponent<NavMeshAgent>();
         _isActive = true;
     }
