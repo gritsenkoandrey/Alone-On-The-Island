@@ -70,18 +70,18 @@ public sealed class BotController : BaseController, IExecute, IInitialization
         }
     }
 
-    private void FriendlyBotSpawned()
-    {
-        for (var index = 0; index < _countBot; index++)
-        {
-            var tempBot = Object.Instantiate(ServiceLocatorMonoBehaviour.GetService<Reference>().Bot,
-                Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform),
-                Quaternion.identity);
+    //private void FriendlyBotSpawned()
+    //{
+    //    for (var index = 0; index < _countBot; index++)
+    //    {
+    //        var tempBot = Object.Instantiate(ServiceLocatorMonoBehaviour.GetService<Reference>().Bot,
+    //            Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform),
+    //            Quaternion.identity);
 
-            tempBot.Agent.avoidancePriority = index;
-            tempBot.Target = ServiceLocatorMonoBehaviour.GetService<Bot>().transform;
-            AddBotToList(tempBot);
-        }
-    }
+    //        tempBot.Agent.avoidancePriority = index;
+    //        tempBot.Target = ServiceLocatorMonoBehaviour.GetService<Bot>().transform;
+    //        AddBotToList(tempBot);
+    //    }
+    //}
     #endregion
 }

@@ -7,7 +7,7 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
     #region Fields
 
     [SerializeField] private float _hp = 50.0f;
-    private float _timeToDestroy = 5.0f;
+    private readonly float _timeToDestroy = 5.0f;
 
     private bool _isDead;
 

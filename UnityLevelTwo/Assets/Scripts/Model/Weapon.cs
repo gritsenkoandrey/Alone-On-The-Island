@@ -19,10 +19,10 @@ public abstract class Weapon : BaseObjectScene
 
     [SerializeField] protected float _force = 999.0f;
     [SerializeField] protected float _rechargeTime = 0.2f;
-    private int _maxCountAmmunition = 40;
-    private int _minCountAmmunition = 20;
+    private readonly int _maxCountAmmunition = 40;
+    private readonly int _minCountAmmunition = 20;
     // количество обойм в оружии
-    private int _countClip = 5;
+    private readonly int _countClip = 5;
     protected bool _isReady = true;
 
     public AmmunitionType[] AmmunitionTypes = { AmmunitionType.Bullet, AmmunitionType.Rpg };

@@ -90,10 +90,10 @@ public sealed class Inventory : IInitialization
         }
     }
 
-    public void AddWeapon(Weapon weapon)
-    {
+    //public void AddWeapon(Weapon weapon)
+    //{
 
-    }
+    //}
 
     #endregion
 }

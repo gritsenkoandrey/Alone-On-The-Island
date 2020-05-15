@@ -9,7 +9,7 @@ public class MyPatrol : BaseObjectScene
 
     [SerializeField] private float _speed = 10.0f;
     [SerializeField] private float _obstacleRange = 5.0f;
-    private float _radius = 0.75f;
+    private readonly float _radius = 0.75f;
     private float _angle;
 
     private bool _isActive;

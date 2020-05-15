@@ -5,11 +5,11 @@ public sealed class InputController : BaseController, IExecute
 {
     #region Fields
 
-    private KeyCode _activeFlashLight = KeyCode.F;
-    private KeyCode _cancel = KeyCode.Escape;
-    private KeyCode _reloadClip = KeyCode.R;
-    private KeyCode _removeWeapon = KeyCode.T;
-    private int _mouseButton = (int)MouseButton.LeftButton;
+    private readonly KeyCode _activeFlashLight = KeyCode.F;
+    private readonly KeyCode _cancel = KeyCode.Escape;
+    private readonly KeyCode _reloadClip = KeyCode.R;
+    private readonly KeyCode _removeWeapon = KeyCode.T;
+    private readonly int _mouseButton = (int)MouseButton.LeftButton;
 
     #endregion
 
