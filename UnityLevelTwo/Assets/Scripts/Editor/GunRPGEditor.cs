@@ -5,12 +5,23 @@ using UnityEditor;
 [CustomEditor(typeof(GunRPG))]
 public sealed class GunRPGEditor : Editor
 {
+    #region Fields
+
     private SerializedProperty _ammunitionRpgProperty;
     private SerializedProperty _barrelOneProperty;
     private SerializedProperty _barrelTwoProperty;
     private SerializedProperty _barrelThreeProperty;
     private SerializedProperty _forceProperty;
     private SerializedProperty _rechargeTimeProperty;
+
+    private float _minValue = 0;
+    private float _maxDamageValue = 10000.0f;
+    private float _maxRechargeValue = 10.0f;
+
+    #endregion
+
+
+    #region UnityMethods
 
     private void OnEnable()
     {
@@ -29,25 +40,28 @@ public sealed class GunRPGEditor : Editor
         EditorGUILayout.PropertyField(_ammunitionRpgProperty, new GUIContent("RPG"));
 
         EditorGUILayout.PropertyField(_barrelOneProperty, new GUIContent("Barrel One"));
-
         EditorGUILayout.PropertyField(_barrelTwoProperty, new GUIContent("Barrel Two"));
-
         EditorGUILayout.PropertyField(_barrelThreeProperty, new GUIContent("Barrel Three"));
 
-        EditorGUILayout.Slider(_forceProperty, 0, 10000, new GUIContent("Damage"));
+        EditorGUILayout.Slider(_forceProperty, _minValue, _maxDamageValue, new GUIContent("Damage"));
         if (!_forceProperty.hasMultipleDifferentValues)
         {
-            ProgressBar(_forceProperty.floatValue / 10000.0f, "Damage");
+            ProgressBar(_forceProperty.floatValue / _maxDamageValue, "Damage");
         }
 
-        EditorGUILayout.Slider(_rechargeTimeProperty, 0, 10, new GUIContent("Recharge Time"));
+        EditorGUILayout.Slider(_rechargeTimeProperty, _minValue, _maxRechargeValue, new GUIContent("Recharge Time"));
         if (!_rechargeTimeProperty.hasMultipleDifferentValues)
         {
-            ProgressBar(_rechargeTimeProperty.floatValue / 10.0f, "Recharge Time");
+            ProgressBar(_rechargeTimeProperty.floatValue / _maxRechargeValue, "Recharge Time");
         }
 
         serializedObject.ApplyModifiedProperties();
     }
+
+    #endregion
+
+
+    #region Methods
 
     private void ProgressBar(float value, string label)
     {
@@ -55,4 +69,6 @@ public sealed class GunRPGEditor : Editor
         EditorGUI.ProgressBar(rect, value, label);
         EditorGUILayout.Space();
     }
+
+    #endregion
 }

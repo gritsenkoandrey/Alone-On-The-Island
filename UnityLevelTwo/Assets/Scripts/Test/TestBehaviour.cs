@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 
 public sealed class TestBehaviour : MonoBehaviour
@@ -27,6 +28,12 @@ public sealed class TestBehaviour : MonoBehaviour
         {
             Instantiate(obj, new Vector3(0, offset * i, 0), Quaternion.identity, _root);
             //todo Свой алгоритм по расстановке мин или аптечек
+
+            //var dis = Random.Range(25, 125);
+            //var randomPoint = Random.insideUnitSphere * dis;
+            //NavMesh.SamplePosition(randomPoint, out var hit, dis, NavMesh.AllAreas);
+            //var result = hit.position;
+            //Instantiate(obj, result, Quaternion.identity, _root);
         }
     }
 

@@ -6,7 +6,7 @@ public sealed class BotController : BaseController, IExecute, IInitialization
 {
     #region Fields
 
-    private readonly int _countBot = 5;
+    private readonly int _countBot = 10;
     private readonly List<Bot> _botList = new List<Bot>();
 
     #endregion

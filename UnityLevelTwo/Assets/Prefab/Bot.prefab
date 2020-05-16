@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2621199167139496952}
   - component: {fileID: 2621199167139496955}
   - component: {fileID: 2621199167139496954}
-  - component: {fileID: 2621199167139496953}
+  - component: {fileID: 2340660909424129488}
   - component: {fileID: 2621199167139496900}
   m_Layer: 0
   m_Name: Gun
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2621199167139496959}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.618, y: 0.327, z: 0.298}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.10000002, y: 0.10000002, z: 0.10000002}
   m_Children:
   - {fileID: 2621199168206008739}
   m_Father: {fileID: 4314507422221007715}
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2621199167139496953
-BoxCollider:
+--- !u!64 &2340660909424129488
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,9 +92,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2432090755550338912, guid: 7132d4f6beb2cb3499a00dfda461db78, type: 3}
 --- !u!114 &2621199167139496900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ MonoBehaviour:
   _barrelTwo: {fileID: 0}
   _barrelThree: {fileID: 0}
   _force: 999
-  _rechargeTime: 0.2
+  _rechargeTime: 2
   AmmunitionTypes: 04000000
 --- !u!1 &2621199167771584720
 GameObject:
@@ -145,7 +146,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2621199167771584720}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -359,7 +360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2621199168206008738}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.29, y: 3.6, z: 9.6}
+  m_LocalPosition: {x: 0.25, y: 4, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2621199167139496952}

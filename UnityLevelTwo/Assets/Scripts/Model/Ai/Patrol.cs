@@ -22,7 +22,7 @@ public static class Patrol
 
     #region Methods
 
-    public static Vector3 GenericPoint(Transform agent, bool isRandom = true)
+    public static Vector3 GenericPoint(Transform agent, bool isRandom = true/*false*/)
     {
         Vector3 result;
 
