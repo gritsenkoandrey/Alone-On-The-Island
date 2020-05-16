@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 
 
 [CustomEditor(typeof(CreateRandomPoint))]
@@ -35,6 +36,7 @@ public class CreateRandomPointEditor : Editor
         if (isPressButton)
         {
             _targetCreateRandomPoint.CreateObject();
+            SetObjectDirty(_targetCreateRandomPoint.gameObject);
         }
     }
 
@@ -48,6 +50,15 @@ public class CreateRandomPointEditor : Editor
         Rect rect = GUILayoutUtility.GetRect(20, 20, "TextField");
         EditorGUI.ProgressBar(rect, value, label);
         EditorGUILayout.Space();
+    }
+
+    public void SetObjectDirty(GameObject obj)
+    {
+        if (!Application.isPlaying)
+        {
+            EditorUtility.SetDirty(obj);
+            EditorSceneManager.MarkSceneDirty(obj.scene);
+        }
     }
 
     #endregion
