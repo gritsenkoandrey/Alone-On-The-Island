@@ -5,19 +5,30 @@ using UnityEngine;
 [Serializable]
 public struct SerializableGameObject
 {
+    #region Fields
+
     public string Name;
     public SerializableVector3 Pos;
     public SerializableQuaternion Rot;
     public SerializableVector3 Scale;
     public Component[] Component;
+
+    #endregion
 }
 
 [Serializable]
 public struct SerializableVector3
 {
+    #region Fields
+
     public float X;
     public float Y;
     public float Z;
+
+    #endregion
+
+
+    #region ClassLifeCycles
 
     public SerializableVector3(float x, float y, float z)
     {
@@ -25,6 +36,11 @@ public struct SerializableVector3
         Y = y;
         Z = z;
     }
+
+    #endregion
+
+
+    #region MyRegion
 
     public static implicit operator Vector3(SerializableVector3 value)
     {
@@ -34,15 +50,24 @@ public struct SerializableVector3
     {
         return new SerializableVector3(value.x, value.y, value.z);
     }
+
+    #endregion
 }
 
 [Serializable]
 public struct SerializableQuaternion
 {
+    #region Fields
+
     public float X;
     public float Y;
     public float Z;
     public float W;
+
+    #endregion
+
+
+    #region ClassLyfeCycles
 
     public SerializableQuaternion(float x, float y, float z, float w)
     {
@@ -51,6 +76,11 @@ public struct SerializableQuaternion
         Z = z;
         W = w;
     }
+
+    #endregion
+
+
+    #region MyRegion
 
     public static implicit operator Quaternion(SerializableQuaternion value)
     {
@@ -61,4 +91,6 @@ public struct SerializableQuaternion
     {
         return new SerializableQuaternion(value.x, value.y, value.z, value.w);
     }
+
+    #endregion
 }

@@ -4,7 +4,7 @@ using UnityEditor.SceneManagement;
 
 
 [CustomEditor(typeof(CreateRandomPoint))]
-public class CreateRandomPointEditor : Editor
+public sealed class CreateRandomPointEditor : Editor
 {
     #region Fields
 
@@ -31,6 +31,8 @@ public class CreateRandomPointEditor : Editor
         _targetCreateRandomPoint.gameObj = EditorGUILayout.ObjectField("Object",
             _targetCreateRandomPoint.gameObj, typeof(GameObject), false) as GameObject;
 
+        _targetCreateRandomPoint.name = EditorGUILayout.TextField("Name Object", _targetCreateRandomPoint.name);
+
         var isPressButton = GUILayout.Button("Create Object", EditorStyles.miniButtonLeft);
 
         if (isPressButton)
@@ -52,12 +54,12 @@ public class CreateRandomPointEditor : Editor
         EditorGUILayout.Space();
     }
 
-    public void SetObjectDirty(GameObject obj)
+    public void SetObjectDirty(GameObject gameObj)
     {
         if (!Application.isPlaying)
         {
-            EditorUtility.SetDirty(obj);
-            EditorSceneManager.MarkSceneDirty(obj.scene);
+            EditorUtility.SetDirty(gameObj);
+            EditorSceneManager.MarkSceneDirty(gameObj.scene);
         }
     }
 

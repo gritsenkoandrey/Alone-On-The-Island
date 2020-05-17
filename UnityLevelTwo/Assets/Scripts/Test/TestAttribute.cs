@@ -31,6 +31,12 @@ public sealed class TestAttribute : MonoBehaviour
         GetComponent<Renderer>().sharedMaterial.color = UnityEngine.Random.ColorHSV();
     }
 
+    private void OnGUI()
+    {
+        GUILayout.Button("Click Me");
+    }
+
+
     private void Randomize()
     {
         SecondTest = UnityEngine.Random.Range(_min, _max);
@@ -41,8 +47,4 @@ public sealed class TestAttribute : MonoBehaviour
     {
     }
 
-    private void OnGUI()
-    {
-        GUILayout.Button("Click Me");
-    }
 }

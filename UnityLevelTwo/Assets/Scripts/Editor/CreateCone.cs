@@ -1,98 +1,113 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
+
 public class CreateCone : ScriptableWizard
 {
-    public int numVertices = 10; 
-    public float radiusTop = 0f; 
-    public float radiusBottom = 1f; 
-    public float length = 1f; 
+    #region Fields
+
+    public int numVertices = 10;
+    public float radiusTop = 0f;
+    public float radiusBottom = 1f;
+    public float length = 1f;
     public float openingAngle = 0f; // if >0, create a cone with this angle by setting radiusTop to 0, and adjust radiusBottom according to length;
-    public bool outside = true; 
-    public bool inside = false; 
+    public bool outside = true;
+    public bool inside = false;
     public bool addCollider = false;
-    
-    [MenuItem("GameObject/Create Other/Cone")] 
+
+    #endregion
+
+
+    [MenuItem("GameObject/Create Other/Cone")]
+
+
+    #region Methods
+
     static void CreateWizard()
-    { 
+    {
         ScriptableWizard.DisplayWizard("Create Cone", typeof(CreateCone));
     }
-    
-    void OnWizardCreate() 
-    { 
-        GameObject newCone = new GameObject("Cone"); 
-        if (openingAngle > 0 && openingAngle < 180) 
-        { 
-            radiusTop = 0; 
+
+    #endregion
+
+
+    #region UnityMethods
+
+    void OnWizardCreate()
+    {
+        GameObject newCone = new GameObject("Cone");
+        if (openingAngle > 0 && openingAngle < 180)
+        {
+            radiusTop = 0;
             radiusBottom = length * Mathf.Tan(openingAngle * Mathf.Deg2Rad / 2);
-        } 
-        string meshName = newCone.name + numVertices + "v" + radiusTop + "t" + radiusBottom + "b" + length + "l" + length + (outside ? "o" : "") + (inside ? "i" : ""); 
-        string meshPrefabPath = "Assets/Editor/" + meshName + ".asset"; 
-        Mesh mesh = (Mesh)AssetDatabase.LoadAssetAtPath(meshPrefabPath, typeof(Mesh)); 
-        if (mesh == null) 
-        { 
-            mesh = new Mesh(); 
-            mesh.name = meshName; 
+        }
+        string meshName = newCone.name + numVertices + "v" + radiusTop + "t" + radiusBottom + "b" + length + "l" + length + (outside ? "o" : "") + (inside ? "i" : "");
+        string meshPrefabPath = "Assets/Editor/" + meshName + ".asset";
+        Mesh mesh = (Mesh)AssetDatabase.LoadAssetAtPath(meshPrefabPath, typeof(Mesh));
+        if (mesh == null)
+        {
+            mesh = new Mesh();
+            mesh.name = meshName;
             // can't access Camera.current
             // newCone.transform.position = Camera.current.transform.position + Camera.current.transform.forward * 5.0f;
-            int multiplier = (outside ? 1 : 0) + (inside ? 1 : 0); 
-            int offset = (outside && inside ? 2 * numVertices : 0); 
+            int multiplier = (outside ? 1 : 0) + (inside ? 1 : 0);
+            int offset = (outside && inside ? 2 * numVertices : 0);
             Vector3[] vertices = new Vector3[2 * multiplier * numVertices]; // 0..n-1: top, n..2n-1: bottom
-            Vector3[] normals = new Vector3[2 * multiplier * numVertices]; 
-            Vector2[] uvs = new Vector2[2 * multiplier * numVertices]; 
-            int[] tris; 
+            Vector3[] normals = new Vector3[2 * multiplier * numVertices];
+            Vector2[] uvs = new Vector2[2 * multiplier * numVertices];
+            int[] tris;
             float slope = Mathf.Atan((radiusBottom - radiusTop) / length); // (rad difference)/height
-            float slopeSin = Mathf.Sin(slope); 
-            float slopeCos = Mathf.Cos(slope); 
+            float slopeSin = Mathf.Sin(slope);
+            float slopeCos = Mathf.Cos(slope);
             int i;
             for (i = 0; i < numVertices; i++)
-            { 
-                float angle = 2 * Mathf.PI * i / numVertices; 
-                float angleSin = Mathf.Sin(angle); 
-                float angleCos = Mathf.Cos(angle); 
+            {
+                float angle = 2 * Mathf.PI * i / numVertices;
+                float angleSin = Mathf.Sin(angle);
+                float angleCos = Mathf.Cos(angle);
                 float angleHalf = 2 * Mathf.PI * (i + 0.5f) / numVertices; // for degenerated normals at cone tips
-                float angleHalfSin = Mathf.Sin(angleHalf); 
+                float angleHalfSin = Mathf.Sin(angleHalf);
                 float angleHalfCos = Mathf.Cos(angleHalf);
-                
-                vertices[i] = new Vector3(radiusTop * angleCos, radiusTop * angleSin, 0); 
+
+                vertices[i] = new Vector3(radiusTop * angleCos, radiusTop * angleSin, 0);
                 vertices[i + numVertices] = new Vector3(radiusBottom * angleCos, radiusBottom * angleSin, length);
-                
-                if (radiusTop == 0) 
+
+                if (radiusTop == 0)
                     normals[i] = new Vector3(angleHalfCos * slopeCos, angleHalfSin * slopeCos, -slopeSin);
-                else 
-                    normals[i] = new Vector3(angleCos * slopeCos, angleSin * slopeCos, -slopeSin); 
-                if (radiusBottom == 0) 
+                else
+                    normals[i] = new Vector3(angleCos * slopeCos, angleSin * slopeCos, -slopeSin);
+                if (radiusBottom == 0)
                     normals[i + numVertices] = new Vector3(angleHalfCos * slopeCos, angleHalfSin * slopeCos, -slopeSin);
-                else 
+                else
                     normals[i + numVertices] = new Vector3(angleCos * slopeCos, angleSin * slopeCos, -slopeSin);
-                
-                uvs[i] = new Vector2(1.0f * i / numVertices, 1); 
+
+                uvs[i] = new Vector2(1.0f * i / numVertices, 1);
                 uvs[i + numVertices] = new Vector2(1.0f * i / numVertices, 0);
-                
-                if (outside && inside) 
-                { 
+
+                if (outside && inside)
+                {
                     // vertices and uvs are identical on inside and outside, so just copy
-                    vertices[i + 2 * numVertices] = vertices[i]; 
-                    vertices[i + 3 * numVertices] = vertices[i + numVertices]; 
-                    uvs[i + 2 * numVertices] = uvs[i]; 
+                    vertices[i + 2 * numVertices] = vertices[i];
+                    vertices[i + 3 * numVertices] = vertices[i + numVertices];
+                    uvs[i + 2 * numVertices] = uvs[i];
                     uvs[i + 3 * numVertices] = uvs[i + numVertices];
-                } 
-                if (inside) 
-                { 
+                }
+                if (inside)
+                {
                     // invert normals
-                    normals[i + offset] = -normals[i]; 
+                    normals[i + offset] = -normals[i];
                     normals[i + numVertices + offset] = -normals[i + numVertices];
                 }
-            } 
-            mesh.vertices = vertices; 
-            mesh.normals = normals; 
+            }
+            mesh.vertices = vertices;
+            mesh.normals = normals;
             mesh.uv = uvs;
 
             // create triangles
             // here we need to take care of point order, depending on inside and outside
-            int cnt = 0; 
-            if (radiusTop == 0) 
-            { 
+            int cnt = 0;
+            if (radiusTop == 0)
+            {
                 // top cone
                 tris = new int[numVertices * 3 * multiplier];
                 if (outside)
@@ -121,8 +136,8 @@ public class CreateCone : ScriptableWizard
                     }
                 }
             }
-            else if (radiusBottom == 0) 
-            { 
+            else if (radiusBottom == 0)
+            {
                 // bottom cone
                 tris = new int[numVertices * 3 * multiplier];
                 if (outside)
@@ -185,19 +200,21 @@ public class CreateCone : ScriptableWizard
                         tris[cnt++] = ip1;
                     }
                 }
-            } 
-            mesh.triangles = tris; 
-            AssetDatabase.CreateAsset(mesh, meshPrefabPath); 
+            }
+            mesh.triangles = tris;
+            AssetDatabase.CreateAsset(mesh, meshPrefabPath);
             AssetDatabase.SaveAssets();
         }
-        MeshFilter mf = newCone.AddComponent<MeshFilter>(); 
+        MeshFilter mf = newCone.AddComponent<MeshFilter>();
         mf.mesh = mesh;
         newCone.AddComponent<MeshRenderer>();
-        if (addCollider) 
-        { 
-            MeshCollider mc = newCone.AddComponent<MeshCollider>(); 
+        if (addCollider)
+        {
+            MeshCollider mc = newCone.AddComponent<MeshCollider>();
             mc.sharedMesh = mf.sharedMesh;
         }
         Selection.activeObject = newCone;
     }
+
+    #endregion
 }

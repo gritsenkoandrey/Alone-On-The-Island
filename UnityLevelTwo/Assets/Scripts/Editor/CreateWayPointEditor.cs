@@ -7,7 +7,14 @@ using UnityEditor.SceneManagement;
 [CustomEditor(typeof(CreateWayPoint))]
 public sealed class CreateWayPointEditor : Editor
 {
+    #region Fields
+
     private CreateWayPoint _testTarget;
+
+    #endregion
+
+
+    #region UnityMethods
 
     private void OnEnable()
     {
@@ -32,6 +39,11 @@ public sealed class CreateWayPointEditor : Editor
         Selection.activeGameObject = _testTarget.gameObject;
     }
 
+    #endregion
+
+
+    #region Methods
+
     public void SetObjectDirty(GameObject obj)
     {
         if (!Application.isPlaying)
@@ -42,5 +54,7 @@ public sealed class CreateWayPointEditor : Editor
             EditorSceneManager.MarkSceneDirty(obj.scene);
         }
     }
+
+    #endregion
 }
 #endif

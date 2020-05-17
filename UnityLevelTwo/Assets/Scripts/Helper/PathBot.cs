@@ -4,10 +4,17 @@ using System.Linq;
 
 public sealed class PathBot : MonoBehaviour
 {
+    #region Fields
+
     [SerializeField]
     private Color _lineColor = Color.red;
     //массив точек
     private Vector3[] _nodes;
+
+    #endregion
+
+
+    #region UnityMethods
 
     private void OnValidate()
     {
@@ -37,4 +44,6 @@ public sealed class PathBot : MonoBehaviour
             Gizmos.DrawWireSphere(currentNode, 0.3f);
         }
     }
+
+    #endregion
 }

@@ -4,9 +4,16 @@ using UnityEngine;
 
 public sealed class CreateWayPoint : MonoBehaviour
 {
+    #region Fields
+
     //работает только при активированном Gizmos
     [SerializeField] private TargetPoint _prefab;
     private PathBot _rootWayPoint;
+
+    #endregion
+
+
+    #region Methods
 
     public void InstantiateObj(Vector3 pos)
     {
@@ -24,4 +31,6 @@ public sealed class CreateWayPoint : MonoBehaviour
             throw new Exception($"Нет префаба на компоненте {typeof(CreateWayPoint)} {gameObject.name}");
         }
     }
+
+    #endregion
 }

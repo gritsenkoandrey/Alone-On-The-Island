@@ -2,12 +2,13 @@
 using UnityEngine.AI;
 
 
-public class CreateRandomPoint : MonoBehaviour
+public sealed class CreateRandomPoint : MonoBehaviour
 {
     #region Fields
 
     public int count = 10;
     public float offset = 1;
+    public string name = "Object";
     private float _minDistance = 5.0f;
     private float _maxDistance = 125.0f;
     public GameObject gameObj;
@@ -20,7 +21,7 @@ public class CreateRandomPoint : MonoBehaviour
 
     public void CreateObject()
     {
-        _root = new GameObject("Object").transform;
+        _root = new GameObject(name).transform;
 
         for (var i = 1; i <= count; i++)
         {

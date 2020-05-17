@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
 
 public sealed class TestBehaviour : MonoBehaviour
 {
+    #region Fields
+
     public int count = 10;
     public int offset = 1;
     public GameObject obj;
 
     public float Test;
     private Transform _root;
+
+    #endregion
+
+
+    #region UnityMethods
 
     private void Awake()
     {
@@ -21,6 +27,16 @@ public sealed class TestBehaviour : MonoBehaviour
         CreateObj();
     }
 
+    private void OnGUI()
+    {
+        GUI.Button(new Rect(Screen.width / 2, Screen.height / 2, 100, 20), "Click Me");
+    }
+
+    #endregion
+
+
+    #region Methods
+
     public void CreateObj()
     {
         _root = new GameObject("Root").transform;
@@ -28,12 +44,6 @@ public sealed class TestBehaviour : MonoBehaviour
         {
             Instantiate(obj, new Vector3(0, offset * i, 0), Quaternion.identity, _root);
             //todo Свой алгоритм по расстановке мин или аптечек
-
-            //var dis = Random.Range(25, 125);
-            //var randomPoint = Random.insideUnitSphere * dis;
-            //NavMesh.SamplePosition(randomPoint, out var hit, dis, NavMesh.AllAreas);
-            //var result = hit.position;
-            //Instantiate(obj, result, Quaternion.identity, _root);
         }
     }
 
@@ -51,8 +61,5 @@ public sealed class TestBehaviour : MonoBehaviour
         DestroyImmediate(GetComponent<BoxCollider>());
     }
 
-    private void OnGUI()
-    {
-        GUI.Button(new Rect(Screen.width / 2, Screen.height / 2, 100, 20), "Click Me");
-    }
+    #endregion
 }
