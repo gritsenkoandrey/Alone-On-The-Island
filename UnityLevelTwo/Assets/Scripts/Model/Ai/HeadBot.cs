@@ -34,7 +34,6 @@ public sealed class HeadBot : BaseObjectScene, ICollision, ISelectObj, ISelectOb
         if (_bot.CurrentHealth > 0)
         {
             return $"{Name} - {_bot.CurrentHealth}";
-
         }
         else
         {

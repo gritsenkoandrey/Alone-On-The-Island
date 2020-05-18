@@ -60,7 +60,6 @@ public sealed class AimUiText : MonoBehaviour
         {
             wall.OnPointChange -= UpdatePoint;
         }
-
     }
 
     #endregion
