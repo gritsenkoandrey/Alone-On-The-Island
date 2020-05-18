@@ -11,7 +11,19 @@ public struct SerializableGameObject
     public SerializableVector3 Pos;
     public SerializableQuaternion Rot;
     public SerializableVector3 Scale;
-    public Component[] Component;
+    //todo иные компоненты для сохранения
+    //public Component[] Components;
+    public bool isEnable;
+
+    #endregion
+
+
+    #region Methods
+
+    public override string ToString()
+    {
+        return $"Name = {Name}; isEnable = {isEnable}; Pos = ({Pos})";
+    }
 
     #endregion
 }
@@ -40,15 +52,21 @@ public struct SerializableVector3
     #endregion
 
 
-    #region MyRegion
+    #region Methods
 
     public static implicit operator Vector3(SerializableVector3 value)
     {
         return new Vector3(value.X, value.Y, value.Z);
     }
+
     public static implicit operator SerializableVector3(Vector3 value)
     {
         return new SerializableVector3(value.x, value.y, value.z);
+    }
+
+    public override string ToString()
+    {
+        return $"X = {X}, Y = {Y}, Z = {Z}";
     }
 
     #endregion
@@ -80,7 +98,7 @@ public struct SerializableQuaternion
     #endregion
 
 
-    #region MyRegion
+    #region Methods
 
     public static implicit operator Quaternion(SerializableQuaternion value)
     {
@@ -90,6 +108,11 @@ public struct SerializableQuaternion
     public static implicit operator SerializableQuaternion(Quaternion value)
     {
         return new SerializableQuaternion(value.x, value.y, value.z, value.w);
+    }
+
+    public override string ToString()
+    {
+        return $"X = {X}, Y = {Y}, Z = {Z}, W = {W}";
     }
 
     #endregion

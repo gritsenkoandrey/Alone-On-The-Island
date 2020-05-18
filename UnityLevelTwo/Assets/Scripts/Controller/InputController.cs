@@ -9,6 +9,9 @@ public sealed class InputController : BaseController, IExecute
     private readonly KeyCode _cancel = KeyCode.Escape;
     private readonly KeyCode _reloadClip = KeyCode.R;
     private readonly KeyCode _removeWeapon = KeyCode.T;
+    private readonly KeyCode _savePlayer = KeyCode.Z;
+    private readonly KeyCode _loadPlayer = KeyCode.X;
+    private readonly KeyCode _screenShot = KeyCode.C;
     private readonly int _mouseButton = (int)MouseButton.LeftButton;
 
     #endregion
@@ -85,6 +88,21 @@ public sealed class InputController : BaseController, IExecute
         if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             MouseScroll(MouseScrollWheel.Down);
+        }
+
+        if (Input.GetKeyDown(_savePlayer))
+        {
+            ServiceLocator.Resolve<SaveDataRepository>().Save();
+        }
+
+        if (Input.GetKeyDown(_loadPlayer))
+        {
+            ServiceLocator.Resolve<SaveDataRepository>().Load();
+        }
+
+        if (Input.GetKeyDown(_screenShot))
+        {
+            ServiceLocator.Resolve<PhotoController>().SecondMethod();
         }
     }
 

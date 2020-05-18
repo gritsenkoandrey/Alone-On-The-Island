@@ -92,7 +92,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 7132d4f6beb2cb3499a00dfda461db78, type: 3}
@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 4314507422221007715}
   - component: {fileID: 8310469708221760203}
   - component: {fileID: 8774807800797861699}
+  - component: {fileID: 8006577297191289488}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -442,3 +443,16 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8006577297191289488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4710675054110842032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d5ac72cdda5c34a9af9245cc1e203b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 5941468474276879154, guid: 86b8b2ec4d8ea784cbce3e1116d0ab40, type: 3}
