@@ -11,7 +11,7 @@ public sealed class FlashLightModel : BaseObjectScene
     [SerializeField] private float _batteryChargeMax = 10.0f;
     [SerializeField] private float _intensity = 1.5f;
     private float _share;
-    private float _takeAwayTheIntensity;
+    //private float _takeAwayTheIntensity;
 
     private Light _light;
     private Transform _goFollow;
@@ -45,7 +45,7 @@ public sealed class FlashLightModel : BaseObjectScene
         BatteryChargeCurrent = _batteryChargeMax;
         _light.intensity = _intensity;
         _share = _batteryChargeMax / 4.0f;
-        _takeAwayTheIntensity = _intensity / (_batteryChargeMax * 100.0f);
+        //_takeAwayTheIntensity = _intensity / (_batteryChargeMax * 100.0f);
     }
 
     #endregion
@@ -86,10 +86,10 @@ public sealed class FlashLightModel : BaseObjectScene
             {
                 _light.enabled = Range(0, 100) >= Range(0, 10);
             }
-            else
-            {
-                _light.intensity -= _takeAwayTheIntensity;
-            }
+            //else
+            //{
+            //    _light.intensity -= _takeAwayTheIntensity;
+            //}
             return true;
         }
         return false;
@@ -105,10 +105,10 @@ public sealed class FlashLightModel : BaseObjectScene
         if (BatteryChargeCurrent < _batteryChargeMax)
         {
             BatteryChargeCurrent += Time.deltaTime;
-            if (_light.intensity < _intensity)
-            {
-                _light.intensity += _takeAwayTheIntensity;
-            }
+            //if (_light.intensity < _intensity)
+            //{
+            //    _light.intensity += _takeAwayTheIntensity;
+            //}
             return true;
         }
         return false;

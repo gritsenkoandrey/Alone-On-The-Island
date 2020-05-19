@@ -3,6 +3,7 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 
+
 public sealed class PhotoController : BaseController
 {
     #region Fields

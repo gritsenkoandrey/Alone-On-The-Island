@@ -34,6 +34,8 @@ public sealed class Controllers : IInitialization
         ServiceLocator.SetService(new BotController());
         ServiceLocator.SetService(new SaveDataRepository());
         ServiceLocator.SetService(new PhotoController());
+        ServiceLocator.SetService(new MyPhotoController());
+
 
         _executeControllers = new IExecute[6];
         _executeControllers[0] = ServiceLocator.Resolve<PlayerController>();

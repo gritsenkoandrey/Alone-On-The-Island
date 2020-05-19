@@ -102,7 +102,9 @@ public sealed class InputController : BaseController, IExecute
 
         if (Input.GetKeyDown(_screenShot))
         {
-            ServiceLocator.Resolve<PhotoController>().SecondMethod();
+            //ServiceLocator.Resolve<PhotoController>().FirstMethod();
+            //ServiceLocator.Resolve<PhotoController>().SecondMethod();
+            ServiceLocator.Resolve<MyPhotoController>().CaptureRenderTexture();
         }
     }
 
