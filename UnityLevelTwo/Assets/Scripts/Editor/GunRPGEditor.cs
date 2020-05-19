@@ -15,7 +15,7 @@ public sealed class GunRPGEditor : Editor
     private SerializedProperty _rechargeTimeProperty;
 
     private float _minValue = 0;
-    private float _maxDamageValue = 10000.0f;
+    private float _maxForceValue = 10000.0f;
     private float _maxRechargeValue = 10.0f;
 
     #endregion
@@ -43,10 +43,10 @@ public sealed class GunRPGEditor : Editor
         EditorGUILayout.PropertyField(_barrelTwoProperty, new GUIContent("Barrel Two"));
         EditorGUILayout.PropertyField(_barrelThreeProperty, new GUIContent("Barrel Three"));
 
-        EditorGUILayout.Slider(_forceProperty, _minValue, _maxDamageValue, new GUIContent("Damage"));
+        EditorGUILayout.Slider(_forceProperty, _minValue, _maxForceValue, new GUIContent("Force"));
         if (!_forceProperty.hasMultipleDifferentValues)
         {
-            ProgressBar(_forceProperty.floatValue / _maxDamageValue, "Damage");
+            ProgressBar(_forceProperty.floatValue / _maxForceValue, "Force");
         }
 
         EditorGUILayout.Slider(_rechargeTimeProperty, _minValue, _maxRechargeValue, new GUIContent("Recharge Time"));

@@ -10,6 +10,8 @@ public sealed class UiInterface
     private WeaponUiText _weaponUiText;
     private SelectionObjMessageUi _selectionObjMessageUi;
     private SelectionObjMessageUiImage _selectionObjMessageUiImage;
+    private PlayerUiBar _playerUiBar;
+    private PlayerUiText _playerUiText;
 
     #endregion
 
@@ -73,6 +75,32 @@ public sealed class UiInterface
                 _selectionObjMessageUiImage = Object.FindObjectOfType<SelectionObjMessageUiImage>();
             }
             return _selectionObjMessageUiImage;
+        }
+    }
+
+    public PlayerUiBar PlayerUiBar
+    {
+        get
+        {
+            if (!_playerUiBar)
+            {
+                _playerUiBar = Object.FindObjectOfType<PlayerUiBar>();
+            }
+
+            return _playerUiBar;
+        }
+    }
+
+    public PlayerUiText PlayerUiText
+    {
+        get
+        {
+            if (!_playerUiText)
+            {
+                _playerUiText = Object.FindObjectOfType<PlayerUiText>();
+            }
+
+            return _playerUiText;
         }
     }
 
