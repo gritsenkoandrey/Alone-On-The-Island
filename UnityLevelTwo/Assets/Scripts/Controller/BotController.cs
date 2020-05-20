@@ -7,6 +7,7 @@ public sealed class BotController : BaseController, IExecute, IInitialization
     #region Fields
 
     private readonly int _countBot = 10;
+    private Bot _bot;
     private readonly List<Bot> _botList = new List<Bot>();
 
     #endregion
@@ -16,6 +17,7 @@ public sealed class BotController : BaseController, IExecute, IInitialization
 
     public void Initialization()
     {
+        _bot = Resources.Load<Bot>("Bot");
         EnemyBotSpawned();
         //FriendlyBotSpawned();
     }
@@ -59,9 +61,8 @@ public sealed class BotController : BaseController, IExecute, IInitialization
         {
             // Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform
             // получение случайно точки воуруг нашего персонажа
-            var tempBot = Object.Instantiate(ServiceLocatorMonoBehaviour.GetService<Reference>().Bot,
-                Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform),
-                Quaternion.identity);
+            var tempBot = Object.Instantiate(_bot,Patrol.GenericPoint
+                    (ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform), Quaternion.identity);
 
             tempBot.Agent.avoidancePriority = index;
             tempBot.Target = ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform;
@@ -74,7 +75,7 @@ public sealed class BotController : BaseController, IExecute, IInitialization
     //{
     //    for (var index = 0; index < _countBot; index++)
     //    {
-    //        var tempBot = Object.Instantiate(ServiceLocatorMonoBehaviour.GetService<Reference>().Bot,
+    //        var tempBot = Object.Instantiate(_bot,
     //            Patrol.GenericPoint(ServiceLocatorMonoBehaviour.GetService<CharacterController>().transform),
     //            Quaternion.identity);
 
