@@ -35,6 +35,7 @@ public sealed class Controllers : IInitialization
         ServiceLocator.SetService(new SaveDataRepository());
         ServiceLocator.SetService(new PhotoController());
         ServiceLocator.SetService(new MyPhotoController());
+        ServiceLocator.SetService(new CreateObjFromResourcesController());
 
 
         _executeControllers = new IExecute[6];
@@ -66,6 +67,7 @@ public sealed class Controllers : IInitialization
         ServiceLocator.Resolve<InputController>().On();
         ServiceLocator.Resolve<SelectionController>().On();
         ServiceLocator.Resolve<BotController>().On();
+        ServiceLocator.Resolve<CreateObjFromResourcesController>().Initialization();
     }
 
     #endregion
