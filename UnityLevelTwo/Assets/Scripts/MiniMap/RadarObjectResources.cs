@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 
-public sealed class RadarObjectResources : MonoBehaviour
+public sealed class RadarObjectResources : BaseObjectScene
 {
     #region Fields
 

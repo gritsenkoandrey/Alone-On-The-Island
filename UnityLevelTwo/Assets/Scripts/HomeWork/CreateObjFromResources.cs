@@ -6,7 +6,7 @@ public sealed class CreateObjFromResources : BaseObjectScene
 {
     #region Fields
 
-    private int _count = 10;
+    private int _count = 5;
     private float _offset = 2;
     private float _minDistance = 5.0f;
     private float _maxDistance = 125.0f;

@@ -36,15 +36,17 @@ public sealed class Controllers : IInitialization
         ServiceLocator.SetService(new PhotoController());
         ServiceLocator.SetService(new MyPhotoController());
         ServiceLocator.SetService(new CreateObjFromResourcesController());
+        ServiceLocator.SetService(new RadarController());
 
 
-        _executeControllers = new IExecute[6];
+        _executeControllers = new IExecute[7];
         _executeControllers[0] = ServiceLocator.Resolve<PlayerController>();
         _executeControllers[1] = ServiceLocator.Resolve<FlashLightsController>();
         _executeControllers[2] = ServiceLocator.Resolve<InputController>();
         _executeControllers[3] = ServiceLocator.Resolve<SelectionController>();
         _executeControllers[4] = ServiceLocator.Resolve<TimeRemainingController>();
         _executeControllers[5] = ServiceLocator.Resolve<BotController>();
+        _executeControllers[6] = ServiceLocator.Resolve<RadarController>();
     }
 
     #endregion
@@ -67,7 +69,7 @@ public sealed class Controllers : IInitialization
         ServiceLocator.Resolve<InputController>().On();
         ServiceLocator.Resolve<SelectionController>().On();
         ServiceLocator.Resolve<BotController>().On();
-        ServiceLocator.Resolve<CreateObjFromResourcesController>().Initialization();
+        ServiceLocator.Resolve<CreateObjFromResourcesController>().Off();
     }
 
     #endregion

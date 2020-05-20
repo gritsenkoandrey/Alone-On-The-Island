@@ -2,8 +2,12 @@
 using UnityEngine.UI;
 
 
-public sealed class RadarObject : Radar
+public sealed class RadarObject
 {
+    #region Fields
+
     public Image Icon;
     public GameObject Owner;
+
+    #endregion
 }

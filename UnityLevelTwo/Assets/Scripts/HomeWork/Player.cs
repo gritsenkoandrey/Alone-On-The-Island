@@ -30,7 +30,17 @@ public class Player : BaseObjectScene, ICollision
 
     public float PercentHealth
     {
-        get { return (CurrentHealth / _maxHealth) * 100; }
+        get
+        {
+            if (CurrentHealth <= 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return (CurrentHealth / _maxHealth) * 100;
+            }
+        }
     }
 
     #endregion
