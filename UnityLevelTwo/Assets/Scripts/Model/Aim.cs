@@ -68,7 +68,7 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
     {
         if (CurrentHealth > 0)
         {
-            return $"{Name} - {CurrentHealth}";
+            return $"{Name} - {CurrentHealth:0}";
         }
         else
         {

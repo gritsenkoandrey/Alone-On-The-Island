@@ -40,7 +40,7 @@ public sealed class PlayerController : BaseController, IExecute, IInitialization
         _motor.Move();
 
         UiInterface.PlayerUiBar.Fill = _player.FillHealth;
-        UiInterface.PlayerUiText.Text = _player.CurrentHealth;
+        UiInterface.PlayerUiText.Text = _player.PercentHealth;
 
         if (_player.CurrentHealth < _player.AverageHealth)
         {

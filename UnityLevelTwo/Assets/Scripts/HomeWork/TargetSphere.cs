@@ -66,7 +66,7 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
     {
         if (CurrentHealth > 0)
         {
-            return $"{Name} - {CurrentHealth}";
+            return $"{Name} - {CurrentHealth:0}";
 
         }
         else

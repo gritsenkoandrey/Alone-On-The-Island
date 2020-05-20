@@ -81,7 +81,7 @@ public sealed class Wall : BaseObjectScene, ISelectObj, ISelectObjImage, ICollis
     {
         if (CurrentHealth > 0)
         {
-            return $"{gameObject.name} - {CurrentHealth}";
+            return $"{gameObject.name} - {CurrentHealth:0}";
         }
         else
         {

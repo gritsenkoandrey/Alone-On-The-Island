@@ -6,9 +6,9 @@ public class Player : BaseObjectScene, ICollision
 {
     #region Fields
 
-    [SerializeField] private float _health = 500;
+    [SerializeField] private float _maxHealth = 500;
     private readonly float _minHealth = 0;
-    private int _quarter = 4;
+    private readonly int _quarter = 4;
     private bool _isDead = false;
 
     #endregion
@@ -20,12 +20,17 @@ public class Player : BaseObjectScene, ICollision
 
     public float FillHealth
     {
-        get { return CurrentHealth / _health; }
+        get { return CurrentHealth / _maxHealth; }
     }
 
     public float AverageHealth
     {
-        get { return _health / _quarter; }
+        get { return _maxHealth / _quarter; }
+    }
+
+    public float PercentHealth
+    {
+        get { return (CurrentHealth / _maxHealth) * 100; }
     }
 
     #endregion
@@ -36,7 +41,7 @@ public class Player : BaseObjectScene, ICollision
     protected override void Awake()
     {
         base.Awake();
-        CurrentHealth = _health;
+        CurrentHealth = _maxHealth;
     }
 
     #endregion

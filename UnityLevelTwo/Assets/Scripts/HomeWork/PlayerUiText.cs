@@ -17,7 +17,7 @@ public class PlayerUiText : MonoBehaviour
     {
         set
         {
-            _text.text = $"Health : {value:0}";
+            _text.text = $"Health : {value:0}%";
         }
     }
 
