@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 
 public sealed class Bot : BaseObjectScene, IExecute
@@ -206,7 +207,7 @@ public sealed class Bot : BaseObjectScene, IExecute
                 {
                     tempRbChild = child.gameObject.AddComponent<Rigidbody>();
                 }
-                tempRbChild.AddForce(info.Direction * 100);
+                tempRbChild.AddForce(info.Direction * Random.Range(10, 100));
                 Destroy(child.gameObject, _timeToDestroy);
             }
             OnDieChange?.Invoke(this);

@@ -56,7 +56,7 @@ public sealed class Wall : BaseObjectScene, ISelectObj, ISelectObjImage, ICollis
                 gameObject.AddComponent<Transform>();
             }
             //gameObject.transform.localScale = new Vector3(Range(5.0f, 15.0f), Range(2.5f, 7.0f), 1.0f);
-            gameObject.transform.localScale -= new Vector3(0.5f, 0.25f, 0);
+            gameObject.transform.localScale -= new Vector3(0.2f, 0.2f, 0);
         }
         if (CurrentHealth <= 0)
         {
