@@ -8,7 +8,7 @@ public class Player : BaseObjectScene, ICollision
 
     [SerializeField] private float _maxHealth = 500;
     private readonly float _minHealth = 0;
-    private readonly int _quarter = 4;
+    private readonly float _quarter = 0.25f;
     private bool _isDead = false;
 
     #endregion
@@ -25,7 +25,7 @@ public class Player : BaseObjectScene, ICollision
 
     public float AverageHealth
     {
-        get { return _maxHealth / _quarter; }
+        get { return _maxHealth * _quarter; }
     }
 
     public float PercentHealth
