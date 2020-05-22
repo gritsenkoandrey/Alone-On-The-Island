@@ -2,21 +2,23 @@
 using UnityEngine.SceneManagement;
 
 
-public class Player : BaseObjectScene, ICollision
+public sealed class Player : BaseObjectScene, ICollision
 {
     #region Fields
 
-    [SerializeField] private float _maxHealth = 500;
+    public float _maxHealth = 50.0f;
     private readonly float _minHealth = 0;
     private readonly float _quarter = 0.25f;
     private bool _isDead = false;
+
+    [HideInInspector] public float CurrentHealth;
 
     #endregion
 
 
     #region Properties
 
-    public float CurrentHealth { get; private set; }
+    //public float CurrentHealth { get; set; }
 
     public float FillHealth
     {
@@ -32,13 +34,13 @@ public class Player : BaseObjectScene, ICollision
     {
         get
         {
-            if (CurrentHealth <= 0)
+            if (CurrentHealth <= _minHealth)
             {
-                return 0;
+                return _minHealth;
             }
             else
             {
-                return (CurrentHealth / _maxHealth) * 100;
+                return CurrentHealth / _maxHealth * 100;
             }
         }
     }
@@ -69,7 +71,7 @@ public class Player : BaseObjectScene, ICollision
         if (CurrentHealth > _minHealth)
         {
             CurrentHealth -= info.Damage;
-            Debug.Log(CurrentHealth);
+            //Debug.Log(CurrentHealth);
         }
         else
         {
@@ -81,5 +83,4 @@ public class Player : BaseObjectScene, ICollision
     }
 
     #endregion
-
 }

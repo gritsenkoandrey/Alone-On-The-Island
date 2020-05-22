@@ -8255,6 +8255,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   Transform: {fileID: 0}
   _maxHealth: 50
+  CurrentHealth: 0
 --- !u!1 &1725237356
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,7 +69,7 @@ public sealed class Controllers : IInitialization
         ServiceLocator.Resolve<InputController>().On();
         ServiceLocator.Resolve<SelectionController>().On();
         ServiceLocator.Resolve<BotController>().On();
-        ServiceLocator.Resolve<CreateObjFromResourcesController>().Off();
+        ServiceLocator.Resolve<CreateObjFromResourcesController>().Initialization();
     }
 
     #endregion

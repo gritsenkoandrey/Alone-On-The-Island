@@ -6,7 +6,7 @@ public abstract class AmmunitionRPG : BaseObjectScene
     #region Fields
 
     [SerializeField] private float _timeToDestruct = 2;
-    [SerializeField] private float _baseDamage = 100;
+    [SerializeField] private float _baseDamage = 100.0f;
 
     protected float _currentDamage;
     private float _lossOfDamageAtTime = 10f;
@@ -71,7 +71,6 @@ public abstract class AmmunitionRPG : BaseObjectScene
         CancelInvoke(nameof(LossOfDamage));
         // todo вернуть в пул
     }
-
 
     #endregion
 }
