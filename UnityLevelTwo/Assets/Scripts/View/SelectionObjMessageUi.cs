@@ -38,5 +38,10 @@ public sealed class SelectionObjMessageUi : MonoBehaviour
         _text.gameObject.SetActive(value);
     }
 
+    public void SetColor(Color value)
+    {
+        _text.color = value;
+    }
+
     #endregion
 }

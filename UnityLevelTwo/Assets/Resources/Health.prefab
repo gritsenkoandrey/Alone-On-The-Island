@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7879363601492664063}
   m_Layer: 0
   m_Name: Health
-  m_TagString: Untagged
+  m_TagString: Health
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,5 +108,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 0}
   Transform: {fileID: 0}
-  _baseHealth: 10
+  _baseHealth: 5
   _timeToDestruct: 0

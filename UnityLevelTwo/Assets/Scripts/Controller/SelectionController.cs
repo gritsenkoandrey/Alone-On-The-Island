@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 //using UnityEngine.UI;
 
 
@@ -56,12 +55,28 @@ public sealed class SelectionController : BaseController, IExecute
         // если UI не обновлена, то обновляю ее
         else if (!_nullString)
         {
-            UiInterface.SelectionObjMessageUi.Text = String.Empty;
-            UiInterface.SelectionObjMessageUiImage.Fill = Single.NaN;
+            UiInterface.SelectionObjMessageUi.Text = string.Empty;
+            UiInterface.SelectionObjMessageUiImage.Fill = float.NaN;
 
             _nullString = true;
             _dedicateObj = null;
             _isSelectedObj = false;
+        }
+
+        if (_isSelectedObj)
+        {
+            if (_dedicateObj.GetComponent<Health>())
+            {
+                UiInterface.SelectionObjMessageUi.SetColor(Color.green);
+            }
+            else if (_dedicateObj.GetComponent<BodyBot>() || _dedicateObj.GetComponent<HeadBot>())
+            {
+                UiInterface.SelectionObjMessageUi.SetColor(Color.red);
+            }
+            else
+            {
+                UiInterface.SelectionObjMessageUi.SetColor(Color.white);
+            }
         }
 
         //if (_isSelectedObj)
@@ -104,17 +119,17 @@ public sealed class SelectionController : BaseController, IExecute
             {
                 UiInterface.SelectionObjMessageUiImage.SetColor(Color.red);
             }
-
             _isSelectedObj = true;
         }
         else
         {
-            UiInterface.SelectionObjMessageUi.Text = String.Empty;
-            UiInterface.SelectionObjMessageUiImage.Fill = Single.NaN;
+            UiInterface.SelectionObjMessageUi.Text = string.Empty;
+            UiInterface.SelectionObjMessageUiImage.Fill = float.NaN;
             _isSelectedObj = false;
         }
         _dedicateObj = obj;
     }
 
     #endregion
+
 }

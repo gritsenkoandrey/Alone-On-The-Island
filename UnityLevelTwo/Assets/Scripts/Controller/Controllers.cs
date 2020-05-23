@@ -38,7 +38,6 @@ public sealed class Controllers : IInitialization
         ServiceLocator.SetService(new CreateObjFromResourcesController());
         ServiceLocator.SetService(new RadarController());
 
-
         _executeControllers = new IExecute[7];
         _executeControllers[0] = ServiceLocator.Resolve<PlayerController>();
         _executeControllers[1] = ServiceLocator.Resolve<FlashLightsController>();

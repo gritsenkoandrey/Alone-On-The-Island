@@ -11,9 +11,9 @@ public sealed class Health : PickItems
         if (player)
         {
             player.CurrentHealth += health;
-            if (player.CurrentHealth > player._maxHealth)
+            if (player.CurrentHealth > player.maxHealth)
             {
-                player.CurrentHealth = player._maxHealth;
+                player.CurrentHealth = player.maxHealth;
             }
             //Debug.Log(health);
             DestroyItem();

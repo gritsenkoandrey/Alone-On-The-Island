@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public abstract class PickItems : BaseObjectScene
+public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
 {
     #region Fields
 
@@ -31,4 +31,14 @@ public abstract class PickItems : BaseObjectScene
     }
 
     #endregion
+
+    public string GetMessage()
+    {
+        return Name;
+    }
+
+    public float GetImage()
+    {
+        return default;
+    }
 }

@@ -6,7 +6,7 @@ public sealed class Player : BaseObjectScene, ICollision
 {
     #region Fields
 
-    public float _maxHealth = 50.0f;
+    public float maxHealth = 50.0f;
     private readonly float _minHealth = 0;
     private readonly float _quarter = 0.25f;
     private bool _isDead = false;
@@ -22,12 +22,12 @@ public sealed class Player : BaseObjectScene, ICollision
 
     public float FillHealth
     {
-        get { return CurrentHealth / _maxHealth; }
+        get { return CurrentHealth / maxHealth; }
     }
 
     public float AverageHealth
     {
-        get { return _maxHealth * _quarter; }
+        get { return maxHealth * _quarter; }
     }
 
     public float PercentHealth
@@ -40,7 +40,7 @@ public sealed class Player : BaseObjectScene, ICollision
             }
             else
             {
-                return CurrentHealth / _maxHealth * 100;
+                return CurrentHealth / maxHealth * 100;
             }
         }
     }
@@ -53,7 +53,7 @@ public sealed class Player : BaseObjectScene, ICollision
     protected override void Awake()
     {
         base.Awake();
-        CurrentHealth = _maxHealth;
+        CurrentHealth = maxHealth;
     }
 
     #endregion
@@ -71,7 +71,10 @@ public sealed class Player : BaseObjectScene, ICollision
         if (CurrentHealth > _minHealth)
         {
             CurrentHealth -= info.Damage;
-            //Debug.Log(CurrentHealth);
+            if (CurrentHealth < _minHealth)
+            {
+                CurrentHealth = _minHealth;
+            }
         }
         else
         {
