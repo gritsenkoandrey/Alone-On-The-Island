@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 
-public sealed class AimUiText : MonoBehaviour
+public sealed class AimUiText : BaseObjectScene
 {
     #region Fields
 
@@ -18,8 +17,10 @@ public sealed class AimUiText : MonoBehaviour
 
     #region UnityMethods
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _aims = FindObjectsOfType<Aim>();
         _sphere = FindObjectsOfType<TargetSphere>();
         _wall = FindObjectsOfType<Wall>();

@@ -12,6 +12,7 @@ public sealed class UiInterface
     private SelectionObjMessageUiImage _selectionObjMessageUiImage;
     private PlayerUiBar _playerUiBar;
     private PlayerUiText _playerUiText;
+    private ChangeHealthUi _changeHealthUi;
 
     #endregion
 
@@ -101,6 +102,19 @@ public sealed class UiInterface
             }
 
             return _playerUiText;
+        }
+    }
+
+    public ChangeHealthUi ChangeHealthUi
+    {
+        get
+        {
+            if (!ChangeHealthUi)
+            {
+                _changeHealthUi = Object.FindObjectOfType<ChangeHealthUi>();
+            }
+
+            return _changeHealthUi;
         }
     }
 

@@ -2,7 +2,7 @@
 using UnityEngine.AI;
 
 
-public sealed class CreateRandomPoint : MonoBehaviour
+public sealed class CreateRandomPoint : BaseObjectScene
 {
     #region Fields
 

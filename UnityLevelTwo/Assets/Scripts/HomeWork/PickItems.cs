@@ -30,8 +30,6 @@ public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
         Destroy(gameObject, _timeToDestruct);
     }
 
-    #endregion
-
     public string GetMessage()
     {
         return Name;
@@ -41,4 +39,6 @@ public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
     {
         return default;
     }
+
+    #endregion
 }

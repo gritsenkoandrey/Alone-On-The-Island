@@ -27,6 +27,7 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
 
     #endregion
 
+
     #region UnityMethods
 
     protected override void Awake()
@@ -79,11 +80,6 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
     {
         return FillHealth;
     }
-
-    //public bool LowHealth()
-    //{
-    //    return CurrentHealth <= _hp / 2.0f;
-    //}
 
     #endregion
 }

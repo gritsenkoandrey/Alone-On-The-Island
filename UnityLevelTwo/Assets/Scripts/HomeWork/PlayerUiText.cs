@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 
-public class PlayerUiText : MonoBehaviour
+public class PlayerUiText : BaseObjectScene
 {
     #region Fields
 
@@ -26,19 +25,11 @@ public class PlayerUiText : MonoBehaviour
 
     #region UnityMethods
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _text = GetComponent<Text>();
-    }
-
-    #endregion
-
-
-    #region Methods
-
-    public void SetActive(bool value)
-    {
-        _text.gameObject.SetActive(value);
     }
 
     #endregion

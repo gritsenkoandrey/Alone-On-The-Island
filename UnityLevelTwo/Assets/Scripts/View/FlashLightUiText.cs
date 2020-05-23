@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 
-public sealed class FlashLightUiText : MonoBehaviour
+public sealed class FlashLightUiText : BaseObjectScene
 {
     #region Fields
 
@@ -27,8 +26,10 @@ public sealed class FlashLightUiText : MonoBehaviour
 
     #region UnityMethods
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _text = GetComponent<Text>();
     }
 
@@ -37,7 +38,7 @@ public sealed class FlashLightUiText : MonoBehaviour
 
     #region Methods
 
-    public void SetActive(bool value)
+    public new void SetActive(bool value)
     {
         _text.gameObject.SetActive(value);
     }

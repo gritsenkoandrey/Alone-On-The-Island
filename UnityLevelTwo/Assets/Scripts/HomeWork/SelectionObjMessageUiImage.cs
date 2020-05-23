@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 
-public sealed class SelectionObjMessageUiImage : MonoBehaviour
+public sealed class SelectionObjMessageUiImage : BaseObjectScene
 {
     #region Fields
 
@@ -23,8 +23,10 @@ public sealed class SelectionObjMessageUiImage : MonoBehaviour
 
     #region UnityMethods
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _image = GetComponent<Image>();
     }
 
@@ -32,11 +34,6 @@ public sealed class SelectionObjMessageUiImage : MonoBehaviour
 
 
     #region Methods
-
-    public void SetActive(bool value)
-    {
-        _image.gameObject.SetActive(value);
-    }
 
     public void SetColor(Color value)
     {

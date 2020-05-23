@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 
-public sealed class FlashLightUiBar : MonoBehaviour
+public sealed class FlashLightUiBar : BaseObjectScene
 {
     #region Fields
 
@@ -23,8 +23,10 @@ public sealed class FlashLightUiBar : MonoBehaviour
 
     #region UnityMethods
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _bar = GetComponent<Image>();
     }
 
@@ -33,7 +35,7 @@ public sealed class FlashLightUiBar : MonoBehaviour
 
     #region Methods
 
-    public void SetActive(bool value)
+    public new void SetActive(bool value)
     {
         _bar.gameObject.SetActive(value);
     }

@@ -73,6 +73,11 @@ public sealed class SelectionController : BaseController, IExecute
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.red);
             }
+            else if (_dedicateObj.GetComponent<TargetSphere>() || _dedicateObj.GetComponent<Aim>() ||
+                     _dedicateObj.GetComponent<Wall>())
+            {
+                UiInterface.SelectionObjMessageUi.SetColor(Color.yellow);
+            }
             else
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.white);
@@ -131,5 +136,4 @@ public sealed class SelectionController : BaseController, IExecute
     }
 
     #endregion
-
 }

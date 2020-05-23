@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 
-public sealed class WeaponUiText : MonoBehaviour
+public sealed class WeaponUiText : BaseObjectScene
 {
     #region Fields
 
@@ -13,8 +13,10 @@ public sealed class WeaponUiText : MonoBehaviour
 
     #region UnityMethods
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _text = GetComponent<Text>();
     }
 
@@ -28,7 +30,7 @@ public sealed class WeaponUiText : MonoBehaviour
         _text.text = $"{countAmmunition}/{countClip}";
     }
 
-    public void SetActive(bool value)
+    public new void SetActive(bool value)
     {
         _text.gameObject.SetActive(value);
     }

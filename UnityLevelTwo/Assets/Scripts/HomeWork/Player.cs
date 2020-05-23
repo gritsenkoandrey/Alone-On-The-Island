@@ -9,9 +9,11 @@ public sealed class Player : BaseObjectScene, ICollision
     public float maxHealth = 50.0f;
     private readonly float _minHealth = 0;
     private readonly float _quarter = 0.25f;
+    private readonly float _displayTimer = 1.0f;
     private bool _isDead = false;
 
     [HideInInspector] public float CurrentHealth;
+    private ChangeHealthUi _changeHealthUi;
 
     #endregion
 
@@ -54,6 +56,7 @@ public sealed class Player : BaseObjectScene, ICollision
     {
         base.Awake();
         CurrentHealth = maxHealth;
+        _changeHealthUi = Object.FindObjectOfType<ChangeHealthUi>();
     }
 
     #endregion
@@ -71,6 +74,9 @@ public sealed class Player : BaseObjectScene, ICollision
         if (CurrentHealth > _minHealth)
         {
             CurrentHealth -= info.Damage;
+            _changeHealthUi.DamageTaken(info.Damage);
+            _changeHealthUi.Invoke(nameof(_changeHealthUi.Clear), _displayTimer);
+
             if (CurrentHealth < _minHealth)
             {
                 CurrentHealth = _minHealth;

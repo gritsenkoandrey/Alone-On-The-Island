@@ -27,7 +27,9 @@ public sealed class PlayerController : BaseController, IExecute, IInitialization
     public void Initialization()
     {
         _player = Object.FindObjectOfType<Player>();
-        On();
+        UiInterface.PlayerUiBar.SetActive(true);
+        UiInterface.PlayerUiText.SetActive(true);
+        UiInterface.PlayerUiBar.SetColor(Color.green);
     }
 
     public void Execute()
@@ -51,32 +53,6 @@ public sealed class PlayerController : BaseController, IExecute, IInitialization
         {
             Off();
         }
-    }
-    public override void On()
-    {
-        if (IsActive)
-        {
-            return;
-        }
-
-        base.On();
-
-        UiInterface.PlayerUiBar.SetActive(true);
-        UiInterface.PlayerUiText.SetActive(true);
-        UiInterface.PlayerUiBar.SetColor(Color.green);
-    }
-
-    public override void Off()
-    {
-        if (!IsActive)
-        {
-            return;
-        }
-
-        base.Off();
-
-        UiInterface.PlayerUiBar.SetActive(false);
-        UiInterface.PlayerUiText.SetActive(false);
     }
 
     #endregion

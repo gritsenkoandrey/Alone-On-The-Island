@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 
-public class PlayerUiBar : MonoBehaviour
+public class PlayerUiBar : BaseObjectScene
 {
     #region Fields
 
@@ -23,8 +23,10 @@ public class PlayerUiBar : MonoBehaviour
 
     #region UnityMethods
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         _bar = GetComponent<Image>();
     }
 
@@ -32,11 +34,6 @@ public class PlayerUiBar : MonoBehaviour
 
 
     #region Methods
-
-    public void SetActive(bool value)
-    {
-        _bar.gameObject.SetActive(value);
-    }
 
     public void SetColor(Color value)
     {
