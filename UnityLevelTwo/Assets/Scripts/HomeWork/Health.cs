@@ -5,10 +5,7 @@ public sealed class Health : PickItems
 {
     #region Fields
 
-    private readonly float _displayTime = 1.0f;
-
-    private Player _player;
-    private ChangeHealthUi _changeHealthUi;
+    [SerializeField] private float _health = 5.0f;
 
     #endregion
 
@@ -18,12 +15,11 @@ public sealed class Health : PickItems
     private void OnTriggerEnter(Collider obj)
     {
         _player = obj.GetComponent<Player>();
-        _changeHealthUi = Object.FindObjectOfType<ChangeHealthUi>();
 
         if (_player)
         {
-            _player.CurrentHealth += health;
-            _changeHealthUi.HealthTaken(health);
+            _player.CurrentHealth += _health;
+            _changeHealthUi.HealthTaken(_health);
             _changeHealthUi.Invoke(nameof(_changeHealthUi.Clear), _displayTime);
 
             if (_player.CurrentHealth > _player.maxHealth)

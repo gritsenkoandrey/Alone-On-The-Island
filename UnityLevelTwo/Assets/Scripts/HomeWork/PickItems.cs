@@ -5,9 +5,11 @@ public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
 {
     #region Fields
 
-    [SerializeField] private float _baseHealth = 5.0f;
     [SerializeField] private float _timeToDestruct = 0;
-    protected float health;
+    protected readonly float _displayTime = 0.5f;
+
+    protected Player _player;
+    protected ChangeHealthUi _changeHealthUi;
 
     #endregion
 
@@ -17,7 +19,7 @@ public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
     protected override void Awake()
     {
         base.Awake();
-        health = _baseHealth;
+        _changeHealthUi = Object.FindObjectOfType<ChangeHealthUi>();
     }
 
     #endregion

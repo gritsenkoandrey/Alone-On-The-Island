@@ -69,7 +69,7 @@ public sealed class SelectionController : BaseController, IExecute
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.green);
             }
-            else if (_dedicateObj.GetComponent<BodyBot>() || _dedicateObj.GetComponent<HeadBot>())
+            else if (_dedicateObj.GetComponent<BodyBot>() || _dedicateObj.GetComponent<HeadBot>() || _dedicateObj.GetComponent<MineIModel>())
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.red);
             }

@@ -2,12 +2,13 @@
 using UnityEngine;
 
 
-public class Mina : MonoBehaviour
+public class Mine : MonoBehaviour
 {
     [SerializeField] private float _radius;
     [SerializeField] private float _force;
     [SerializeField] private GameObject _light;
     private Collider[] _objects;
+    private Rigidbody _body;
     private int _timeLight;
     private readonly int _maxArray = 100;
 
@@ -44,13 +45,12 @@ public class Mina : MonoBehaviour
         for (var i = 0; i <= array.Length - 1; i++)
         {
             var obj = array[i];
-            var isComponent = obj.TryGetComponent<Rigidbody>(out _);
-            if (isComponent)
+            if (obj.TryGetComponent<Rigidbody>(out _))
             {
-                var body = obj.GetComponent<Rigidbody>();
-                body.useGravity = true;
-                body.isKinematic = false;
-                body.AddExplosionForce(_force, transform.position, _radius);
+                _body = obj.GetComponent<Rigidbody>();
+                _body.useGravity = true;
+                _body.isKinematic = false;
+                _body.AddExplosionForce(_force, transform.position, _radius);
             }
             else
             {

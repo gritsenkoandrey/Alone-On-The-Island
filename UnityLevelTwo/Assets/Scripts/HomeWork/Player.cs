@@ -6,13 +6,13 @@ public sealed class Player : BaseObjectScene, ICollision
 {
     #region Fields
 
-    public float maxHealth = 50.0f;
-    private readonly float _minHealth = 0;
+    [SerializeField] internal float maxHealth = 50.0f;
+    internal readonly float minHealth = 0;
     private readonly float _quarter = 0.25f;
-    private readonly float _displayTimer = 1.0f;
+    private readonly float _displayTimer = 0.5f;
     private bool _isDead = false;
 
-    [HideInInspector] public float CurrentHealth;
+    internal float CurrentHealth;
     private ChangeHealthUi _changeHealthUi;
 
     #endregion
@@ -36,9 +36,9 @@ public sealed class Player : BaseObjectScene, ICollision
     {
         get
         {
-            if (CurrentHealth <= _minHealth)
+            if (CurrentHealth <= minHealth)
             {
-                return _minHealth;
+                return minHealth;
             }
             else
             {
@@ -71,15 +71,15 @@ public sealed class Player : BaseObjectScene, ICollision
             return;
         }
 
-        if (CurrentHealth > _minHealth)
+        if (CurrentHealth > minHealth)
         {
             CurrentHealth -= info.Damage;
             _changeHealthUi.DamageTaken(info.Damage);
             _changeHealthUi.Invoke(nameof(_changeHealthUi.Clear), _displayTimer);
 
-            if (CurrentHealth < _minHealth)
+            if (CurrentHealth < minHealth)
             {
-                CurrentHealth = _minHealth;
+                CurrentHealth = minHealth;
             }
         }
         else
