@@ -31,7 +31,8 @@ public sealed class Bot : BaseObjectScene, IExecute
 
     #region Properties
 
-    public float CurrentHealth { get; private set; }
+    // нужно сделать internal поле
+    public float CurrentHealth { get; set; }
 
     public float FillHealth
     {
@@ -199,18 +200,7 @@ public sealed class Bot : BaseObjectScene, IExecute
         {
             StateBot = StateBot.Died;
             Agent.enabled = false;
-            foreach (var child in GetComponentsInChildren<Transform>())
-            {
-                child.parent = null;
-                var tempRbChild = child.GetComponent<Rigidbody>();
-                if (!tempRbChild)
-                {
-                    tempRbChild = child.gameObject.AddComponent<Rigidbody>();
-                }
-                tempRbChild.AddForce(info.Direction * Random.Range(10, 100));
-                Destroy(child.gameObject, _timeToDestroy);
-            }
-            OnDieChange?.Invoke(this);
+            DieBot(info);
         }
     }
 
@@ -231,6 +221,22 @@ public sealed class Bot : BaseObjectScene, IExecute
             }
         }
         return false;
+    }
+
+    public void DieBot(InfoCollision info)
+    {
+        foreach (var child in GetComponentsInChildren<Transform>())
+        {
+            child.parent = null;
+            var tempRbChild = child.GetComponent<Rigidbody>();
+            if (!tempRbChild)
+            {
+                tempRbChild = child.gameObject.AddComponent<Rigidbody>();
+            }
+            tempRbChild.AddForce(info.Direction * Random.Range(1, 100));
+            Destroy(child.gameObject, _timeToDestroy);
+        }
+        OnDieChange?.Invoke(this);
     }
 
     #endregion

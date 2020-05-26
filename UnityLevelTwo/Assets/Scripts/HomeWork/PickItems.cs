@@ -9,6 +9,7 @@ public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
     protected readonly float _displayTime = 0.5f;
 
     protected Player _player;
+    protected Bot _bot;
     protected ChangeHealthUi _changeHealthUi;
 
     #endregion
@@ -19,7 +20,7 @@ public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
     protected override void Awake()
     {
         base.Awake();
-        _changeHealthUi = Object.FindObjectOfType<ChangeHealthUi>();
+        _changeHealthUi = FindObjectOfType<ChangeHealthUi>();
     }
 
     #endregion
