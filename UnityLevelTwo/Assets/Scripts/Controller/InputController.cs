@@ -51,6 +51,11 @@ public sealed class InputController : BaseController, IExecute
             SelectWeapon(1);
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SelectWeapon(2);
+        }
+
         if (Input.GetMouseButton(_mouseButton))
         {
             if (ServiceLocator.Resolve<WeaponController>().IsActive)

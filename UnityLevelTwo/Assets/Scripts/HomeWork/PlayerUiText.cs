@@ -16,7 +16,7 @@ public class PlayerUiText : BaseObjectScene
     {
         set
         {
-            _text.text = $"Health : {value:0}%";
+            _text.text = $"{value:0}%";
         }
     }
 

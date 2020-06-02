@@ -9,8 +9,8 @@ public sealed class CreateRandomPoint : BaseObjectScene
     public int count = 10;
     public float offset = 1;
     public string name = "Object";
-    private float _minDistance = 5.0f;
-    private float _maxDistance = 125.0f;
+    private float _minDistance = 35.0f;
+    private float _maxDistance = 350.0f;
     public GameObject gameObj;
     private Transform _root;
 
