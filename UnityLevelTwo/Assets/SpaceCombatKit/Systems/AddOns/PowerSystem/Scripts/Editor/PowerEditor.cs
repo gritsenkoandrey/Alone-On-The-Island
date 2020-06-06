@@ -46,12 +46,12 @@ namespace VSX.UniversalVehicleCombat
             PoweredSubsystemType[] subsystemValues = (PoweredSubsystemType[])Enum.GetValues(typeof(PoweredSubsystemType));
 
             // Resize the list of subsystem settings depending on the number of powered subsystem types
-            if (Event.current.type == EventType.Layout)
-			{
-				ResizeList(script.poweredSubsystems, subsystemTypeNames.Length);
-				serializedObject.ApplyModifiedProperties();
-				serializedObject.Update();
-			}
+   //         if (Event.current.type == EventType.Layout)
+			//{
+			//	ResizeList(script.poweredSubsystems, subsystemTypeNames.Length);
+			//	serializedObject.ApplyModifiedProperties();
+			//	serializedObject.Update();
+			//}
 			
 			// Keep track of certain values that must be normalized
 			float totalFixedPower = 0;

@@ -25,24 +25,26 @@ namespace UnityStandardAssets.Utility
             // find out the maximum lifetime of any particles in this effect
             foreach (var system in systems)
             {
-                m_MaxLifetime = Mathf.Max(system.main.startLifetime.constant, m_MaxLifetime);
+                //m_MaxLifetime = Mathf.Max(system.startLifetime, m_MaxLifetime); // Deprecated in Unity 5.6.2
+                m_MaxLifetime = Mathf.Max(system.main.startLifetimeMultiplier, m_MaxLifetime);
             }
 
             // wait for random duration
 
             float stopTime = Time.time + Random.Range(minDuration, maxDuration);
 
-            while (Time.time < stopTime && !m_EarlyStop)
+            while (Time.time < stopTime || m_EarlyStop)
             {
                 yield return null;
             }
             Debug.Log("stopping " + name);
 
             // turn off emission
+            ParticleSystem.EmissionModule tmpModule;
             foreach (var system in systems)
             {
-                var emission = system.emission;
-                emission.enabled = false;
+                tmpModule = system.emission;
+                tmpModule.enabled = false;
             }
             BroadcastMessage("Extinguish", SendMessageOptions.DontRequireReceiver);
 

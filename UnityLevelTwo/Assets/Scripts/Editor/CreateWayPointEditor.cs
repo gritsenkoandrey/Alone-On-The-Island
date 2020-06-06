@@ -21,23 +21,23 @@ public sealed class CreateWayPointEditor : Editor
         _testTarget = (CreateWayPoint)target;
     }
 
-    private void OnSceneGUI()
-    {
-        //отлавливаем событие нажатия левой кнопки мыши
-        if (Event.current.button == 0 && Event.current.type == EventType.MouseDown)
-        {
-            Ray ray = Camera.current.ScreenPointToRay(new Vector3(Event.current.mousePosition.x,
-                SceneView.currentDrawingSceneView.camera.pixelHeight - Event.current.mousePosition.y));
+    //private void OnSceneGUI()
+    //{
+    //    //отлавливаем событие нажатия левой кнопки мыши
+    //    if (Event.current.button == 0 && Event.current.type == tEventType.MouseDown)
+    //    {
+    //        Ray ray = Camera.current.ScreenPointToRay(new Vector3(Event.current.mousePosition.x,
+    //            SceneView.currentDrawingSceneView.camera.pixelHeight - Event.current.mousePosition.y));
 
-            if (Physics.Raycast(ray, out var hit))
-            {
-                _testTarget.InstantiateObj(hit.point);
-                SetObjectDirty(_testTarget.gameObject);
-            }
-        }
-        //выделяем объект, чтобы он не съезжал
-        Selection.activeGameObject = _testTarget.gameObject;
-    }
+    //        if (Physics.Raycast(ray, out var hit))
+    //        {
+    //            _testTarget.InstantiateObj(hit.point);
+    //            SetObjectDirty(_testTarget.gameObject);
+    //        }
+    //    }
+    //    //выделяем объект, чтобы он не съезжал
+    //    Selection.activeGameObject = _testTarget.gameObject;
+    //}
 
     #endregion
 
