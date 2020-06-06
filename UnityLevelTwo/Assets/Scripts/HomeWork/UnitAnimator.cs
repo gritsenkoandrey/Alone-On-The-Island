@@ -2,7 +2,7 @@
 using UnityEngine.AI;
 
 
-public class UnitAnimator : MonoBehaviour
+public class UnitAnimator : BaseObjectScene
 {
     private Animator _animator;
     private NavMeshAgent _agent;
@@ -17,8 +17,9 @@ public class UnitAnimator : MonoBehaviour
     private static readonly int ReactionOnHitDisable = Animator.StringToHash("ReactionOnHitDisable");
 
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
     }
