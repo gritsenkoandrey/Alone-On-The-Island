@@ -12,6 +12,7 @@ public sealed class Bot : BaseObjectScene, IExecute
     public Vision Vision;
     public Weapon Weapon;
     private UnitAnimator _animator;
+    private Ragdoll _ragdoll;
 
     private Vector3 _point;
     private float _stoppingDistance = 2.0f;
@@ -221,6 +222,8 @@ public sealed class Bot : BaseObjectScene, IExecute
 
         if (CurrentHealth <= 0)
         {
+            //_ragdoll.Die();
+
             StateBot = StateBot.Died;
             Agent.enabled = false;
             OnDieChange?.Invoke(this);
