@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -10,20 +11,17 @@ public sealed class Bot : BaseObjectScene, IExecute
 
     public float Hp = 100.0f;
     public Vision Vision;
-    public Weapon Weapon;
+    //public Weapon Weapon;
     private UnitAnimator _animator;
-    private Ragdoll _ragdoll;
 
     private Vector3 _point;
     private float _stoppingDistance = 2.0f;
+    private float _stoppingMoveDistance = 2.5f;
     private float _waitTime = 3.0f;
     private float _timeToDestroy = 10.0f;
     private float _detectedDistance = 30.0f;
     private float _distance;
-    private float _attackDistance = 3.5f;
-
-    // для проверки жив ли противник
-    private bool _isAlive;
+    //private float _attackDistance = 5.0f;
 
     private StateBot _stateBot;
     private ITimeRemaining _timeRemaining;
@@ -94,6 +92,7 @@ public sealed class Bot : BaseObjectScene, IExecute
         _timeRemaining = new TimeRemaining(ResetStateBot, _waitTime);
         CurrentHealth = Hp;
         _animator = GetComponent<UnitAnimator>();
+        //SetKinematic(true);
     }
 
     private void OnEnable()
@@ -139,14 +138,26 @@ public sealed class Bot : BaseObjectScene, IExecute
             return;
         }
 
-        _animator.MovingAnim();
+        if (Agent.hasPath)
+        {
+            _animator.MovingAnim();
+            if(Vector3.Distance(transform.position, Target.position) <= _stoppingMoveDistance)
+            {
+                _animator.StopMovingAnim();
+            }
+        }
+        else
+        {
+            _animator.StopMovingAnim();
+        }
+
         if (StateBot != StateBot.Detected)
         {
-            // если у бота нет пути, стоит на месте ничего не делает
             if (!Agent.hasPath)
             {
                 if (StateBot != StateBot.Inspection)
                 {
+                    
                     if (StateBot != StateBot.Patrol)
                     {
                         StateBot = StateBot.Patrol;
@@ -178,14 +189,17 @@ public sealed class Bot : BaseObjectScene, IExecute
 
             if (Vision.VisionM(transform, Target))
             {
-                _distance = Vector3.Distance(transform.position, Target.position);
-
-                if (_distance <= _attackDistance)
-                {
-                    OnFireEnableChange.Invoke();
-                }
-                OnFireDisableChange.Invoke();
+                // для ближней атаки
+                //if (Vector3.Distance(transform.position, Target.position) <= _attackDistance)
+                //{
+                //    OnFireEnableChange.Invoke();
+                //}
+                //OnFireDisableChange.Invoke();
+                //MovePoint(Target.position);
                 //Weapon.Fire();
+
+                // временная заглушка
+                return;
             }
             else
             {
@@ -198,7 +212,6 @@ public sealed class Bot : BaseObjectScene, IExecute
                 MovePoint(_point);
                 Agent.stoppingDistance = 0;
             }
-
         }
     }
 
@@ -212,23 +225,23 @@ public sealed class Bot : BaseObjectScene, IExecute
         if (CurrentHealth > 0)
         {
             CurrentHealth -= info.Damage;
-            HitReactionEnable.Invoke();
+            HitReactionEnable?.Invoke();
             if (info.Damage > 0 /*&& info.ObjCollision == Target*/)
             {
                 StateBot = StateBot.Detected;
             }
-            HitReactionDisable.Invoke();
         }
+        HitReactionDisable?.Invoke();
 
         if (CurrentHealth <= 0)
         {
-            //_ragdoll.Die();
-
             StateBot = StateBot.Died;
             Agent.enabled = false;
+
             OnDieChange?.Invoke(this);
             OnDyingEnableChange.Invoke();
-            DieBot(/*info*/);
+            //DieRagdoll();
+            DyingBot();
         }
     }
 
@@ -251,24 +264,38 @@ public sealed class Bot : BaseObjectScene, IExecute
         return false;
     }
 
-    public void DieBot(/*InfoCollision info*/)
+    public void DyingBot(/*InfoCollision info*/)
     {
         //foreach (var child in GetComponentsInChildren<Transform>())
         //{
         //    //child.parent = null;
         //    //var tempRbChild = child.GetComponent<Rigidbody>();
-
         //    //if (!tempRbChild)
         //    //{
         //    //    tempRbChild = child.gameObject.AddComponent<Rigidbody>();
         //    //}
         //    //tempRbChild.AddForce(info.Direction * Random.Range(1, 100));
-
         //    //Destroy(child.gameObject, _timeToDestroy);
         //}
         Destroy(gameObject, _timeToDestroy);
-        //OnDieChange?.Invoke(this);
         OnDyingDisableChange.Invoke();
+        //OnDieChange?.Invoke(this);
+    }
+
+    private void SetKinematic(bool newValue)
+    {
+        var bodies = GetComponentsInChildren<Rigidbody>();
+        foreach (var body in bodies)
+        {
+            body.isKinematic = newValue;
+        }
+    }
+
+    public void DieRagdoll()
+    {
+        SetKinematic(false);
+        GetComponent<Animator>().enabled = false;
+        Destroy(gameObject, _timeToDestroy);
     }
 
     #endregion

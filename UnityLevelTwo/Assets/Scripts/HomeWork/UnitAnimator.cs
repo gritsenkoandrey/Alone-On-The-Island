@@ -16,7 +16,6 @@ public class UnitAnimator : BaseObjectScene
     private static readonly int ReactionOnHitEnable = Animator.StringToHash("ReactionOnHitEnable");
     private static readonly int ReactionOnHitDisable = Animator.StringToHash("ReactionOnHitDisable");
 
-
     protected override void Awake()
     {
         base.Awake();
@@ -51,12 +50,14 @@ public class UnitAnimator : BaseObjectScene
 
     public void MovingAnim()
     {
-        _animator.SetBool(Moving, _agent.hasPath);
+        //_animator.SetBool(Moving, _agent.hasPath);
+        _animator.SetBool(Moving, true);
     }
 
     public void StopMovingAnim()
     {
-        _animator.SetBool(Moving, _agent.pathPending);
+        //_animator.SetBool(Moving, _agent.pathPending);
+        _animator.SetBool(Moving, false);
     }
 
     private void HitReactionEnable()
