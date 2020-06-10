@@ -37,8 +37,8 @@ public sealed class MineIModel : PickItems
             _bot.CurrentHealth -= _damage;
             if (_bot.CurrentHealth <= 0)
             {
-                //_bot.DyingBot(/*default*/);
-                _bot.DieRagdoll();
+                _bot.DyingBot();
+                //_bot.DieRagdoll();
             }
 
             DestroyItem();

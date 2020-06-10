@@ -1,5 +1,4 @@
 ﻿using System;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -141,6 +140,7 @@ public sealed class Bot : BaseObjectScene, IExecute
         if (Agent.hasPath)
         {
             _animator.MovingAnim();
+
             if(Vector3.Distance(transform.position, Target.position) <= _stoppingMoveDistance)
             {
                 _animator.StopMovingAnim();
@@ -237,9 +237,6 @@ public sealed class Bot : BaseObjectScene, IExecute
         {
             StateBot = StateBot.Died;
             Agent.enabled = false;
-
-            OnDieChange?.Invoke(this);
-            OnDyingEnableChange.Invoke();
             //DieRagdoll();
             DyingBot();
         }
@@ -250,7 +247,7 @@ public sealed class Bot : BaseObjectScene, IExecute
         Agent.SetDestination(point);
     }
 
-    public bool ChangeState()
+    private bool ChangeState()
     {
         if (StateBot == StateBot.Detected)
         {
@@ -275,28 +272,28 @@ public sealed class Bot : BaseObjectScene, IExecute
         //    //    tempRbChild = child.gameObject.AddComponent<Rigidbody>();
         //    //}
         //    //tempRbChild.AddForce(info.Direction * Random.Range(1, 100));
-        //    //Destroy(child.gameObject, _timeToDestroy);
         //}
+        OnDieChange?.Invoke(this);
+        OnDyingEnableChange.Invoke();
         Destroy(gameObject, _timeToDestroy);
         OnDyingDisableChange.Invoke();
-        //OnDieChange?.Invoke(this);
     }
 
-    private void SetKinematic(bool newValue)
-    {
-        var bodies = GetComponentsInChildren<Rigidbody>();
-        foreach (var body in bodies)
-        {
-            body.isKinematic = newValue;
-        }
-    }
+    //private void SetKinematic(bool newValue)
+    //{
+    //    var bodies = GetComponentsInChildren<Rigidbody>();
+    //    foreach (var body in bodies)
+    //    {
+    //        body.isKinematic = newValue;
+    //    }
+    //}
 
-    public void DieRagdoll()
-    {
-        SetKinematic(false);
-        GetComponent<Animator>().enabled = false;
-        Destroy(gameObject, _timeToDestroy);
-    }
+    //public void DieRagdoll()
+    //{
+    //    SetKinematic(false);
+    //    GetComponent<Animator>().enabled = false;
+    //    Destroy(gameObject, _timeToDestroy);
+    //}
 
     #endregion
 }

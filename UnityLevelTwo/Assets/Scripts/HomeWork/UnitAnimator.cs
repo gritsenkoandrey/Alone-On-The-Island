@@ -4,6 +4,8 @@ using UnityEngine.AI;
 
 public class UnitAnimator : BaseObjectScene
 {
+    #region Fields
+
     private Animator _animator;
     private NavMeshAgent _agent;
     private Bot _bot;
@@ -15,6 +17,11 @@ public class UnitAnimator : BaseObjectScene
     private static readonly int DyingDisable = Animator.StringToHash("Dying");
     private static readonly int ReactionOnHitEnable = Animator.StringToHash("ReactionOnHitEnable");
     private static readonly int ReactionOnHitDisable = Animator.StringToHash("ReactionOnHitDisable");
+
+    #endregion
+
+
+    #region UnityMethods
 
     protected override void Awake()
     {
@@ -47,6 +54,11 @@ public class UnitAnimator : BaseObjectScene
         _bot.HitReactionEnable -= HitReactionEnable;
         _bot.HitReactionDisable -= HitReactionDisable;
     }
+
+    #endregion
+
+
+    #region Methods
 
     public void MovingAnim()
     {
@@ -89,4 +101,6 @@ public class UnitAnimator : BaseObjectScene
     {
         _animator.SetTrigger(DyingDisable);
     }
+
+    #endregion
 }
