@@ -12,12 +12,13 @@ public sealed class Bot : BaseObjectScene, IExecute
     public Vision Vision;
     //public Weapon Weapon;
     private UnitAnimator _animator;
+    private DeathBot _deathBot;
 
     private Vector3 _point;
     private float _stoppingDistance = 2.0f;
     private float _stoppingMoveDistance = 2.5f;
     private float _waitTime = 3.0f;
-    private float _timeToDestroy = 10.0f;
+    private float _timeToDestroy = 5.5f;
     private float _detectedDistance = 30.0f;
     private float _distance;
     //private float _attackDistance = 5.0f;
@@ -91,6 +92,7 @@ public sealed class Bot : BaseObjectScene, IExecute
         _timeRemaining = new TimeRemaining(ResetStateBot, _waitTime);
         CurrentHealth = Hp;
         _animator = GetComponent<UnitAnimator>();
+        _deathBot = GetComponent<DeathBot>();
         //SetKinematic(true);
     }
 
@@ -273,7 +275,9 @@ public sealed class Bot : BaseObjectScene, IExecute
         //    //}
         //    //tempRbChild.AddForce(info.Direction * Random.Range(1, 100));
         //}
+
         OnDieChange?.Invoke(this);
+        StartCoroutine(_deathBot.DeathPartical());
         OnDyingEnableChange.Invoke();
         Destroy(gameObject, _timeToDestroy);
         OnDyingDisableChange.Invoke();

@@ -59,6 +59,7 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
                 gameObject.AddComponent<Rigidbody>();
             }
             Destroy(gameObject, _timeToDestroy);
+            GetComponent<Animator>().enabled = false;
             OnPointChange.Invoke();
             _isDead = true;
         }
