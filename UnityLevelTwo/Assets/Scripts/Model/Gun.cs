@@ -20,6 +20,7 @@
         // todo pool object
         var temAmmunition = Instantiate(Ammunition, _barrelOne.position, _barrelOne.rotation);
         temAmmunition.AddForce(_barrelOne.forward * _force);
+        FireAnimationOn();
 
         //Ray ray = new Ray(_barrelOne.position, _barrelOne.forward);
         //if (Physics.Raycast(ray, out var hit, 100))
@@ -32,6 +33,7 @@
         Clip.CountAmmunition--;
         _isReady = false;
         _timeRemaining.AddTimeRemaining();
+        FireAnimationOff();
     }
 
     #endregion

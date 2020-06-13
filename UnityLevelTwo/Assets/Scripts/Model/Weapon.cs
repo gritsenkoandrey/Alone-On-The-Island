@@ -19,8 +19,8 @@ public abstract class Weapon : BaseObjectScene
 
     [SerializeField] protected float _force = 999.0f;
     [SerializeField] protected float _rechargeTime = 0.2f;
-    private readonly int _maxCountAmmunition = 40;
-    private readonly int _minCountAmmunition = 20;
+    internal readonly int _maxCountAmmunition = 30;
+    //private readonly int _minCountAmmunition = 30;
     // количество обойм в оружии
     private readonly int _countClip = 5;
     protected bool _isReady = true;
@@ -29,6 +29,13 @@ public abstract class Weapon : BaseObjectScene
 
     // отсчет времени между выстрелами
     protected ITimeRemaining _timeRemaining;
+
+    private Animator _animator;
+    private static readonly int FireEnable = Animator.StringToHash("FireEnabled");
+    private static readonly int FireDisable = Animator.StringToHash("FireDisabled");
+    private static readonly int ReloadOn = Animator.StringToHash("ReloadOn");
+    private static readonly int ReloadOff = Animator.StringToHash("ReloadOff");
+
 
     #endregion
 
@@ -45,18 +52,49 @@ public abstract class Weapon : BaseObjectScene
 
     #region UnityMethods
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         // передаю таймремаининг + проверяется готовность на стрельбу с отсчитыванием времени
         _timeRemaining = new TimeRemaining(ReadyShoot, _rechargeTime);
         for (var i = 0; i <= _countClip; i++)
         {
-            AddClip(new Clip { CountAmmunition = Random.Range(_minCountAmmunition, _maxCountAmmunition) });
+            AddClip(new Clip { CountAmmunition = /*Random.Range(_minCountAmmunition, _maxCountAmmunition) */_maxCountAmmunition});
         }
         ReloadClip();
 
         // если сделать так то контроллер подхватит таймер и начнет его отсчитывать
         //_timeRemaining.AddTimeRemaining();
+
+        _animator = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        //if (Input.GetKeyDown(KeyCode.Mouse0))
+        //{
+        //    if (ServiceLocator.Resolve<WeaponController>().IsActive && Clip.CountAmmunition > 0)
+        //    {
+        //        FireOn();
+        //    }
+        //}
+        //else
+        //{
+        //    FireOff();
+        //}
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (ServiceLocator.Resolve<WeaponController>().IsActive && CountClip > 0)
+            {
+                ReloadClipOn();
+            }
+        }
+        else
+        {
+            ReloadClipOff();
+        }
     }
 
     #endregion
@@ -83,6 +121,26 @@ public abstract class Weapon : BaseObjectScene
             return;
         }
         Clip = _clips.Dequeue();
+    }
+
+    protected void FireAnimationOn()
+    {
+        _animator.SetTrigger(FireEnable);
+    }
+
+    protected void FireAnimationOff()
+    {
+        _animator.SetTrigger(FireDisable);
+    }
+
+    private void ReloadClipOn()
+    {
+        _animator.SetTrigger(ReloadOn);
+    }
+
+    private void ReloadClipOff()
+    {
+        _animator.SetTrigger(ReloadOff);
     }
 
     #endregion

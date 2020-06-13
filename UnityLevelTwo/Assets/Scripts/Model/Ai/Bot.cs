@@ -275,7 +275,6 @@ public sealed class Bot : BaseObjectScene, IExecute
         //    //}
         //    //tempRbChild.AddForce(info.Direction * Random.Range(1, 100));
         //}
-
         OnDieChange?.Invoke(this);
         StartCoroutine(_deathBot.DeathPartical());
         OnDyingEnableChange.Invoke();

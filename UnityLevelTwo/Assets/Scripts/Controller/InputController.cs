@@ -14,6 +14,8 @@ public sealed class InputController : BaseController, IExecute
     private readonly KeyCode _screenShot = KeyCode.C;
     private readonly int _mouseButton = (int)MouseButton.LeftButton;
 
+    private GunAnimator _gunAnimator;
+
     #endregion
 
 

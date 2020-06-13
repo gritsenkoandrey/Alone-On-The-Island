@@ -10131,6 +10131,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1355387198}
   - component: {fileID: 1355387199}
+  - component: {fileID: 1355387200}
+  - component: {fileID: 1355387201}
   m_Layer: 0
   m_Name: Rifle
   m_TagString: Untagged
@@ -10176,6 +10178,47 @@ MonoBehaviour:
   _force: 2000
   _rechargeTime: 0.2
   AmmunitionTypes: 0400000002000000
+--- !u!95 &1355387200
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355387197}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b5b5d554e82dd574c85031edf8029f81, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1355387201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355387197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d10ff22af566d443bef1c2106018c0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color:
+    r: 0
+    g: 0
+    b: 0
+    a: 0
+  _layer: 0
+  _isVisible: 0
+  Rigidbody: {fileID: 0}
+  Transform: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &1357542282
 GameObject:
   m_ObjectHideFlags: 0
@@ -61726,7 +61769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8296172667898794971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61767,7 +61810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &8467599911758851251
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -25,8 +25,10 @@
         temAmmunitionThree.AddForce(_barrelThree.forward * _force);
         Clip.CountAmmunition--;
 
+        FireAnimationOn();
         _isReady = false;
         _timeRemaining.AddTimeRemaining();
+        FireAnimationOff();
     }
 
     #endregion

@@ -1200,13 +1200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be799f9e97b95f641a01363959071f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParticleSystemOne: {fileID: 2798626528435606200}
-  ParticleSystemTwo: {fileID: 8078231057915020773}
-  Skeleton:
+  _particleSystemOne: {fileID: 2798626528435606200}
+  _particleSystemTwo: {fileID: 8078231057915020773}
+  _skeleton:
   - {fileID: 8548711160424052617}
-  BotMesh:
+  _botMesh:
   - {fileID: 5761040770995525408}
-  bumpSpeed: 2
+  _bumpSpeed: 2
 --- !u!1 &3705863951561772331
 GameObject:
   m_ObjectHideFlags: 0

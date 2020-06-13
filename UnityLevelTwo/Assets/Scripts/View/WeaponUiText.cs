@@ -25,9 +25,9 @@ public sealed class WeaponUiText : BaseObjectScene
 
     #region Methods
 
-    public void ShowData(int countAmmunition, int countClip)
+    public void ShowData(int countAmmunition, int maxAmunition, int countClip)
     {
-        _text.text = $"{countAmmunition}/{countClip}";
+        _text.text = $"{countAmmunition} - {maxAmunition} / {countClip}";
     }
 
     public new void SetActive(bool value)
