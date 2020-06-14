@@ -18,7 +18,7 @@ public sealed class Bot : BaseObjectScene, IExecute
     private float _stoppingDistance = 2.0f;
     private float _stoppingMoveDistance = 2.5f;
     private float _waitTime = 3.0f;
-    private float _timeToDestroy = 5.5f;
+    private float _timeToDestroy = 3.5f;
     private float _detectedDistance = 30.0f;
     private float _distance;
     //private float _attackDistance = 5.0f;
