@@ -7,6 +7,7 @@ public sealed class WeaponUiText : BaseObjectScene
     #region Fields
 
     private Text _text;
+    private Image _image;
 
     #endregion
 
@@ -18,6 +19,7 @@ public sealed class WeaponUiText : BaseObjectScene
         base.Awake();
 
         _text = GetComponent<Text>();
+        _image = GetComponent<Image>();
     }
 
     #endregion
@@ -33,6 +35,7 @@ public sealed class WeaponUiText : BaseObjectScene
     public new void SetActive(bool value)
     {
         _text.gameObject.SetActive(value);
+        //_image.gameObject.SetActive(value);
     }
 
     #endregion

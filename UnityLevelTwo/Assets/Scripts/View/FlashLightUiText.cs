@@ -17,8 +17,8 @@ public sealed class FlashLightUiText : BaseObjectScene
         //set => _text.text = $"{value:0.0}";
         set
         {
-            /*_text.text = $"{value:0.0}"*/;
-            _text.text = null;
+            _text.text = $"{value:0.0}";
+            //_text.text = null;
         }
     }
 

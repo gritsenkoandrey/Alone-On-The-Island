@@ -1,4 +1,5 @@
-﻿using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 
 public sealed class AimUiText : BaseObjectScene
@@ -25,6 +26,7 @@ public sealed class AimUiText : BaseObjectScene
         _sphere = FindObjectsOfType<TargetSphere>();
         _wall = FindObjectsOfType<Wall>();
         _text = GetComponent<Text>();
+        _text.color = Color.green;
     }
 
     private void OnEnable()
