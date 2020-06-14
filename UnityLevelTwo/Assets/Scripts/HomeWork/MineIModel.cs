@@ -6,6 +6,7 @@ public sealed class MineIModel : PickItems
     #region Field
 
     [SerializeField] private float _damage = 25.0f;
+    [SerializeField] private ParticleSystem _particleExplosion;
 
     #endregion
 
@@ -30,6 +31,7 @@ public sealed class MineIModel : PickItems
             }
 
             DestroyItem();
+            Instantiate(_particleExplosion, transform.position, transform.rotation);
         }
 
         if (_bot)
@@ -40,8 +42,8 @@ public sealed class MineIModel : PickItems
                 _bot.DyingBot();
                 //_bot.DieRagdoll();
             }
-
             DestroyItem();
+            Instantiate(_particleExplosion, transform.position, transform.rotation);
         }
     }
 

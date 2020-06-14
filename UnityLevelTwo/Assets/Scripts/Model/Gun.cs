@@ -21,8 +21,7 @@
         FireAnimationOn();
         var temAmmunition = Instantiate(Ammunition, _barrelOne.position, _barrelOne.rotation);
         temAmmunition.AddForce(_barrelOne.forward * _force);
-        var particle = Instantiate(_particleSystem, _barrelOne.position, _barrelOne.rotation);
-        //Destroy(particle.gameObject, 0.05f);
+        Instantiate(_particleSystem, _barrelOne.position, _barrelOne.rotation);
 
         //Ray ray = new Ray(_barrelOne.position, _barrelOne.forward);
         //if (Physics.Raycast(ray, out var hit, 100))

@@ -203,6 +203,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   Transform: {fileID: 0}
   _hp: 100
+  _particleExplosion: {fileID: 19800006, guid: 5c4434f1de437bc41af02e8bb3d2691f, type: 3}
 --- !u!95 &7342924785193648785
 Animator:
   serializedVersion: 3

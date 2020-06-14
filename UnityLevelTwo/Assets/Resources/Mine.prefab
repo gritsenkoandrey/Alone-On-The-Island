@@ -97,6 +97,7 @@ MonoBehaviour:
   Transform: {fileID: 0}
   _timeToDestruct: 0
   _damage: 25
+  _particleExplosion: {fileID: 19800002, guid: 6ecf76dc4f268d340b2666896a954bcc, type: 3}
 --- !u!135 &5861825358687096621
 SphereCollider:
   m_ObjectHideFlags: 0

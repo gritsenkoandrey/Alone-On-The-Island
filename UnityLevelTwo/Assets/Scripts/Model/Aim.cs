@@ -7,7 +7,8 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
     #region Fields
 
     [SerializeField] private float _hp = 100;
-    private readonly float _timeToDestroy = 10.0f;
+    [SerializeField] private ParticleSystem _particleExplosion;
+    //private readonly float _timeToDestroy = 10.0f;
 
     private bool _isDead;
 
@@ -54,11 +55,13 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
         }
         if (CurrentHealth <= 0)
         {
-            if (!TryGetComponent<Rigidbody>(out _))
-            {
-                gameObject.AddComponent<Rigidbody>();
-            }
-            Destroy(gameObject, _timeToDestroy);
+            //if (!TryGetComponent<Rigidbody>(out _))
+            //{
+            //    gameObject.AddComponent<Rigidbody>();
+            //}
+
+            Destroy(gameObject/*, _timeToDestroy*/);
+            Instantiate(_particleExplosion, transform.position, transform.rotation);
             GetComponent<Animator>().enabled = false;
             OnPointChange.Invoke();
             _isDead = true;

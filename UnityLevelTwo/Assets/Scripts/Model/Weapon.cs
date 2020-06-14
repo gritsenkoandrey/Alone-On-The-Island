@@ -69,7 +69,6 @@ public abstract class Weapon : BaseObjectScene
         //_timeRemaining.AddTimeRemaining();
 
         _animator = GetComponent<Animator>();
-        //_particleSystem = GetComponent<ParticleSystem>();
     }
 
     private void Update()

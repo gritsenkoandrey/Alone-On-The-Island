@@ -129,6 +129,7 @@ MonoBehaviour:
   _timeToDestruct: 10
   _baseDamage: 10
   Type: 4
+  _particleSystem: {fileID: 19800002, guid: e11361ed753f3864db79aba909544021, type: 3}
 --- !u!1 &7060013723393546344
 GameObject:
   m_ObjectHideFlags: 0

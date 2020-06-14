@@ -13,6 +13,7 @@ public abstract class Ammunition : BaseObjectScene
     //private ITimeRemaining _timeRemaining;
     public AmmunitionType Type = AmmunitionType.Bullet;
 
+    [SerializeField] protected ParticleSystem _particleSystem;
     #endregion
 
 

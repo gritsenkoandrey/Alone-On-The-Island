@@ -22,7 +22,7 @@ public sealed class Bullet : Ammunition
             //    collision.gameObject.AddComponent<Transform>();
             //}
             //collision.gameObject.transform.localScale -= new Vector3(0.1f, 0.1f, 0);
-
+            Instantiate(_particleSystem, collision.transform.position, collision.transform.rotation);
         }
         DestroyAmmunition();
     }
