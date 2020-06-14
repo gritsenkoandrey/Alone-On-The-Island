@@ -36,6 +36,7 @@ public abstract class Weapon : BaseObjectScene
     private static readonly int ReloadOn = Animator.StringToHash("ReloadOn");
     private static readonly int ReloadOff = Animator.StringToHash("ReloadOff");
 
+    [SerializeField] protected ParticleSystem _particleSystem;
 
     #endregion
 
@@ -68,6 +69,7 @@ public abstract class Weapon : BaseObjectScene
         //_timeRemaining.AddTimeRemaining();
 
         _animator = GetComponent<Animator>();
+        //_particleSystem = GetComponent<ParticleSystem>();
     }
 
     private void Update()

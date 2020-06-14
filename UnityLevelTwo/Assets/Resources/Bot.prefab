@@ -1060,7 +1060,6 @@ GameObject:
   - component: {fileID: 3576564361011967658}
   - component: {fileID: 3605913596219638365}
   - component: {fileID: 3914387021326107534}
-  - component: {fileID: 3057907506479164298}
   - component: {fileID: 7503525448475670851}
   m_Layer: 9
   m_Name: Bot
@@ -1172,22 +1171,6 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   Transform: {fileID: 0}
   _icon: {fileID: 5941468474276879154, guid: 86b8b2ec4d8ea784cbce3e1116d0ab40, type: 3}
---- !u!114 &3057907506479164298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3576564361011967657}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 171f8b4e2ae2fd442971416bd0b36cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rayLength: 2
-  _rayLayer:
-    serializedVersion: 2
-    m_Bits: 1
 --- !u!114 &7503525448475670851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1200,6 +1183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be799f9e97b95f641a01363959071f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  Transform: {fileID: 0}
   _particleSystemOne: {fileID: 2798626528435606200}
   _particleSystemTwo: {fileID: 8078231057915020773}
   _skeleton:

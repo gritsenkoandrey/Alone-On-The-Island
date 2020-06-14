@@ -25,6 +25,9 @@
         temAmmunitionThree.AddForce(_barrelThree.forward * _force);
         Clip.CountAmmunition--;
 
+        var particle = Instantiate(_particleSystem, _barrelTwo.position, _barrelTwo.rotation);
+        Destroy(particle, 0.05f);
+
         FireAnimationOn();
         _isReady = false;
         _timeRemaining.AddTimeRemaining();

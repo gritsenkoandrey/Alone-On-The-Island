@@ -11,6 +11,7 @@ public sealed class GunRPGEditor : Editor
     private SerializedProperty _barrelOneProperty;
     private SerializedProperty _barrelTwoProperty;
     private SerializedProperty _barrelThreeProperty;
+    private SerializedProperty _particleSystem;
     private SerializedProperty _forceProperty;
     private SerializedProperty _rechargeTimeProperty;
 
@@ -29,6 +30,7 @@ public sealed class GunRPGEditor : Editor
         _barrelOneProperty = serializedObject.FindProperty("_barrelOne");
         _barrelTwoProperty = serializedObject.FindProperty("_barrelTwo");
         _barrelThreeProperty = serializedObject.FindProperty("_barrelThree");
+        _particleSystem = serializedObject.FindProperty("_particleSystem");
         _forceProperty = serializedObject.FindProperty("_force");
         _rechargeTimeProperty = serializedObject.FindProperty("_rechargeTime");
     }
@@ -42,6 +44,8 @@ public sealed class GunRPGEditor : Editor
         EditorGUILayout.PropertyField(_barrelOneProperty, new GUIContent("Barrel One"));
         EditorGUILayout.PropertyField(_barrelTwoProperty, new GUIContent("Barrel Two"));
         EditorGUILayout.PropertyField(_barrelThreeProperty, new GUIContent("Barrel Three"));
+
+        EditorGUILayout.PropertyField(_particleSystem, new GUIContent("Particle"));
 
         EditorGUILayout.Slider(_forceProperty, _minValue, _maxForceValue, new GUIContent("Force"));
         if (!_forceProperty.hasMultipleDifferentValues)

@@ -14,7 +14,7 @@ public sealed class SelectionController : BaseController, IExecute
     private readonly Vector2 _center;
 
     // дистанция на которую будет бить луч
-    private readonly float _dedicateDistance = 20.0f;
+    private readonly float _dedicateDistance = 40.0f;
     private bool _nullString;
     private bool _isSelectedObj = false;
 

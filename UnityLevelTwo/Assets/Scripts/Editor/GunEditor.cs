@@ -10,6 +10,7 @@ public sealed class GunEditor : Editor
 
     private SerializedProperty _ammunitionProperty;
     private SerializedProperty _barrelOneProperty;
+    private SerializedProperty _particleSystem;
     private SerializedProperty _forceProperty;
     private SerializedProperty _rechargeTimeProperty;
 
@@ -26,6 +27,7 @@ public sealed class GunEditor : Editor
     {
         _ammunitionProperty = serializedObject.FindProperty("Ammunition");
         _barrelOneProperty = serializedObject.FindProperty("_barrelOne");
+        _particleSystem = serializedObject.FindProperty("_particleSystem");
         _forceProperty = serializedObject.FindProperty("_force");
         _rechargeTimeProperty = serializedObject.FindProperty("_rechargeTime");
     }
@@ -38,6 +40,8 @@ public sealed class GunEditor : Editor
         EditorGUILayout.PropertyField(_ammunitionProperty, new GUIContent("Bullet"));
 
         EditorGUILayout.PropertyField(_barrelOneProperty, new GUIContent("Barrel"));
+
+        EditorGUILayout.PropertyField(_particleSystem, new GUIContent("Particle"));
 
         EditorGUILayout.Slider(_forceProperty, _minValue, _maxForceValue, new GUIContent("Force"));
         if (!_forceProperty.hasMultipleDifferentValues)
