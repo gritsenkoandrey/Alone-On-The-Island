@@ -61,7 +61,7 @@ public abstract class Weapon : BaseObjectScene
         _timeRemaining = new TimeRemaining(ReadyShoot, _rechargeTime);
         for (var i = 0; i <= _countClip; i++)
         {
-            AddClip(new Clip { CountAmmunition = /*Random.Range(_minCountAmmunition, _maxCountAmmunition) */_maxCountAmmunition});
+            AddClip(new Clip { CountAmmunition = /*Random.Range(_minCountAmmunition, _maxCountAmmunition) */_maxCountAmmunition });
         }
         ReloadClip();
 
@@ -95,6 +95,17 @@ public abstract class Weapon : BaseObjectScene
         else
         {
             ReloadClipOff();
+        }
+
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)
+            || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        {
+            _animator.SetTrigger("RunEnabled");
+        }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)
+            || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            _animator.SetTrigger("RunDisabled");
         }
     }
 
