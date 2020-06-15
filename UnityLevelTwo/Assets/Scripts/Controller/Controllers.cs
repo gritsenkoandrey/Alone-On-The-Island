@@ -69,6 +69,7 @@ public sealed class Controllers : IInitialization
         ServiceLocator.Resolve<SelectionController>().On();
         ServiceLocator.Resolve<BotController>().On();
         ServiceLocator.Resolve<CreateObjFromResourcesController>().Initialization();
+        ServiceLocator.Resolve<WeaponController>().Initialization();
     }
 
     #endregion

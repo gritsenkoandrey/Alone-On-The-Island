@@ -13,6 +13,7 @@ public sealed class UiInterface
     private PlayerUiBar _playerUiBar;
     private PlayerUiText _playerUiText;
     private ChangeHealthUi _changeHealthUi;
+    private WeaponUiImage _weaponUiImage;
 
     #endregion
 
@@ -109,12 +110,25 @@ public sealed class UiInterface
     {
         get
         {
-            if (!ChangeHealthUi)
+            if (!_changeHealthUi)
             {
                 _changeHealthUi = Object.FindObjectOfType<ChangeHealthUi>();
             }
 
             return _changeHealthUi;
+        }
+    }
+
+    public WeaponUiImage WeaponUiImage
+    {
+        get
+        {
+            if (!_weaponUiImage)
+            {
+                _weaponUiImage = Object.FindObjectOfType<WeaponUiImage>();
+            }
+
+            return _weaponUiImage;
         }
     }
 

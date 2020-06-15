@@ -1,4 +1,4 @@
-﻿public sealed class WeaponController : BaseController
+﻿public sealed class WeaponController : BaseController, IInitialization
 {
     #region Fields
 
@@ -9,6 +9,12 @@
 
 
     #region Methods
+
+    public void Initialization()
+    {
+        UiInterface.WeaponUiText.SetActive(false);
+        UiInterface.WeaponUiImage.SetActive(false);
+    }
 
     public override void On(params BaseObjectScene[] weapon)
     {
@@ -27,6 +33,7 @@
         base.On(_weapon);
         _weapon.IsVisible = true;
         UiInterface.WeaponUiText.SetActive(true);
+        UiInterface.WeaponUiImage.SetActive(true);
         UiInterface.WeaponUiText.ShowData(_weapon.Clip.CountAmmunition, _weapon._maxCountAmmunition, _weapon.CountClip);
     }
 
@@ -40,6 +47,7 @@
         _weapon.IsVisible = false;
         _weapon = null;
         UiInterface.WeaponUiText.SetActive(false);
+        UiInterface.WeaponUiImage.SetActive(false);
     }
 
     public void Fire()
