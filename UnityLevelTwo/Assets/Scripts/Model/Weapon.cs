@@ -11,17 +11,17 @@ public abstract class Weapon : BaseObjectScene
     [SerializeField] protected Transform _barrelOne;
     [SerializeField] protected Transform _barrelTwo;
     [SerializeField] protected Transform _barrelThree;
+    [SerializeField] protected float _force = 999.0f;
+    [SerializeField] protected float _rechargeTime = 0.2f;
+    [SerializeField] protected ParticleSystem _particleSystem;
+    private Animator _animator;
 
     // структура которая содержит количество патронов в обойме
     public Clip Clip;
     // очередь с нашими обоймами
     private Queue<Clip> _clips = new Queue<Clip>();
-
-    [SerializeField] protected float _force = 999.0f;
-    [SerializeField] protected float _rechargeTime = 0.2f;
     internal readonly int _maxCountAmmunition = 30;
     //private readonly int _minCountAmmunition = 30;
-    // количество обойм в оружии
     private readonly int _countClip = 5;
     protected bool _isReady = true;
 
@@ -29,14 +29,11 @@ public abstract class Weapon : BaseObjectScene
 
     // отсчет времени между выстрелами
     protected ITimeRemaining _timeRemaining;
-
-    private Animator _animator;
     private static readonly int FireEnable = Animator.StringToHash("FireEnabled");
     private static readonly int FireDisable = Animator.StringToHash("FireDisabled");
     private static readonly int ReloadOn = Animator.StringToHash("ReloadOn");
     private static readonly int ReloadOff = Animator.StringToHash("ReloadOff");
 
-    [SerializeField] protected ParticleSystem _particleSystem;
 
     #endregion
 
@@ -73,18 +70,6 @@ public abstract class Weapon : BaseObjectScene
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    if (ServiceLocator.Resolve<WeaponController>().IsActive && Clip.CountAmmunition > 0)
-        //    {
-        //        FireOn();
-        //    }
-        //}
-        //else
-        //{
-        //    FireOff();
-        //}
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (ServiceLocator.Resolve<WeaponController>().IsActive && CountClip > 0)
@@ -92,7 +77,8 @@ public abstract class Weapon : BaseObjectScene
                 ReloadClipOn();
             }
         }
-        else
+
+        if (Input.GetKeyUp(KeyCode.R))
         {
             ReloadClipOff();
         }
@@ -102,6 +88,7 @@ public abstract class Weapon : BaseObjectScene
         {
             _animator.SetTrigger("RunEnabled");
         }
+
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)
             || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
         {

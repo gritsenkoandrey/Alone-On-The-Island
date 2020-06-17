@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
 
+//not use class
 public class GunAnimator : BaseObjectScene
 {
     private Weapon _weapon;
