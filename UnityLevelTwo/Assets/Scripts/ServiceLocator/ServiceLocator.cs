@@ -27,5 +27,10 @@ public static class ServiceLocator
         return (T)_serviceContainer[typeof(T)];
     }
 
+    public static void Cleanup()
+    {
+        _serviceContainer.Clear();
+    }
+
     #endregion
 }

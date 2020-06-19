@@ -72,5 +72,11 @@ public sealed class Controllers : IInitialization
         ServiceLocator.Resolve<WeaponController>().Initialization();
     }
 
+    public void Cleanup()
+    {
+        ServiceLocator.Cleanup();
+        ServiceLocatorMonoBehaviour.Cleanup();
+    }
+
     #endregion
 }
