@@ -41,6 +41,7 @@ public sealed class Interface : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // добавить
+            Execute(InterfaceObject.MenuPause);
         }
     }
 

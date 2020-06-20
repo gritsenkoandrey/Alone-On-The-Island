@@ -1,6 +1,7 @@
 ﻿using System.Xml;
 using UnityEngine;
 
+
 public class LangManager : Singleton<LangManager>
 {
     private XmlDocument _root;

@@ -3,6 +3,7 @@
     #region Fields
 
     protected UiInterface UiInterface;
+    protected Interface Interface;
 
     #endregion
 
@@ -12,6 +13,7 @@
     protected BaseController()
     {
         UiInterface = new UiInterface();
+        Interface = new Interface();
     }
 
     #endregion

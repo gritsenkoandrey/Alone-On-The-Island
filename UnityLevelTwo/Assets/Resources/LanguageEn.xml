@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Settings>
+
+  <meta>
+    <language>English</language>
+  </meta>
+
+  <group id="MainMenuItems">
+
+    <string id="NewGame">
+      <text>New Game</text>
+    </string>
+
+    <string id="Continue">
+      <text>Continue Game</text>
+    </string>
+
+    <string id="Options">
+      <text>Options</text>
+    </string>
+
+    <string id="Quit">
+      <text>Quit Game</text>
+    </string>
+
+  </group>
+
+  <group id="OptionsMenuItems">
+
+    <string id="Video">
+      <text>Resolution</text>
+    </string>
+
+    <string id="Sound">
+      <text>Sound</text>
+    </string>
+
+    <string id="Game">
+      <text>Quality</text>
+    </string>
+
+    <string id="Back">
+      <text>Back</text>
+    </string>
+
+    <string id="Screen">
+      <text>Full Screen</text>
+    </string>
+
+  </group>
+  
+</Settings>

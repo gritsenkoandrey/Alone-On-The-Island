@@ -7,7 +7,7 @@ public sealed class MainMenu : BaseMenu
     [SerializeField] private GameObject _mainPanel;
 
     [SerializeField] private ButtonUi _newGame;
-    [SerializeField] private ButtonUi _continue;
+    //[SerializeField] private ButtonUi _continue;
     [SerializeField] private ButtonUi _options;
     [SerializeField] private ButtonUi _quit;
 
@@ -19,10 +19,15 @@ public sealed class MainMenu : BaseMenu
             LoadNewGame(SceneManagerHelper.Instance.Scenes.Game.SceneAsset.name);
         });
 
-        _continue.GetText.text = LangManager.Instance.Text("MainMenuItems", "Continue");
-        _continue.SetInteractable(false);
+        //_continue.GetText.text = LangManager.Instance.Text("MainMenuItems", "Continue");
+        //_continue.SetInteractable(false);
         _options.GetText.text = LangManager.Instance.Text("MainMenuItems", "Options");
-        _options.SetInteractable(false);
+        _options.SetInteractable(true);
+        _options.GetControl.onClick.AddListener(delegate
+        {
+            //Hide();
+            ShowOptions();
+        });
 
         _quit.GetText.text = LangManager.Instance.Text("MainMenuItems", "Quit");
         _quit.GetControl.onClick.AddListener(delegate
