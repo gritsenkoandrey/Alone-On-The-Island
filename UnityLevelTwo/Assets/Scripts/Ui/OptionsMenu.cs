@@ -3,9 +3,10 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 
-public class OptionsMenu : BaseMenu
+public sealed class OptionsMenu : BaseMenu
 {
 	[SerializeField] private GameObject _optionsPanel;
+
 	[SerializeField] private AudioMixer _audioMixer;
 	[SerializeField] private DropdownUi _dropdownQuality;
 	[SerializeField] private DropdownUi _dropdownResolution;
@@ -34,19 +35,10 @@ public class OptionsMenu : BaseMenu
 
 		_dropdownResolution.GetText.text = LangManager.Instance.Text("OptionsMenuItems", "Video");
 		_dropdownResolution.Interactable(true);
+		ResolutionStart();
 
 		_audio.GetText.text = LangManager.Instance.Text("OptionsMenuItems", "Sound");
 		_audio.Interactable(true);
-
-		_resolutionsList = new List<string>(); // создаем новый список
-		_resolution = Screen.resolutions; // получаем разрешения
-		// пробегаем по массиву из полученных разрешений
-		for (int i = 0; i < _resolution.Length; i++)
-		{
-			_resolutionsList.Add($"{_resolution[i].width}x{_resolution[i].height}");
-		}
-		_dropdownResolution.ClearResolutionList(); // очищаем список dropdown
-		_dropdownResolution.AddResolutionList(_resolutionsList); // записываем разрешение в список
 	}
 
 	private void LoadVideoOptions()
@@ -73,11 +65,15 @@ public class OptionsMenu : BaseMenu
 	{
 		if (!IsShow) return;
 		IsShow = false;
+		_optionsPanel.gameObject.SetActive(false);
+		IsShow = false;
 	}
 
 	public override void Show()
 	{
 		if (IsShow) return;
+		IsShow = true;
+		_optionsPanel.gameObject.SetActive(true);
 		IsShow = true;
 	}
 
@@ -104,5 +100,18 @@ public class OptionsMenu : BaseMenu
 	public void Resolution(int r)
 	{
 		Screen.SetResolution(_resolution[r].width, _resolution[r].height, _isFullScreen);
+	}
+
+	private void ResolutionStart()
+	{
+		_resolutionsList = new List<string>(); // создаем новый список
+		_resolution = Screen.resolutions; // получаем разрешения
+										  // пробегаем по массиву из полученных разрешений
+		for (int i = 0; i < _resolution.Length; i++)
+		{
+			_resolutionsList.Add($"{_resolution[i].width}x{_resolution[i].height}");
+		}
+		_dropdownResolution.ClearResolutionList(); // очищаем список dropdown
+		_dropdownResolution.AddResolutionList(_resolutionsList); // записываем разрешение в список
 	}
 }

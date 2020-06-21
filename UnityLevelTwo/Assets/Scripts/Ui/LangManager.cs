@@ -20,7 +20,7 @@ public class LangManager : Singleton<LangManager>
         {
             switch (Application.systemLanguage)
             {
-                case SystemLanguage.Russian:
+                case SystemLanguage.English:
                     LanguageCode = "Ru";
                     break;
                 default:

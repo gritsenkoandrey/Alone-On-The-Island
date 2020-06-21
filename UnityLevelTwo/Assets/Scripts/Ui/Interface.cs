@@ -34,6 +34,10 @@ public sealed class Interface : MonoBehaviour
         {
             Execute(InterfaceObject.MainMenu);
         }
+        else
+        {
+            Execute(InterfaceObject.OptionsMenu);
+        }
     }
 
     private void Update()
@@ -41,7 +45,6 @@ public sealed class Interface : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // добавить
-            Execute(InterfaceObject.MenuPause);
         }
     }
 
