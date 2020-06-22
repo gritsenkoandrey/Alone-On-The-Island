@@ -11,6 +11,7 @@ public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
     protected Player _player;
     protected Bot _bot;
     protected ChangeHealthUi _changeHealthUi;
+    protected AudioSource _audioSource;
 
     #endregion
 
@@ -27,6 +28,8 @@ public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
 
 
     #region Methods
+
+    public abstract void ExplosionSound();
 
     public void DestroyItem()
     {

@@ -15,7 +15,9 @@ public sealed class MainMenu : BaseMenu
         _newGame.GetText.text = LangManager.Instance.Text("MainMenuItems", "NewGame");
         _newGame.GetControl.onClick.AddListener(delegate
         {
-            LoadNewGame(SceneManagerHelper.Instance.Scenes.Game.SceneAsset.name);
+            //LoadNewGame($"{SceneManagerHelper.Instance.Scenes.Game.SceneAsset.name}");
+            //LoadNewGame("Scene");
+            LoadNewGameIndex(1);
         });
 
         _options.GetText.text = LangManager.Instance.Text("MainMenuItems", "Options");
@@ -54,6 +56,12 @@ public sealed class MainMenu : BaseMenu
     public void ShowOptions()
     {
         Interface.Execute(InterfaceObject.OptionsMenu);
+    }
+
+    private void LoadNewGameIndex(int csene)
+    {
+        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+        Interface.LoadSceneAsync(csene);
     }
 
     private void LoadNewGame(string csene)

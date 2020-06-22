@@ -1,4 +1,7 @@
-﻿public sealed class WeaponController : BaseController, IInitialization
+﻿using System;
+using UnityEngine;
+
+public sealed class WeaponController : BaseController, IInitialization
 {
     #region Fields
 

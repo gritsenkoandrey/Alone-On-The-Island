@@ -8,7 +8,7 @@ public class LangManager : Singleton<LangManager>
 
     private void Awake()
     {
-        Init("Language");
+        Init("Language", "En");
     }
 
     public string LanguageCode { get; private set; }
@@ -20,7 +20,7 @@ public class LangManager : Singleton<LangManager>
         {
             switch (Application.systemLanguage)
             {
-                case SystemLanguage.English:
+                case SystemLanguage.Russian:
                     LanguageCode = "Ru";
                     break;
                 default:
@@ -28,6 +28,11 @@ public class LangManager : Singleton<LangManager>
                     break;
             }
         }
+        else
+        {
+            LanguageCode = languageCode;
+        }
+
         var config = LoadResource(file);
         if (!config) return;
         _root.LoadXml(config.text);

@@ -6,6 +6,7 @@ public sealed class Health : PickItems
     #region Fields
 
     [SerializeField] private float _health = 5.0f;
+    [SerializeField] private AudioClip[] _audioClips;
 
     #endregion
 
@@ -15,6 +16,7 @@ public sealed class Health : PickItems
     private void OnTriggerEnter(Collider obj)
     {
         _player = obj.GetComponent<Player>();
+        _audioSource = obj.GetComponent<AudioSource>();
 
         if (_player)
         {
@@ -26,8 +28,19 @@ public sealed class Health : PickItems
             {
                 _player.CurrentHealth = _player.maxHealth;
             }
+            ExplosionSound();
             DestroyItem();
         }
+    }
+
+    #endregion
+
+
+    #region Methods
+
+    public override void ExplosionSound()
+    {
+        _audioSource.PlayOneShot(_audioClips[Random.Range(0, _audioClips.Length)]);
     }
 
     #endregion

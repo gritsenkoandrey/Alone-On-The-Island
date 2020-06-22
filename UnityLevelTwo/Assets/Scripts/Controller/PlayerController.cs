@@ -41,6 +41,10 @@ public sealed class PlayerController : BaseController, IExecute, IInitialization
 
         _motor.Move();
 
+
+
+        _player.FootSteps();
+
         UiInterface.PlayerUiBar.Fill = _player.FillHealth;
         UiInterface.PlayerUiText.Text = _player.PercentHealth;
 

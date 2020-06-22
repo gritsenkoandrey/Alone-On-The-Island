@@ -13,6 +13,7 @@ public sealed class GunEditor : Editor
     private SerializedProperty _particleSystem;
     private SerializedProperty _forceProperty;
     private SerializedProperty _rechargeTimeProperty;
+    private SerializedProperty _audioClips;
 
     private float _minValue = 0;
     private float _maxForceValue = 10000.0f;
@@ -30,6 +31,7 @@ public sealed class GunEditor : Editor
         _particleSystem = serializedObject.FindProperty("_particleSystem");
         _forceProperty = serializedObject.FindProperty("_force");
         _rechargeTimeProperty = serializedObject.FindProperty("_rechargeTime");
+        _audioClips = serializedObject.FindProperty("_audioClips");
     }
 
     public override void OnInspectorGUI()
@@ -54,6 +56,8 @@ public sealed class GunEditor : Editor
         {
             ProgressBar(_rechargeTimeProperty.floatValue / _maxRechargeValue, "Recharge Time");
         }
+
+        EditorGUILayout.PropertyField(_audioClips, new GUIContent("AudioClips"));
 
         // применить изменения SerializedProperty - всегда делают в конце OnInspectorGUI
         serializedObject.ApplyModifiedProperties();

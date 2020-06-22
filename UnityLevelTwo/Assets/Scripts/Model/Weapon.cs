@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -34,6 +35,8 @@ public abstract class Weapon : BaseObjectScene
     private static readonly int ReloadOn = Animator.StringToHash("ReloadOn");
     private static readonly int ReloadOff = Animator.StringToHash("ReloadOff");
 
+    [SerializeField] private AudioClip[] _audioClips;
+    private AudioSource _audioSource;
 
     #endregion
 
@@ -66,6 +69,7 @@ public abstract class Weapon : BaseObjectScene
         //_timeRemaining.AddTimeRemaining();
 
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -94,12 +98,42 @@ public abstract class Weapon : BaseObjectScene
         {
             _animator.SetTrigger("RunDisabled");
         }
+        
     }
 
     #endregion
 
 
     #region Methods
+
+    // todo добавить вызов в WeaponController
+    //public void ShootingAnimation()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.R))
+    //    {
+    //        if (ServiceLocator.Resolve<WeaponController>().IsActive && CountClip > 0)
+    //        {
+    //            ReloadClipOn();
+    //        }
+    //    }
+
+    //    if (Input.GetKeyUp(KeyCode.R))
+    //    {
+    //        ReloadClipOff();
+    //    }
+
+    //    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)
+    //        || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+    //    {
+    //        _animator.SetTrigger("RunEnabled");
+    //    }
+
+    //    if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)
+    //        || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+    //    {
+    //        _animator.SetTrigger("RunDisabled");
+    //    }
+    //}
 
     public abstract void Fire();
 
@@ -140,6 +174,11 @@ public abstract class Weapon : BaseObjectScene
     private void ReloadClipOff()
     {
         _animator.SetTrigger(ReloadOff);
+    }
+
+    protected void ShotSound()
+    {
+        _audioSource.PlayOneShot(_audioClips[Random.Range(0, _audioClips.Length)]);
     }
 
     #endregion

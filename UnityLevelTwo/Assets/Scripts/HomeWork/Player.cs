@@ -15,6 +15,10 @@ public sealed class Player : BaseObjectScene, ICollision
     internal float CurrentHealth;
     private ChangeHealthUi _changeHealthUi;
 
+    [SerializeField] private AudioClip[] _clips;
+    private AudioSource _audioSource;
+    private CharacterController _controller;
+
     #endregion
 
 
@@ -57,6 +61,8 @@ public sealed class Player : BaseObjectScene, ICollision
         base.Awake();
         CurrentHealth = maxHealth;
         _changeHealthUi = Object.FindObjectOfType<ChangeHealthUi>();
+        _audioSource = GetComponent<AudioSource>();
+        _controller = GetComponent<CharacterController>();
     }
 
     #endregion
@@ -86,8 +92,20 @@ public sealed class Player : BaseObjectScene, ICollision
         {
             _isDead = true;
             //todo либо сцену с окончанием игры либо перзапуск сцены
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 0);
-            //ServiceLocator.Resolve<PlayerController>().Off();
+        }
+    }
+
+    public void FootSteps()
+    {
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            if (_controller.isGrounded)
+            {
+                if (!_audioSource.isPlaying)
+                {
+                    _audioSource.PlayOneShot(_clips[Random.Range(0,_clips.Length)]);
+                }
+            }
         }
     }
 

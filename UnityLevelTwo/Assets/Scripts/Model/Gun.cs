@@ -18,9 +18,10 @@
         }
 
         // todo pool object
-        FireAnimationOn();
         var temAmmunition = Instantiate(Ammunition, _barrelOne.position, _barrelOne.rotation);
         temAmmunition.AddForce(_barrelOne.forward * _force);
+        FireAnimationOn();
+        ShotSound();
         Instantiate(_particleSystem, _barrelOne.position, _barrelOne.rotation);
 
         //Ray ray = new Ray(_barrelOne.position, _barrelOne.forward);

@@ -3,20 +3,22 @@
 
 public sealed class MineIModel : PickItems
 {
-    #region Field
+    #region Fields
 
     [SerializeField] private float _damage = 25.0f;
     [SerializeField] private ParticleSystem _particleExplosion;
+    [SerializeField] private AudioClip[] _audioClips;
 
     #endregion
 
 
-    #region MyRegion
+    #region UnityMethods
 
     private void OnTriggerEnter(Collider obj)
     {
         _player = obj.GetComponent<Player>();
         _bot = obj.GetComponent<Bot>();
+        _audioSource = obj.GetComponent<AudioSource>();
 
         if (_player)
         {
@@ -30,8 +32,10 @@ public sealed class MineIModel : PickItems
                 _player.CurrentHealth = _player.minHealth;
             }
 
+            ExplosionSound();
             DestroyItem();
             Instantiate(_particleExplosion, transform.position, transform.rotation);
+            
         }
 
         if (_bot)
@@ -44,7 +48,18 @@ public sealed class MineIModel : PickItems
             }
             DestroyItem();
             Instantiate(_particleExplosion, transform.position, transform.rotation);
+            ExplosionSound();
         }
+    }
+
+    #endregion
+
+
+    #region Methods
+
+    public override void ExplosionSound()
+    {
+        _audioSource.PlayOneShot(_audioClips[Random.Range(0, _audioClips.Length)]);
     }
 
     #endregion
