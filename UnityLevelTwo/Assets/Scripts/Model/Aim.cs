@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjImage
@@ -7,10 +8,13 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
     #region Fields
 
     [SerializeField] private float _hp = 100;
-    [SerializeField] private ParticleSystem _particleExplosion;
-    //private readonly float _timeToDestroy = 10.0f;
-
+    private readonly float _timeToDestroy = 1.0f;
+    private readonly float _scaleTarget = 0.01f;
     private bool _isDead;
+
+    [SerializeField] private ParticleSystem _particleExplosion;
+    [SerializeField] private AudioClip[] _clips;
+    private AudioSource _audioSource;
 
     public event Action OnPointChange = delegate { };
 
@@ -35,6 +39,7 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
     {
         base.Awake();
         CurrentHealth = _hp;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     #endregion
@@ -59,10 +64,15 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
             //{
             //    gameObject.AddComponent<Rigidbody>();
             //}
+            //if (TryGetComponent<AudioSource>(out var i))
+            //{
+            //    i.PlayOneShot(_clips[Random.Range(0, _clips.Length)]);
+            //}
+            //GetComponent<Animator>().enabled = false;
 
-            Destroy(gameObject/*, _timeToDestroy*/);
+            DestroyCube();
+            ExplosionSound();
             Instantiate(_particleExplosion, transform.position, transform.rotation);
-            GetComponent<Animator>().enabled = false;
             OnPointChange.Invoke();
             _isDead = true;
         }
@@ -85,10 +95,16 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
         return FillHealth;
     }
 
-    //public bool LowHealth()
-    //{
-    //    return CurrentHealth <= _hp / 2.0f;
-    //}
+    private void ExplosionSound()
+    {
+        _audioSource.PlayOneShot(_clips[Random.Range(0, _clips.Length)]);
+    }
+
+    private void DestroyCube()
+    {
+        gameObject.transform.localScale = new Vector3(_scaleTarget, _scaleTarget, _scaleTarget);
+        Destroy(gameObject, _timeToDestroy);
+    }
 
     #endregion
 }

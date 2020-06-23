@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjImage
@@ -7,10 +8,13 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
     #region Fields
 
     [SerializeField] private float _hp = 50.0f;
-    [SerializeField] private ParticleSystem _particleExplosion;
-    //private readonly float _timeToDestroy = 5.0f;
-
+    private readonly float _scaleTarget = 0.01f;
+    private readonly float _timeToDestroy = 1.0f;
     private bool _isDead;
+
+    [SerializeField] private ParticleSystem _particleExplosion;
+    [SerializeField] private AudioClip[] _clips;
+    private AudioSource _audioSource;
 
     public event Action OnPointChange = delegate { };
 
@@ -35,6 +39,7 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
     {
         base.Awake();
         CurrentHealth = _hp;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     #endregion
@@ -54,11 +59,8 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
         }
         if (CurrentHealth <= 0)
         {
-            //if (!TryGetComponent<Rigidbody>(out _))
-            //{
-            //    gameObject.AddComponent<Rigidbody>();
-            //}
-            Destroy(gameObject/*, _timeToDestroy*/);
+            DestroyCube();
+            ExplosionSound();
             Instantiate(_particleExplosion, transform.position, transform.rotation);
             OnPointChange.Invoke();
             _isDead = true;
@@ -81,6 +83,17 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
     public float GetImage()
     {
         return FillHealth;
+    }
+
+    private void ExplosionSound()
+    {
+        _audioSource.PlayOneShot(_clips[Random.Range(0, _clips.Length)]);
+    }
+
+    private void DestroyCube()
+    {
+        gameObject.transform.localScale = new Vector3(_scaleTarget, _scaleTarget, _scaleTarget);
+        Destroy(gameObject, _timeToDestroy);
     }
 
     #endregion

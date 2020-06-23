@@ -10,12 +10,14 @@ public sealed class Player : BaseObjectScene, ICollision
     internal readonly float minHealth = 0;
     private readonly float _quarter = 0.25f;
     private readonly float _displayTimer = 0.5f;
+    private readonly int _minIndexArray = 0;
     private bool _isDead = false;
 
     internal float CurrentHealth;
     private ChangeHealthUi _changeHealthUi;
 
     [SerializeField] private AudioClip[] _clips;
+    [SerializeField] private AudioClip[] _jumpClips;
     private AudioSource _audioSource;
     private CharacterController _controller;
 
@@ -97,14 +99,26 @@ public sealed class Player : BaseObjectScene, ICollision
 
     public void FootSteps()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || 
+            Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
         {
             if (_controller.isGrounded)
             {
                 if (!_audioSource.isPlaying)
                 {
-                    _audioSource.PlayOneShot(_clips[Random.Range(0,_clips.Length)]);
+                    _audioSource.PlayOneShot(_clips[Random.Range(_minIndexArray,_clips.Length)]);
                 }
+            }
+        }
+    }
+
+    public void JumpSound()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (_controller.isGrounded)
+            {
+                _audioSource.PlayOneShot(_jumpClips[Random.Range(_minIndexArray, _jumpClips.Length)]);
             }
         }
     }
