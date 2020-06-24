@@ -48,5 +48,26 @@
     </string>
 
   </group>
+
+  <group id="PauseMenu">
+
+    <string id="Resume">
+      <text>Resume</text>
+    </string>
+
+    <string id="Quit">
+      <text>Quit</text>
+    </string>
+
+    <string id="Volume">
+      <text>Volume</text>
+    </string>
+
+    <string id="MainMenu">
+      <text>Main Menu</text>
+    </string>
+
+
+  </group>
   
 </Settings>

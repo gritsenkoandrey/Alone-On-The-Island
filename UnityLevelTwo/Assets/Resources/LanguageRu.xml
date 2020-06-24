@@ -48,5 +48,25 @@
     </string>
 
   </group>
+
+  <group id="PauseMenu">
+
+      <string id="Resume">
+        <text>Продолжить</text>
+      </string>
+
+      <string id="Quit">
+        <text>Выйти</text>
+      </string>
+
+      <string id="Volume">
+        <text>Громкость</text>
+      </string>
+
+    <string id="MainMenu">
+      <text>Главное меню</text>
+    </string>
+
+  </group>
   
 </Settings>

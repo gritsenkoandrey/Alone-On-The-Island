@@ -14,6 +14,7 @@ public sealed class UiInterface
     private PlayerUiText _playerUiText;
     private ChangeHealthUi _changeHealthUi;
     private WeaponUiImage _weaponUiImage;
+    private PauseUi _pauseUi;
 
     #endregion
 
@@ -129,6 +130,19 @@ public sealed class UiInterface
             }
 
             return _weaponUiImage;
+        }
+    }
+
+    public PauseUi PauseUi
+    {
+        get
+        {
+            if (!_pauseUi)
+            {
+                _pauseUi = Object.FindObjectOfType<PauseUi>();
+            }
+
+            return _pauseUi;
         }
     }
 

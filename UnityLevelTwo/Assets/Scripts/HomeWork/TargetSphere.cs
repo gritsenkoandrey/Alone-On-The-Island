@@ -9,7 +9,7 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
 
     [SerializeField] private float _hp = 50.0f;
     private readonly float _scaleTarget = 0.01f;
-    private readonly float _timeToDestroy = 1.0f;
+    private readonly float _timeToDestroy = 5.0f;
     private bool _isDead;
 
     [SerializeField] private ParticleSystem _particleExplosion;

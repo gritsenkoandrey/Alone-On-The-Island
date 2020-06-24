@@ -68,6 +68,7 @@ public sealed class InputController : BaseController, IExecute
         {
             ServiceLocator.Resolve<WeaponController>().Off();
             ServiceLocator.Resolve<FlashLightsController>().Off();
+            ServiceLocator.Resolve<PauseController>().On();
         }
 
         if (Input.GetKeyDown(_reloadClip))

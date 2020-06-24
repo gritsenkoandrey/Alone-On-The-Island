@@ -58,7 +58,7 @@ public sealed class MainMenu : BaseMenu
         Interface.Execute(InterfaceObject.OptionsMenu);
     }
 
-    private void LoadNewGameIndex(int csene)
+    public void LoadNewGameIndex(int csene)
     {
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         Interface.LoadSceneAsync(csene);

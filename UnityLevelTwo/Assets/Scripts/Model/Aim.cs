@@ -8,7 +8,7 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
     #region Fields
 
     [SerializeField] private float _hp = 100;
-    private readonly float _timeToDestroy = 1.0f;
+    private readonly float _timeToDestroy = 5.0f;
     private readonly float _scaleTarget = 0.01f;
     private bool _isDead;
 

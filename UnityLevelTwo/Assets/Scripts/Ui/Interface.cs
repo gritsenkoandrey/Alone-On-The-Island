@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public sealed class Interface : MonoBehaviour
 {
+    #region Fields
+
     public InterfaceResources InterfaceResources { get; private set; }
     private SliderUi _progressBar;
     private BaseMenu _currentMenu;
@@ -18,6 +20,10 @@ public sealed class Interface : MonoBehaviour
     //private AudioOptions _audioOptions;
     //private MenuPause _menuPause;
     //private OptionsPauseMenu _optionsPauseMenu;
+
+    #endregion
+
+    #region UnityMethods
 
     private void Start()
     {
@@ -40,13 +46,10 @@ public sealed class Interface : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // добавить
-        }
-    }
+    #endregion
+
+
+    #region Methods
 
     public void QuitGame()
     {
@@ -115,12 +118,14 @@ public sealed class Interface : MonoBehaviour
         _progressBar.GetControl.value = value;
         _progressBar.GetText.text = $"{Math.Truncate(value * 100)}%";
     }
+
     public void ProgressBarEnabled()
     {
         if (_progressBar) return;
         _progressBar = Instantiate(InterfaceResources.ProgressBarPrefab, InterfaceResources.MainCanvas.transform);
         ProgressBarSetValue(0);
     }
+
     public void ProgressBarDisable()
     {
         if (!_progressBar) return;
@@ -132,11 +137,13 @@ public sealed class Interface : MonoBehaviour
         AsyncOperation async = SceneManager.LoadSceneAsync(lvl);
         StartCoroutine(LoadSceneAsync(async));
     }
+
     public void LoadSceneAsync(Scene lvl)
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(lvl.buildIndex);
         StartCoroutine(LoadSceneAsync(async));
     }
+
     public void LoadSceneAsync(string lvl)
     {
         AsyncOperation async = SceneManager.LoadSceneAsync(lvl);
@@ -164,4 +171,6 @@ public sealed class Interface : MonoBehaviour
             yield return null;
         }
     }
+
+    #endregion
 }

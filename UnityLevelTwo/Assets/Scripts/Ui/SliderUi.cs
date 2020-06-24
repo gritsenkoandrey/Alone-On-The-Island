@@ -14,8 +14,30 @@ public sealed class SliderUi : MonoBehaviour, IControl
 
     #region Properties
 
-    public Text GetText { get { return _text; } }
-    public Slider GetControl { get { return _control; } }
+    public Text GetText
+    {
+        get
+        {
+            if (!_text)
+            {
+                _text = transform.GetComponentInChildren<Text>();
+            }
+            return _text;
+        }
+    }
+
+    public Slider GetControl
+    {
+        get
+        {
+            if (!_control)
+            {
+                _control = GetComponentInChildren<Slider>();
+            }
+            return _control;
+        }
+    }
+
     public GameObject Instance { get { return gameObject; } }
     public Selectable Control { get { return GetControl; } }
 

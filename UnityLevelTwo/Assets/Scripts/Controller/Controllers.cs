@@ -37,6 +37,7 @@ public sealed class Controllers : IInitialization
         ServiceLocator.SetService(new MyPhotoController());
         ServiceLocator.SetService(new CreateObjFromResourcesController());
         ServiceLocator.SetService(new RadarController());
+        ServiceLocator.SetService(new PauseController());
 
         _executeControllers = new IExecute[7];
         _executeControllers[0] = ServiceLocator.Resolve<PlayerController>();
@@ -70,6 +71,7 @@ public sealed class Controllers : IInitialization
         ServiceLocator.Resolve<BotController>().On();
         ServiceLocator.Resolve<CreateObjFromResourcesController>().Initialization();
         ServiceLocator.Resolve<WeaponController>().Initialization();
+        ServiceLocator.Resolve<PauseController>().Initialization();
     }
 
     public void Cleanup()
