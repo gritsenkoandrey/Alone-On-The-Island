@@ -15,28 +15,28 @@ public abstract class Weapon : BaseObjectScene
     [SerializeField] protected float _force = 999.0f;
     [SerializeField] protected float _rechargeTime = 0.2f;
     [SerializeField] protected ParticleSystem _particleSystem;
+    [SerializeField] private AudioClip[] _audioClips;
+    [SerializeField] private AudioClip[] _audioReload;
     private Animator _animator;
+    private AudioSource _audioSource;
 
     // структура которая содержит количество патронов в обойме
     public Clip Clip;
     // очередь с нашими обоймами
     private Queue<Clip> _clips = new Queue<Clip>();
+
     internal readonly int _maxCountAmmunition = 30;
-    //private readonly int _minCountAmmunition = 30;
     private readonly int _countClip = 5;
     protected bool _isReady = true;
 
     public AmmunitionType[] AmmunitionTypes = { AmmunitionType.Bullet, AmmunitionType.Rpg };
-
     // отсчет времени между выстрелами
     protected ITimeRemaining _timeRemaining;
+
     private static readonly int FireEnable = Animator.StringToHash("FireEnabled");
     private static readonly int FireDisable = Animator.StringToHash("FireDisabled");
     private static readonly int ReloadOn = Animator.StringToHash("ReloadOn");
     private static readonly int ReloadOff = Animator.StringToHash("ReloadOff");
-
-    [SerializeField] private AudioClip[] _audioClips;
-    private AudioSource _audioSource;
 
     #endregion
 
@@ -61,7 +61,7 @@ public abstract class Weapon : BaseObjectScene
         _timeRemaining = new TimeRemaining(ReadyShoot, _rechargeTime);
         for (var i = 0; i <= _countClip; i++)
         {
-            AddClip(new Clip { CountAmmunition = /*Random.Range(_minCountAmmunition, _maxCountAmmunition) */_maxCountAmmunition });
+            AddClip(new Clip { CountAmmunition = _maxCountAmmunition });
         }
         ReloadClip();
 
@@ -72,68 +72,10 @@ public abstract class Weapon : BaseObjectScene
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            if (ServiceLocator.Resolve<WeaponController>().IsActive && CountClip > 0)
-            {
-                ReloadClipOn();
-            }
-        }
-
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            ReloadClipOff();
-        }
-
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)
-            || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-        {
-            _animator.SetTrigger("RunEnabled");
-        }
-
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)
-            || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-        {
-            _animator.SetTrigger("RunDisabled");
-        }
-        
-    }
-
     #endregion
 
 
     #region Methods
-
-    // todo добавить вызов в WeaponController
-    //public void ShootingAnimation()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.R))
-    //    {
-    //        if (ServiceLocator.Resolve<WeaponController>().IsActive && CountClip > 0)
-    //        {
-    //            ReloadClipOn();
-    //        }
-    //    }
-
-    //    if (Input.GetKeyUp(KeyCode.R))
-    //    {
-    //        ReloadClipOff();
-    //    }
-
-    //    if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)
-    //        || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-    //    {
-    //        _animator.SetTrigger("RunEnabled");
-    //    }
-
-    //    if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)
-    //        || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
-    //    {
-    //        _animator.SetTrigger("RunDisabled");
-    //    }
-    //}
 
     public abstract void Fire();
 
@@ -179,6 +121,34 @@ public abstract class Weapon : BaseObjectScene
     protected void ShotSound()
     {
         _audioSource.PlayOneShot(_audioClips[Random.Range(0, _audioClips.Length)]);
+    }
+
+    public void ReloadWeapon()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (ServiceLocator.Resolve<WeaponController>().IsActive && CountClip > 0)
+            {
+                ReloadClipOn();
+                _audioSource.PlayOneShot(_audioReload[Random.Range(0, _audioReload.Length)]);
+            }
+            ReloadClipOff();
+        }
+    }
+
+    public void RunAnimation()
+    {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)
+            || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        {
+            _animator.SetTrigger("RunEnabled");
+        }
+
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)
+            || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            _animator.SetTrigger("RunDisabled");
+        }
     }
 
     #endregion

@@ -1,11 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-public sealed class WeaponController : BaseController, IInitialization
+public sealed class WeaponController : BaseController, IInitialization, IExecute
 {
     #region Fields
 
-    // знает каким мы оружием стреляем
     private Weapon _weapon;
 
     #endregion
@@ -17,6 +16,11 @@ public sealed class WeaponController : BaseController, IInitialization
     {
         UiInterface.WeaponUiText.SetActive(false);
         UiInterface.WeaponUiImage.SetActive(false);
+    }
+
+    public void Execute()
+    {
+        _weapon.RunAnimation();
     }
 
     public override void On(params BaseObjectScene[] weapon)
@@ -62,6 +66,7 @@ public sealed class WeaponController : BaseController, IInitialization
     public void ReloadClip()
     {
         _weapon.ReloadClip();
+        _weapon.ReloadWeapon();
         UiInterface.WeaponUiText.ShowData(_weapon.Clip.CountAmmunition, _weapon._maxCountAmmunition, _weapon.CountClip);
     }
 

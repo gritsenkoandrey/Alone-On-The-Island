@@ -85,9 +85,9 @@ public sealed class OptionsMenu : BaseMenu
 	}
 
 	// метод управления звуком
-	public void AudioVolume(float sliderValue)
+	public void AudioVolume(float value)
 	{
-		_audioMixer.SetFloat("MasterVolume", sliderValue);
+		_audioMixer.SetFloat("MasterVolume", value);
 	}
 
 	// метод управления качеством изображения

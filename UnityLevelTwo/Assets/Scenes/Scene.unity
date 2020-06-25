@@ -1183,7 +1183,7 @@ PrefabInstance:
     - target: {fileID: 5995686016805987367, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5995686016805987367, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
         type: 3}
@@ -6922,6 +6922,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914438091272915148, guid: 05740d178047f4541bba1c7ac94da205,
+        type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914438091272915148, guid: 05740d178047f4541bba1c7ac94da205,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1914438092081158067, guid: 05740d178047f4541bba1c7ac94da205,
         type: 3}
@@ -36000,7 +36010,7 @@ PrefabInstance:
     - target: {fileID: 5995686016805987367, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5995686016805987367, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
         type: 3}
@@ -52041,7 +52051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.4117647, b: 0.92941177, a: 0.39215687}
+  m_Color: {r: 0.18431373, g: 0.7764706, b: 0.99215686, a: 0.39215687}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -39,7 +39,7 @@ public sealed class Controllers : IInitialization
         ServiceLocator.SetService(new RadarController());
         ServiceLocator.SetService(new PauseController());
 
-        _executeControllers = new IExecute[7];
+        _executeControllers = new IExecute[8];
         _executeControllers[0] = ServiceLocator.Resolve<PlayerController>();
         _executeControllers[1] = ServiceLocator.Resolve<FlashLightsController>();
         _executeControllers[2] = ServiceLocator.Resolve<InputController>();
@@ -47,6 +47,8 @@ public sealed class Controllers : IInitialization
         _executeControllers[4] = ServiceLocator.Resolve<TimeRemainingController>();
         _executeControllers[5] = ServiceLocator.Resolve<BotController>();
         _executeControllers[6] = ServiceLocator.Resolve<RadarController>();
+        _executeControllers[7] = ServiceLocator.Resolve<WeaponController>();
+
     }
 
     #endregion
