@@ -8,7 +8,7 @@ public class LangManager : Singleton<LangManager>
 
     private void Awake()
     {
-        Init("Language", "Ru");
+        Init("Language", "En");
     }
 
     public string LanguageCode { get; private set; }

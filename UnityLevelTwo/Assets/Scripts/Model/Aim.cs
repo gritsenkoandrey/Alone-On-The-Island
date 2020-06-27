@@ -15,6 +15,7 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
     [SerializeField] private ParticleSystem _particleExplosion;
     [SerializeField] private AudioClip[] _clips;
     private AudioSource _audioSource;
+    private ShakeMainCamera _shakeCamera;
 
     public event Action OnPointChange = delegate { };
 
@@ -40,6 +41,7 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
         base.Awake();
         CurrentHealth = _hp;
         _audioSource = GetComponent<AudioSource>();
+        _shakeCamera = Camera.main.GetComponent<ShakeMainCamera>();
     }
 
     #endregion
@@ -69,7 +71,7 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
             //    i.PlayOneShot(_clips[Random.Range(0, _clips.Length)]);
             //}
             //GetComponent<Animator>().enabled = false;
-
+            _shakeCamera.ShakeCamera();
             DestroyCube();
             ExplosionSound();
             Instantiate(_particleExplosion, transform.position, transform.rotation);

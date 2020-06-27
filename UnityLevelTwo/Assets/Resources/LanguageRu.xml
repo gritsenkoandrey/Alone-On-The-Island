@@ -72,7 +72,7 @@
     </string>
 
     <string id="GameOver">
-      <text>Вы умудрились умереть</text>
+      <text>Вы проиграли</text>
     </string>
 
   </group>

@@ -15,6 +15,7 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
     [SerializeField] private ParticleSystem _particleExplosion;
     [SerializeField] private AudioClip[] _clips;
     private AudioSource _audioSource;
+    private ShakeMainCamera _shakeCamera;
 
     public event Action OnPointChange = delegate { };
 
@@ -40,6 +41,7 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
         base.Awake();
         CurrentHealth = _hp;
         _audioSource = GetComponent<AudioSource>();
+        _shakeCamera = Camera.main.GetComponent<ShakeMainCamera>();
     }
 
     #endregion
@@ -59,6 +61,7 @@ public class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISelectObjI
         }
         if (CurrentHealth <= 0)
         {
+            _shakeCamera.ShakeCamera();
             DestroyCube();
             ExplosionSound();
             Instantiate(_particleExplosion, transform.position, transform.rotation);

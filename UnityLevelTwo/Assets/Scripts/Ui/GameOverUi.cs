@@ -8,7 +8,7 @@ public sealed class GameOverUi : BaseObjectScene
     #region Fields
 
     [SerializeField] private AudioMixer _mixer;
-    [SerializeField] private AudioMixerGroup _mixerGroup;
+    //[SerializeField] private AudioMixerGroup _mixerGroup;
     [SerializeField] private AudioClip _audioClip;
 
     [SerializeField] private GameObject _gamePanel;

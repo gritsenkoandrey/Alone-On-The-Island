@@ -8,6 +8,7 @@ public sealed class MineIModel : PickItems
     [SerializeField] private float _damage = 25.0f;
     [SerializeField] private ParticleSystem _particleExplosion;
     [SerializeField] private AudioClip[] _audioClips;
+    private ShakeMainCamera _shakeCamera;
 
     #endregion
 
@@ -19,20 +20,18 @@ public sealed class MineIModel : PickItems
         _player = obj.GetComponent<Player>();
         _bot = obj.GetComponent<Bot>();
         _audioSource = obj.GetComponent<AudioSource>();
-
+        _shakeCamera = Camera.main.GetComponent<ShakeMainCamera>();
         if (_player)
         {
-            
             _player.CurrentHealth -= _damage;
             _changeHealthUi.DamageTaken(_damage);
             _changeHealthUi.Invoke(nameof(_changeHealthUi.Clear), _displayTime);
-
             if (_player.CurrentHealth < _player.minHealth)
             {
                 _player.CurrentHealth = _player.minHealth;
             }
-
             ExplosionSound();
+            _shakeCamera.ShakeCamera();
             DestroyItem();
             Instantiate(_particleExplosion, transform.position, transform.rotation);
             

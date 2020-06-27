@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public sealed class PauseUi : BaseObjectScene
 {
@@ -21,7 +21,8 @@ public sealed class PauseUi : BaseObjectScene
 
     [SerializeField] private TextUi _text;
 
-    //private float _value;
+    private float _value;
+    private string _textVolume;
     private bool _isPaused;
     private int _mainMenuScene = 0;
     private CharacterController _controller;
@@ -60,22 +61,22 @@ public sealed class PauseUi : BaseObjectScene
         });
 
         _volume.GetText.text = LangManager.Instance.Text("PauseMenu", "Volume");
-        _volume.Interactable(true);
+        _textVolume = _volume.GetText.text;
 
         _text.GetText.text = LangManager.Instance.Text("PauseMenu", "PauseMenu");
     }
-
-    // доработать через PauseController
-    //private void Update()
-    //{
-    //    _mixerGroup.audioMixer.GetFloat("MasterVolume", out _value);
-    //    _volume.GetText.text = $"{_value + 100}";
-    //}
 
     #endregion
 
 
     #region Methods
+
+    public void ShowAudioVolume()
+    {
+        _mixerGroup.audioMixer.GetFloat("MasterVolume", out _value);
+        _value = (_value + 50) / 0.5f;
+        _volume.GetText.text = $"{_textVolume}: {_value:0}%";
+    }
 
     public void StartCondition()
     {
@@ -119,10 +120,10 @@ public sealed class PauseUi : BaseObjectScene
 #endif
     }
 
-    public void AudioVolume(float sliderValue)
+    public void AudioValueChange(float value)
     {
-        _mixer.SetFloat("MasterVolume", sliderValue);
-        _mixerGroup.audioMixer.GetFloat("MasterVolume", out sliderValue);
+        _mixer.SetFloat("MasterVolume", value);
+        _mixerGroup.audioMixer.GetFloat("MasterVolume", out value);
     }
 
     private void LoadMainMenu()

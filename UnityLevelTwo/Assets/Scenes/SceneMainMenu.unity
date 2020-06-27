@@ -5112,7 +5112,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 1914438091235479151}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: -40
+  m_MinValue: -50
   m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: 0
@@ -5258,18 +5258,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: c9f6d0e7bc8541498c9a4799ba184ede, type: 3}
-    m_FontSize: 16
+    m_FontSize: 13
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
     m_Alignment: 4
-    m_AlignByGeometry: 0
+    m_AlignByGeometry: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
+  m_Text: 'Volume: 100%'
 --- !u!1001 &5995686016028563506
 PrefabInstance:
   m_ObjectHideFlags: 0

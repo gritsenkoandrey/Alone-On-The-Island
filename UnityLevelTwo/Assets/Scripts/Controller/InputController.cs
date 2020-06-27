@@ -22,6 +22,7 @@ public sealed class InputController : BaseController, IExecute
     public InputController()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     #endregion
