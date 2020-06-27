@@ -67,6 +67,13 @@
       <text>Main Menu</text>
     </string>
 
+    <string id="PauseMenu">
+      <text>Pause Menu</text>
+    </string>
+
+    <string id="GameOver">
+      <text>Game Over</text>
+    </string>
 
   </group>
   

@@ -7,6 +7,7 @@ public sealed class PlayerController : BaseController, IExecute, IInitialization
 
     private readonly IMotor _motor;
     private Player _player;
+    private GameOverUi _gameOver;
 
     #endregion
 
@@ -27,6 +28,7 @@ public sealed class PlayerController : BaseController, IExecute, IInitialization
     public void Initialization()
     {
         _player = Object.FindObjectOfType<Player>();
+        _gameOver = Object.FindObjectOfType<GameOverUi>();
         UiInterface.PlayerUiBar.SetActive(true);
         UiInterface.PlayerUiText.SetActive(true);
         UiInterface.PlayerUiBar.SetColor(Color.green);
@@ -51,8 +53,10 @@ public sealed class PlayerController : BaseController, IExecute, IInitialization
             UiInterface.PlayerUiBar.SetColor(Color.red);
         }
 
-        else if (_player.CurrentHealth <= 0)
+        if (_player.CurrentHealth <= 0)
         {
+            _gameOver.Invoke(nameof(_gameOver.GameOver), 2);
+            //_gameOver.GameOver();
             Off();
         }
     }

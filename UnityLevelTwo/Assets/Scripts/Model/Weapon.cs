@@ -66,7 +66,7 @@ public abstract class Weapon : BaseObjectScene
         ReloadClip();
 
         // если сделать так то контроллер подхватит таймер и начнет его отсчитывать
-        //_timeRemaining.AddTimeRemaining();
+        _timeRemaining.AddTimeRemaining();
 
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
@@ -123,7 +123,7 @@ public abstract class Weapon : BaseObjectScene
         _audioSource.PlayOneShot(_audioClips[Random.Range(0, _audioClips.Length)]);
     }
 
-    public void ReloadWeapon()
+    public void ReloadWeaponAnimAndSound()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {

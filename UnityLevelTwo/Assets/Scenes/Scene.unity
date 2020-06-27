@@ -6162,13 +6162,16 @@ MonoBehaviour:
   _force: 10000
   _rechargeTime: 0.25
   _particleSystem: {fileID: 19800004, guid: 30b4cc2728d8cec499fad63ba93785a4, type: 3}
-  AmmunitionTypes: 0400000002000000
   _audioClips:
   - {fileID: 8300000, guid: e1e575b5365aba94fa943db4388223bd, type: 3}
   - {fileID: 8300000, guid: b7db48c26254f7b488ddcb00ebd684b4, type: 3}
   - {fileID: 8300000, guid: 0c03a62798909154da26dcb7dede1a17, type: 3}
   - {fileID: 8300000, guid: d02b1b6cfe8b36642837556911c60938, type: 3}
   - {fileID: 8300000, guid: 5d52aa5273dccb5459cb578b30961e6b, type: 3}
+  _audioReload:
+  - {fileID: 8300000, guid: 6cb9fa2e74689fe4ab5a069cbf97e6ff, type: 3}
+  - {fileID: 8300000, guid: ee78bbef40645274c8794b7c3877ce80, type: 3}
+  AmmunitionTypes: 0400000002000000
 --- !u!82 &545919299
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7182,7 +7185,6 @@ MonoBehaviour:
   _force: 10000
   _rechargeTime: 0.4
   _particleSystem: {fileID: 19800000, guid: 8eaaa4f553116f44b8459bc24201c514, type: 3}
-  AmmunitionTypes: 04000000
   _audioClips:
   - {fileID: 8300000, guid: 04de8701e548c8742b36fe92ec42a690, type: 3}
   - {fileID: 8300000, guid: c9efa2a01b84cc045a56e0620679ca1c, type: 3}
@@ -7192,6 +7194,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b4e2a6bba4ebea74e91807ecf6a6773c, type: 3}
   - {fileID: 8300000, guid: f61ff8c0b0d8c7e42b55373f6551cb2c, type: 3}
   - {fileID: 8300000, guid: a0afb16b2ec6fbf439303e6914302789, type: 3}
+  _audioReload:
+  - {fileID: 8300000, guid: 6cb9fa2e74689fe4ab5a069cbf97e6ff, type: 3}
+  - {fileID: 8300000, guid: ee78bbef40645274c8794b7c3877ce80, type: 3}
+  AmmunitionTypes: 04000000
 --- !u!1 &615962964
 GameObject:
   m_ObjectHideFlags: 0
@@ -14978,12 +14984,15 @@ MonoBehaviour:
   _force: 10000
   _rechargeTime: 0.5
   _particleSystem: {fileID: 19800000, guid: 03a4a1935a9f4454c861dfa0aa6df562, type: 3}
-  AmmunitionTypes: 0400000002000000
   _audioClips:
   - {fileID: 8300000, guid: e8688c48ff5f835419919229ab9c13ce, type: 3}
   - {fileID: 8300000, guid: 00ea2873c58cce04fbe22364e6e66eaf, type: 3}
   - {fileID: 8300000, guid: cd1b930f2cda8d84099c5cd0fe4f2165, type: 3}
   - {fileID: 8300000, guid: 0b70c142a1aeb7346b6688249a688c92, type: 3}
+  _audioReload:
+  - {fileID: 8300000, guid: 6cb9fa2e74689fe4ab5a069cbf97e6ff, type: 3}
+  - {fileID: 8300000, guid: ee78bbef40645274c8794b7c3877ce80, type: 3}
+  AmmunitionTypes: 0400000002000000
 --- !u!95 &1355387200
 Animator:
   serializedVersion: 3
@@ -54797,8 +54806,9 @@ MonoBehaviour:
   _rechargeTime: 2
   _particleSystem: {fileID: 8868412684501684849, guid: 794bb7ba762a01241b8c5fed7dbbb03c,
     type: 3}
-  AmmunitionTypes: 020000000200000002000000
   _audioClips: []
+  _audioReload: []
+  AmmunitionTypes: 020000000200000002000000
 --- !u!95 &8296172667898794973
 Animator:
   serializedVersion: 3

@@ -20,6 +20,10 @@ public sealed class WeaponController : BaseController, IInitialization, IExecute
 
     public void Execute()
     {
+        if (_weapon == null)
+        {
+            return;
+        }
         _weapon.RunAnimation();
     }
 
@@ -66,7 +70,7 @@ public sealed class WeaponController : BaseController, IInitialization, IExecute
     public void ReloadClip()
     {
         _weapon.ReloadClip();
-        _weapon.ReloadWeapon();
+        _weapon.ReloadWeaponAnimAndSound();
         UiInterface.WeaponUiText.ShowData(_weapon.Clip.CountAmmunition, _weapon._maxCountAmmunition, _weapon.CountClip);
     }
 

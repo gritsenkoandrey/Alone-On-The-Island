@@ -34,7 +34,6 @@ public sealed class TimeRemainingController : IExecute
             var obj = _timeRemainings[i];
             // отнимаю у него время
             obj.CurrentTime -= time;
-            // 
             if (obj.CurrentTime <= 0.0f)
             {
                 obj?.Method?.Invoke();

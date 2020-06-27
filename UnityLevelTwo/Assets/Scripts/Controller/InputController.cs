@@ -60,7 +60,10 @@ public sealed class InputController : BaseController, IExecute
         {
             if (ServiceLocator.Resolve<WeaponController>().IsActive)
             {
-                ServiceLocator.Resolve<WeaponController>().Fire();
+                if (ServiceLocator.Resolve<PlayerController>().IsActive)
+                {
+                    ServiceLocator.Resolve<WeaponController>().Fire();
+                }
             }
         }
 
@@ -68,7 +71,11 @@ public sealed class InputController : BaseController, IExecute
         {
             ServiceLocator.Resolve<WeaponController>().Off();
             ServiceLocator.Resolve<FlashLightsController>().Off();
-            ServiceLocator.Resolve<PauseController>().On();
+
+            if (ServiceLocator.Resolve<PlayerController>().IsActive)
+            {
+                ServiceLocator.Resolve<PauseController>().On();
+            }
         }
 
         if (Input.GetKeyDown(_reloadClip))

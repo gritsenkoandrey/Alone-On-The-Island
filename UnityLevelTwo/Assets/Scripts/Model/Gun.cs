@@ -24,8 +24,8 @@ public sealed class Gun : Weapon
         temAmmunition.AddForce(_barrelOne.forward * _force);
         FireAnimationOn();
         ShotSound();
-        var particle = Instantiate(_particleSystem, _barrelOne.position, _barrelOne.rotation);
-        Destroy(particle);
+        Instantiate(_particleSystem, _barrelOne.position, _barrelOne.rotation);
+
         //Ray ray = new Ray(_barrelOne.position, _barrelOne.forward);
         //if (Physics.Raycast(ray, out var hit, 100))
         //{

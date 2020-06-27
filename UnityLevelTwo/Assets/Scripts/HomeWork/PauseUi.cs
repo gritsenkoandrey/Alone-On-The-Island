@@ -9,13 +9,17 @@ public sealed class PauseUi : BaseObjectScene
 
     [SerializeField] private AudioMixer _mixer;
     [SerializeField] private AudioMixerGroup _mixerGroup;
-    //[SerializeField] private Text _text;
-    [SerializeField] private GameObject _pausePanel;
+
     [SerializeField] private GameObject _gamePanel;
+    [SerializeField] private GameObject _pausePanel;
+    [SerializeField] private GameObject _gameOverPanel;
+
     [SerializeField] private ButtonUi _resume;
     [SerializeField] private ButtonUi _quit;
     [SerializeField] private ButtonUi _mainMenu;
     [SerializeField] private SliderUi _volume;
+
+    [SerializeField] private TextUi _text;
 
     //private float _value;
     private bool _isPaused;
@@ -57,6 +61,8 @@ public sealed class PauseUi : BaseObjectScene
 
         _volume.GetText.text = LangManager.Instance.Text("PauseMenu", "Volume");
         _volume.Interactable(true);
+
+        _text.GetText.text = LangManager.Instance.Text("PauseMenu", "PauseMenu");
     }
 
     // доработать через PauseController
@@ -75,6 +81,7 @@ public sealed class PauseUi : BaseObjectScene
     {
         _pausePanel.SetActive(false);
         _gamePanel.SetActive(true);
+        _gameOverPanel.SetActive(false);
     }
 
     public void Pause()

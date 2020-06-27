@@ -7,19 +7,18 @@ public sealed class Player : BaseObjectScene, ICollision
     #region Fields
 
     [SerializeField] internal float maxHealth = 50.0f;
-    internal readonly float minHealth = 0;
-    private readonly float _quarter = 0.25f;
-    private readonly float _displayTimer = 0.5f;
-    private readonly int _minIndexArray = 0;
-    private bool _isDead = false;
-
-    internal float CurrentHealth;
-    private ChangeHealthUi _changeHealthUi;
-
     [SerializeField] private AudioClip[] _clips;
     [SerializeField] private AudioClip[] _jumpClips;
     private AudioSource _audioSource;
     private CharacterController _controller;
+    private ChangeHealthUi _changeHealthUi;
+
+    internal readonly float minHealth = 0;
+    private readonly float _quarter = 0.25f;
+    private readonly float _displayTimer = 0.5f;
+    internal float CurrentHealth;
+    private readonly int _minIndexArray = 0;
+    private bool _isDead = false;
 
     #endregion
 

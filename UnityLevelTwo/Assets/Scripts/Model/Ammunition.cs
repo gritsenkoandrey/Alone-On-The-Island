@@ -23,6 +23,8 @@ public abstract class Ammunition : BaseObjectScene
     {
         base.Awake();
         _currentDamage = _baseDamage;
+        //DestroyAmmunition(_timeToDestruct);
+        //InvokeRepeating(nameof(LossOfDamage), 0.5f, 1);
     }
 
     private void Start()
@@ -35,7 +37,6 @@ public abstract class Ammunition : BaseObjectScene
 
         DestroyAmmunition(_timeToDestruct);
         InvokeRepeating(nameof(LossOfDamage), 0.5f, 1);
-
     }
 
     #endregion

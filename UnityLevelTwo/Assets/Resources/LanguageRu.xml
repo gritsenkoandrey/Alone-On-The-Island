@@ -67,6 +67,14 @@
       <text>Главное меню</text>
     </string>
 
+    <string id="PauseMenu">
+      <text>Пауза</text>
+    </string>
+
+    <string id="GameOver">
+      <text>Вы умудрились умереть</text>
+    </string>
+
   </group>
   
 </Settings>

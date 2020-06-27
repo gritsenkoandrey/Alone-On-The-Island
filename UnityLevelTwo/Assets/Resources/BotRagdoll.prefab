@@ -133,8 +133,9 @@ GameObject:
   - component: {fileID: 4576970450802347906}
   - component: {fileID: 569449221207342514}
   - component: {fileID: 5012177307885285426}
+  - component: {fileID: 4476109394932578289}
   m_Layer: 0
-  m_Name: Bot
+  m_Name: BotRagdoll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,6 +247,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rigidbody: {fileID: 0}
   Transform: {fileID: 0}
+--- !u!114 &4476109394932578289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7591874008826286233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be799f9e97b95f641a01363959071f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  Transform: {fileID: 0}
+  _particleSystemOne: {fileID: 0}
+  _particleSystemTwo: {fileID: 0}
+  _skeleton: []
+  _botMesh: []
+  _bumpSpeed: 2
 --- !u!1 &7591874008855147938
 GameObject:
   m_ObjectHideFlags: 0

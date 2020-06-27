@@ -47,7 +47,7 @@ public sealed class DeathBot : BaseObjectScene/*, IExecute*/
     {
         _bump = true;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         _particleSystemOne.GetComponent<ParticleSystem>().Play();
         yield return new WaitForSeconds(1);
         _particleSystemTwo.GetComponent<ParticleSystem>().Play();

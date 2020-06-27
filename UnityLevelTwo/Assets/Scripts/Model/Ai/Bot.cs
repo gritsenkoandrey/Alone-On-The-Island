@@ -13,12 +13,14 @@ public sealed class Bot : BaseObjectScene, IExecute
     //public Weapon Weapon;
     private UnitAnimator _animator;
     private DeathBot _deathBot;
+    private AudioSource _audio;
+    [SerializeField] AudioClip[] _clip;
 
     private Vector3 _point;
     private float _stoppingDistance = 2.0f;
     private float _stoppingMoveDistance = 2.5f;
     private float _waitTime = 3.0f;
-    private float _timeToDestroy = 3.5f;
+    private float _timeToDestroy = 5.5f;
     private float _detectedDistance = 30.0f;
     private float _distance;
     //private float _attackDistance = 5.0f;
@@ -59,22 +61,30 @@ public sealed class Bot : BaseObjectScene, IExecute
             switch (value)
             {
                 case StateBot.None:
-                    Color = Color.white;
+                    //Color = Color.white;
                     break;
                 case StateBot.Patrol:
-                    Color = Color.green;
+                    //Color = Color.green;
                     break;
                 case StateBot.Inspection:
-                    Color = Color.yellow;
+                    //Color = Color.yellow;
                     break;
                 case StateBot.Detected:
-                    Color = Color.red;
+                    //if (!_audio.isPlaying)
+                    //{
+                    //    _audio.PlayOneShot(_clip[Random.Range(0, _clip.Length)]);
+                    //}
+                    //Color = Color.red;
                     break;
                 case StateBot.Died:
-                    Color = Color.gray;
+                    if (!_audio.isPlaying)
+                    {
+                        _audio.PlayOneShot(_clip[Random.Range(0, _clip.Length)]);
+                    }
+                    //Color = Color.gray;
                     break;
                 default:
-                    Color = Color.white;
+                    //Color = Color.white;
                     break;
             }
         }
@@ -88,11 +98,12 @@ public sealed class Bot : BaseObjectScene, IExecute
     protected override void Awake()
     {
         base.Awake();
-        Agent = GetComponent<NavMeshAgent>();
         _timeRemaining = new TimeRemaining(ResetStateBot, _waitTime);
         CurrentHealth = Hp;
+        Agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<UnitAnimator>();
         _deathBot = GetComponent<DeathBot>();
+        _audio = GetComponent<AudioSource>();
         //SetKinematic(true);
     }
 
@@ -199,6 +210,10 @@ public sealed class Bot : BaseObjectScene, IExecute
                 //OnFireDisableChange.Invoke();
                 //MovePoint(Target.position);
                 //Weapon.Fire();
+                if (!_audio.isPlaying)
+                {
+                    _audio.PlayOneShot(_clip[Random.Range(0, _clip.Length)]);
+                }
 
                 // временная заглушка
                 return;

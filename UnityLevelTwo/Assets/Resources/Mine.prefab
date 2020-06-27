@@ -98,6 +98,17 @@ MonoBehaviour:
   _timeToDestruct: 0
   _damage: 25
   _particleExplosion: {fileID: 19800002, guid: 6ecf76dc4f268d340b2666896a954bcc, type: 3}
+  _audioClips:
+  - {fileID: 8300000, guid: e53c50cdd14c0004f8f381d4a956ab7b, type: 3}
+  - {fileID: 8300000, guid: ba84c7f43cf587344a32723c6b00e33e, type: 3}
+  - {fileID: 8300000, guid: 2ef8d3cd22f87754d8df21a0d7f0e44e, type: 3}
+  - {fileID: 8300000, guid: 1c30e7f5b1736cb4e921ed533b2e1f16, type: 3}
+  - {fileID: 8300000, guid: 348655208638f6c4cbe3961433108988, type: 3}
+  - {fileID: 8300000, guid: 9fc29fd506eee9a4e87062863137fe39, type: 3}
+  - {fileID: 8300000, guid: ee9cde1db595a544399e62fed28bca42, type: 3}
+  - {fileID: 8300000, guid: e23f4526575751e40b54a14d93d50f3d, type: 3}
+  - {fileID: 8300000, guid: 9c70e26789eb8594bb6837c5e0caadb7, type: 3}
+  - {fileID: 8300000, guid: 223ce9ed75f85234eba08f76bc7fc60a, type: 3}
 --- !u!135 &5861825358687096621
 SphereCollider:
   m_ObjectHideFlags: 0
