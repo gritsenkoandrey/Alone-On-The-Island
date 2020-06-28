@@ -23,6 +23,18 @@
       <text>Выход</text>
     </string>
 
+    <string id="Language">
+      <text>Язык</text>
+    </string>
+
+    <string id="Russian">
+      <text>Русский</text>
+    </string>
+
+    <string id="English">
+      <text>Английский</text>
+    </string>
+
   </group>
 
   <group id="OptionsMenuItems">
@@ -73,6 +85,18 @@
 
     <string id="GameOver">
       <text>Вы проиграли</text>
+    </string>
+
+    <string id="Language">
+      <text>Язык</text>
+    </string>
+
+    <string id="Russian">
+      <text>Русский</text>
+    </string>
+
+    <string id="English">
+      <text>Английский</text>
     </string>
 
   </group>

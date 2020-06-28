@@ -69,21 +69,31 @@ public sealed class SelectionController : BaseController, IExecute
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.green);
             }
-            else if (_dedicateObj.GetComponent<BodyBot>() || _dedicateObj.GetComponent<HeadBot>() || _dedicateObj.GetComponent<MineIModel>())
+            else if (_dedicateObj.GetComponent<BodyBot>() || _dedicateObj.GetComponent<HeadBot>() || _dedicateObj.GetComponent<TargetSphere>() || _dedicateObj.GetComponent<Aim>())
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.red);
+                UiInterface.AimUiImage.SetColor(Color.red);
+                UiInterface.AimUiImage.SetAnimOn();
             }
-            else if (_dedicateObj.GetComponent<TargetSphere>() || _dedicateObj.GetComponent<Aim>() ||
-                     _dedicateObj.GetComponent<Wall>())
+            else if (_dedicateObj.GetComponent<MineIModel>())
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.yellow);
+                UiInterface.AimUiImage.SetColor(Color.white);
+                UiInterface.AimUiImage.SetAnimOff();
             }
             else
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.white);
+                UiInterface.AimUiImage.SetColor(Color.white);
+                UiInterface.AimUiImage.SetAnimOff();
             }
         }
 
+        if (!_isSelectedObj)
+        {
+            UiInterface.AimUiImage.SetColor(Color.white);
+            UiInterface.AimUiImage.SetAnimOff();
+        }
         //if (_isSelectedObj)
         //{
         //    // действие над объектом

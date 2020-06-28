@@ -23,6 +23,18 @@
       <text>Quit Game</text>
     </string>
 
+    <string id="Language">
+      <text>Language</text>
+    </string>
+
+    <string id="Russian">
+      <text>Russian</text>
+    </string>
+
+    <string id="English">
+      <text>English</text>
+    </string>
+
   </group>
 
   <group id="OptionsMenuItems">
@@ -73,6 +85,18 @@
 
     <string id="GameOver">
       <text>Game Over</text>
+    </string>
+
+    <string id="Language">
+      <text>Language</text>
+    </string>
+
+    <string id="Russian">
+      <text>Russian</text>
+    </string>
+
+    <string id="English">
+      <text>English</text>
     </string>
 
   </group>

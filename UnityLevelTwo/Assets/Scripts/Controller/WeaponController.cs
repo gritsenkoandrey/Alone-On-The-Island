@@ -16,6 +16,7 @@ public sealed class WeaponController : BaseController, IInitialization, IExecute
     {
         UiInterface.WeaponUiText.SetActive(false);
         UiInterface.WeaponUiImage.SetActive(false);
+        UiInterface.AimUiImage.SetActive(false);
     }
 
     public void Execute()
@@ -45,6 +46,7 @@ public sealed class WeaponController : BaseController, IInitialization, IExecute
         _weapon.IsVisible = true;
         UiInterface.WeaponUiText.SetActive(true);
         UiInterface.WeaponUiImage.SetActive(true);
+        UiInterface.AimUiImage.SetActive(true);
         UiInterface.WeaponUiText.ShowData(_weapon.Clip.CountAmmunition, _weapon._maxCountAmmunition, _weapon.CountClip);
     }
 
@@ -59,6 +61,7 @@ public sealed class WeaponController : BaseController, IInitialization, IExecute
         _weapon = null;
         UiInterface.WeaponUiText.SetActive(false);
         UiInterface.WeaponUiImage.SetActive(false);
+        UiInterface.AimUiImage.SetActive(false);
     }
 
     public void Fire()

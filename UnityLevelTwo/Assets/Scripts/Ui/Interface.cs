@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public sealed class Interface : MonoBehaviour
 {
     #region Fields
@@ -22,6 +23,7 @@ public sealed class Interface : MonoBehaviour
     //private OptionsPauseMenu _optionsPauseMenu;
 
     #endregion
+
 
     #region UnityMethods
 

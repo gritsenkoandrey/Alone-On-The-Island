@@ -15,8 +15,33 @@ public class DropdownUi : MonoBehaviour, IControl
 
     #region Properties
 
-    public Text GetText { get { return _text; } }
-    public Dropdown GetControl { get { return _control; } }
+    public Text GetText
+    {
+        get
+        {
+            if (!_text)
+            {
+                _text = transform.GetComponentInChildren<Text>();
+            }
+            return _text;
+        }
+    }
+    public Dropdown GetControl
+    {
+        get
+        {
+            if (!_control)
+            {
+                _control = GetComponentInChildren<Dropdown>();
+            }
+            return _control;
+        }
+
+        set
+        {
+            value = _control;
+        }
+    }
     public GameObject Instance { get { return gameObject; } }
     public Selectable Control { get { return GetControl; } }
 
@@ -50,5 +75,18 @@ public class DropdownUi : MonoBehaviour, IControl
     {
         _control.AddOptions(value);
     }
+
+    public void ChangeLanguage()
+    {
+        if (_control.value == 0)
+        {
+            LangManager.Instance.Init("Language", "Ru");
+        }
+        else
+        {
+            LangManager.Instance.Init("Language", "En");
+        }
+    }
+
     #endregion
 }

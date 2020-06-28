@@ -114,7 +114,7 @@ public sealed class OptionsMenu : BaseMenu
     {
         _resolutionsList = new List<string>(); // создаем новый список
         _resolution = Screen.resolutions; // получаем разрешения
-                                          // пробегаем по массиву из полученных разрешений
+        // пробегаем по массиву из полученных разрешений
         for (int i = 0; i < _resolution.Length; i++)
         {
             _resolutionsList.Add($"{_resolution[i].width}x{_resolution[i].height}");

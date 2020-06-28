@@ -31,7 +31,7 @@ public sealed class MineIModel : PickItems
                 _player.CurrentHealth = _player.minHealth;
             }
             ExplosionSound();
-            _shakeCamera.ShakeCamera();
+            _shakeCamera.Invoke(nameof(_shakeCamera.ShakeCamera), 0.25f);
             DestroyItem();
             Instantiate(_particleExplosion, transform.position, transform.rotation);
             

@@ -18,13 +18,14 @@ public sealed class PauseUi : BaseObjectScene
     [SerializeField] private ButtonUi _quit;
     [SerializeField] private ButtonUi _mainMenu;
     [SerializeField] private SliderUi _volume;
-
+    //[SerializeField] private DropdownUi _changeLanguage;
     [SerializeField] private TextUi _text;
 
     private float _value;
     private string _textVolume;
     private bool _isPaused;
     private int _mainMenuScene = 0;
+    //private string _curLanguage = null;
     private CharacterController _controller;
     private AudioMixerSnapshot _pause;
     private AudioMixerSnapshot _unPause;
@@ -62,6 +63,12 @@ public sealed class PauseUi : BaseObjectScene
 
         _volume.GetText.text = LangManager.Instance.Text("PauseMenu", "Volume");
         _textVolume = _volume.GetText.text;
+
+        //_changeLanguage.GetText.text = LangManager.Instance.Text("PauseMenu", "Language");
+        //_changeLanguage.GetControl.onValueChanged.AddListener(delegate
+        //{
+        //    ChangeLanguage();
+        //});
 
         _text.GetText.text = LangManager.Instance.Text("PauseMenu", "PauseMenu");
     }
@@ -135,6 +142,19 @@ public sealed class PauseUi : BaseObjectScene
         ServiceLocatorMonoBehaviour.Cleanup();
         SceneManager.LoadScene(_mainMenuScene);
     }
+
+    //public void ChangeLanguage()
+    //{
+    //    if (_changeLanguage.GetControl.value == 0)
+    //    {
+    //        _curLanguage = "Ru";
+    //    }
+    //    if (_changeLanguage.GetControl.value == 1)
+    //    {
+    //        _curLanguage = "En";
+    //    }
+    //    LangManager.Instance.Init("Language", _curLanguage);
+    //}
 
     //private void OnGUI()
     //{

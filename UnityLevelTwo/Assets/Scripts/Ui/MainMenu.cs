@@ -4,11 +4,22 @@ using UnityEngine.SceneManagement;
 
 public sealed class MainMenu : BaseMenu
 {
+    #region Fields
+
     [SerializeField] private GameObject _mainPanel;
 
     [SerializeField] private ButtonUi _newGame;
     [SerializeField] private ButtonUi _options;
     [SerializeField] private ButtonUi _quit;
+
+    [SerializeField] private ButtonUi _langRu;
+    [SerializeField] private ButtonUi _langEn;
+    [SerializeField] private TextUi _langText;
+
+    #endregion
+
+
+    #region UnityMethods
 
     private void Start()
     {
@@ -31,7 +42,26 @@ public sealed class MainMenu : BaseMenu
         {
             Interface.QuitGame();
         });
+
+        _langText.GetText.text = LangManager.Instance.Text("MainMenuItems", "Language");
+
+        _langRu.GetText.text = LangManager.Instance.Text("MainMenuItems", "Russian");
+        _langRu.GetControl.onClick.AddListener(delegate
+        {
+            ChangeLanguageOnRu();
+        });
+
+        _langEn.GetText.text = LangManager.Instance.Text("MainMenuItems", "English");
+        _langEn.GetControl.onClick.AddListener(delegate
+        {
+            ChangeLanguageOnEn();
+        });
     }
+
+    #endregion
+
+
+    #region Methods
 
     public override void Hide()
     {
@@ -75,4 +105,16 @@ public sealed class MainMenu : BaseMenu
         // init game
         SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
     }
+
+    private void ChangeLanguageOnRu()
+    {
+        LangManager.Instance.Init("Language", "Ru");
+    }
+
+    private void ChangeLanguageOnEn()
+    {
+        LangManager.Instance.Init("Language", "En");
+    }
+
+    #endregion
 }
