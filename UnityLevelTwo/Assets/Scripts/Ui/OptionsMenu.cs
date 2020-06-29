@@ -13,13 +13,14 @@ public sealed class OptionsMenu : BaseMenu
     [SerializeField] private ButtonUi _back;
     [SerializeField] private SliderUi _audio;
     [SerializeField] private ToggleUi _toggle;
+    [SerializeField] private TextUi _textAudio;
 
     private Resolution[] _resolution;
     private List<string> _resolutionsList;
 
     private bool _isFullScreen;
     private float _value;
-    private string _textVolume;
+    //private string _textVolume;
 
     private void Start()
     {
@@ -39,8 +40,9 @@ public sealed class OptionsMenu : BaseMenu
         _dropdownResolution.Interactable(true);
         ResolutionStart();
 
-        _audio.GetText.text = LangManager.Instance.Text("OptionsMenuItems", "Sound");
-        _textVolume = _audio.GetText.text;
+        _textAudio.GetText.text = LangManager.Instance.Text("OptionsMenuItems", "Sound");
+
+        //_textVolume = _audio.GetText.text;
         _audio.Interactable(true);
     }
 
@@ -127,6 +129,15 @@ public sealed class OptionsMenu : BaseMenu
     {
         _audioMixer.GetFloat("MasterVolume", out _value);
         _value = (_value + 50) / 0.5f;
-        _audio.GetText.text = $"{_textVolume}: {_value:0}%";
+        _audio.GetText.text = $"{_value:0}%";
+    }
+
+    public void ChangeLangOptionMenu()
+    {
+        _back.GetText.text = LangManager.Instance.Text("OptionsMenuItems", "Back");
+        _toggle.GetText.text = LangManager.Instance.Text("OptionsMenuItems", "Screen");
+        _dropdownQuality.GetText.text = LangManager.Instance.Text("OptionsMenuItems", "Game");
+        _dropdownResolution.GetText.text = LangManager.Instance.Text("OptionsMenuItems", "Video");
+        _textAudio.GetText.text = LangManager.Instance.Text("OptionsMenuItems", "Sound");
     }
 }

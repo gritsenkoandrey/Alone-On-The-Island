@@ -1127,6 +1127,36 @@ PrefabInstance:
       propertyPath: m_Text
       value: English
       objectReference: {fileID: 0}
+    - target: {fileID: 5995686016805987365, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995686016805987365, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995686016805987365, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995686016805987365, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1187316074}
+    - target: {fileID: 5995686016805987365, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnLang
+      objectReference: {fileID: 0}
+    - target: {fileID: 5995686016805987365, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5995686016805987366, guid: c7bf09cfb66b6604e9d58e5c76bc5633,
         type: 3}
       propertyPath: m_Name

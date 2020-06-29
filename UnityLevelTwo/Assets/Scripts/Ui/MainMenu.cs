@@ -16,6 +16,8 @@ public sealed class MainMenu : BaseMenu
     [SerializeField] private ButtonUi _langEn;
     [SerializeField] private TextUi _langText;
 
+    private OptionsMenu _optionsMenu;
+
     #endregion
 
 
@@ -23,6 +25,8 @@ public sealed class MainMenu : BaseMenu
 
     private void Start()
     {
+        _optionsMenu = GetComponent<OptionsMenu>();
+
         _newGame.GetText.text = LangManager.Instance.Text("MainMenuItems", "NewGame");
         _newGame.GetControl.onClick.AddListener(delegate
         {
@@ -52,6 +56,7 @@ public sealed class MainMenu : BaseMenu
         });
 
         _langEn.GetText.text = LangManager.Instance.Text("MainMenuItems", "English");
+
         _langEn.GetControl.onClick.AddListener(delegate
         {
             ChangeLanguageOnEn();
@@ -109,11 +114,25 @@ public sealed class MainMenu : BaseMenu
     private void ChangeLanguageOnRu()
     {
         LangManager.Instance.Init("Language", "Ru");
+        ChangeLangMainMenu();
+        _optionsMenu.ChangeLangOptionMenu();
     }
 
     private void ChangeLanguageOnEn()
     {
         LangManager.Instance.Init("Language", "En");
+        ChangeLangMainMenu();
+        _optionsMenu.ChangeLangOptionMenu();
+    }
+
+    private void ChangeLangMainMenu()
+    {
+        _newGame.GetText.text = LangManager.Instance.Text("MainMenuItems", "NewGame");
+        _options.GetText.text = LangManager.Instance.Text("MainMenuItems", "Options");
+        _quit.GetText.text = LangManager.Instance.Text("MainMenuItems", "Quit");
+        _langText.GetText.text = LangManager.Instance.Text("MainMenuItems", "Language");
+        _langRu.GetText.text = LangManager.Instance.Text("MainMenuItems", "Russian");
+        _langEn.GetText.text = LangManager.Instance.Text("MainMenuItems", "English");
     }
 
     #endregion

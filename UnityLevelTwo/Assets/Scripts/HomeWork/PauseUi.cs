@@ -143,6 +143,15 @@ public sealed class PauseUi : BaseObjectScene
         SceneManager.LoadScene(_mainMenuScene);
     }
 
+    public void ChangeLangPauseUi()
+    {
+        _resume.GetText.text = LangManager.Instance.Text("PauseMenu", "Resume");
+        _mainMenu.GetText.text = LangManager.Instance.Text("PauseMenu", "MainMenu");
+        _quit.GetText.text = LangManager.Instance.Text("PauseMenu", "Quit");
+        _volume.GetText.text = LangManager.Instance.Text("PauseMenu", "Volume");
+        _text.GetText.text = LangManager.Instance.Text("PauseMenu", "PauseMenu");
+    }
+
     //public void ChangeLanguage()
     //{
     //    if (_changeLanguage.GetControl.value == 0)

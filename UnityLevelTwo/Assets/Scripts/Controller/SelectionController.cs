@@ -10,7 +10,6 @@ public sealed class SelectionController : BaseController, IExecute
     private readonly Camera _mainCamera;
     // выделенный объект
     private GameObject _dedicateObj;
-
     private readonly Vector2 _center;
 
     // дистанция на которую будет бить луч
@@ -72,27 +71,35 @@ public sealed class SelectionController : BaseController, IExecute
             else if (_dedicateObj.GetComponent<BodyBot>() || _dedicateObj.GetComponent<HeadBot>() || _dedicateObj.GetComponent<TargetSphere>() || _dedicateObj.GetComponent<Aim>())
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.red);
-                UiInterface.AimUiImage.SetColor(Color.red);
-                UiInterface.AimUiImage.SetAnimOn();
+                if (UiInterface.WeaponUiText != null)
+                {
+                    UiInterface.AimUiImage.SetAnimOn();
+                }
             }
             else if (_dedicateObj.GetComponent<MineIModel>())
             {
-                UiInterface.SelectionObjMessageUi.SetColor(Color.yellow);
-                UiInterface.AimUiImage.SetColor(Color.white);
-                UiInterface.AimUiImage.SetAnimOff();
+                UiInterface.SelectionObjMessageUi.SetColor(Color.red);
+                if (UiInterface.WeaponUiText != null)
+                {
+                    UiInterface.AimUiImage.SetAnimOff();
+                }
             }
             else
             {
                 UiInterface.SelectionObjMessageUi.SetColor(Color.white);
-                UiInterface.AimUiImage.SetColor(Color.white);
-                UiInterface.AimUiImage.SetAnimOff();
+                if (UiInterface.WeaponUiText != null)
+                {
+                    UiInterface.AimUiImage.SetAnimOff();
+                }
             }
         }
 
         if (!_isSelectedObj)
         {
-            UiInterface.AimUiImage.SetColor(Color.white);
-            UiInterface.AimUiImage.SetAnimOff();
+            if (UiInterface.WeaponUiText != null)
+            {
+                UiInterface.AimUiImage.SetAnimOff();
+            }
         }
         //if (_isSelectedObj)
         //{
