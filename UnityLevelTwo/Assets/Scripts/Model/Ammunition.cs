@@ -14,6 +14,7 @@ public abstract class Ammunition : BaseObjectScene
     public AmmunitionType Type = AmmunitionType.Bullet;
 
     [SerializeField] protected ParticleSystem _particleSystem;
+
     #endregion
 
 

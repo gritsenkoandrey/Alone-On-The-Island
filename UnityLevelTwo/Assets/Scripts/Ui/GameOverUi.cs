@@ -67,7 +67,7 @@ public sealed class GameOverUi : BaseObjectScene
         _gameOverPanel.SetActive(true);
         Time.timeScale = 0.0f;
         //_pause.TransitionTo(0.0001f);
-        _audioSource.PlayOneShot(_audioClip);
+        this._audioSource.PlayOneShot(_audioClip);
         _controller.enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

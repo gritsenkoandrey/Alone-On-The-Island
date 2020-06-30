@@ -33,6 +33,7 @@ public abstract class PickItems : BaseObjectScene, ISelectObj, ISelectObjImage
 
     public void DestroyItem()
     {
+        //gameObject.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
         Destroy(gameObject, _timeToDestruct);
     }
 
