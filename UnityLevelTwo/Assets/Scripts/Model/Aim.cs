@@ -88,7 +88,8 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
         }
         else
         {
-            return "Target Destroyed";
+            return $"{LangManager.Instance.Text("PauseMenu", "TargetDestroyed")}";
+            //return "Target Destroyed";
         }
     }
 

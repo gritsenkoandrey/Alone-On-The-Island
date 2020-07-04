@@ -26,8 +26,8 @@ public sealed class Bullet : Ammunition
             if (Physics.Raycast(gameObject.transform.position,
                 gameObject.transform.forward, out _hit, _rayMaxDistance))
             {
-                var particle = Instantiate(_particleSystem, _hit.point + _hit.normal, _hit.transform.rotation);
                 //todo pool object
+                Instantiate(_particleSystem, _hit.point + _hit.normal, _hit.transform.rotation);
             }
         }
         DestroyAmmunition();

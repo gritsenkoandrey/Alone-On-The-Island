@@ -99,6 +99,10 @@
       <text>English</text>
     </string>
 
+    <string id="TargetDestroyed">
+      <text>Target Destroyed</text>
+    </string>
+
   </group>
   
 </Settings>

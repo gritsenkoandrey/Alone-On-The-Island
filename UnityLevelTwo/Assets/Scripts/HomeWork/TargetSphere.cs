@@ -12,7 +12,7 @@ public sealed class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISel
     [SerializeField] private AudioClip[] _clips;
 
     private readonly float _scaleTarget = 0.01f;
-    private readonly float _timeToDestroy = 5.0f;
+    private readonly float _timeToDestroy = 2.0f;
     private bool _isDead;
 
     private AudioSource _audioSource;
@@ -80,7 +80,8 @@ public sealed class TargetSphere : BaseObjectScene, ICollision, ISelectObj, ISel
         }
         else
         {
-            return "Target Destroyed";
+            return $"{LangManager.Instance.Text("PauseMenu", "TargetDestroyed")}";
+            //return "Target Destroyed";
         }
     }
 

@@ -22,6 +22,7 @@ public sealed class Health : PickItems
         {
             _player.CurrentHealth += _health;
             _changeHealthUi.HealthTaken(_health);
+            // отображение полученного здоровья на _displayTime
             _changeHealthUi.Invoke(nameof(_changeHealthUi.Clear), _displayTime);
 
             if (_player.CurrentHealth > _player.maxHealth)

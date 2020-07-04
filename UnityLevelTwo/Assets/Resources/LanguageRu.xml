@@ -99,6 +99,10 @@
       <text>Английский</text>
     </string>
 
+    <string id="TargetDestroyed">
+      <text>Цель уничтожена</text>
+    </string>
+
   </group>
   
 </Settings>

@@ -37,7 +37,8 @@ public sealed class BodyBot : BaseObjectScene, ICollision, ISelectObj, ISelectOb
         }
         else
         {
-            return "Target Destroyed";
+            return $"{LangManager.Instance.Text("PauseMenu", "TargetDestroyed")}";
+            //return "Target Destroyed";
         }
     }
 
