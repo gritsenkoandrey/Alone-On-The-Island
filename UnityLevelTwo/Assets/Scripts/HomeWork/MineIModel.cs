@@ -9,6 +9,7 @@ public sealed class MineIModel : PickItems
     [SerializeField] private ParticleSystem _particleExplosion;
     [SerializeField] private AudioClip[] _audioClips;
     private ShakeMainCamera _shakeCamera;
+    private float _shakeCameraTime = 0.25f;
 
     #endregion
 
@@ -31,10 +32,9 @@ public sealed class MineIModel : PickItems
                 _player.CurrentHealth = _player.minHealth;
             }
             ExplosionSound();
-            _shakeCamera.Invoke(nameof(_shakeCamera.ShakeCamera), 0.25f);
+            _shakeCamera.Invoke(nameof(_shakeCamera.ShakeCamera), _shakeCameraTime);
             DestroyItem();
             Instantiate(_particleExplosion, transform.position, transform.rotation);
-            
         }
 
         if (_bot)

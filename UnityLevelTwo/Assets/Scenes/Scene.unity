@@ -1238,7 +1238,7 @@ GameObject:
   - component: {fileID: 110006545}
   - component: {fileID: 112906545}
   - component: {fileID: 111907825}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7263,8 +7263,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: d12144fc30686f248bc02751d339e627,
     type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: cb0bea0d05d371e439f6b2933abdbc0a, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -7361,7 +7361,7 @@ GameObject:
   - component: {fileID: 545919298}
   - component: {fileID: 545919297}
   - component: {fileID: 545919299}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: M4A1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13466,7 +13466,7 @@ Camera:
   m_TargetEye: 0
   m_HDR: 1
   m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
@@ -13486,6 +13486,7 @@ Transform:
   - {fileID: 1355387198}
   - {fileID: 5006512734963477615}
   - {fileID: 5006512736104833481}
+  - {fileID: 1630191399}
   m_Father: {fileID: 1709829165}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -16668,7 +16669,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1261551943}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
@@ -17516,7 +17517,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1301390811}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
@@ -17710,7 +17711,7 @@ GameObject:
   - component: {fileID: 1355387199}
   - component: {fileID: 1355387200}
   - component: {fileID: 1355387201}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Rifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35097,6 +35098,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e822c245382634547b50102907186eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1630191398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1630191399}
+  - component: {fileID: 1630191400}
+  m_Layer: 0
+  m_Name: CameraWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1630191399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630191398}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 963194228}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1630191400
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630191398}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 3
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.1
+  far clip plane: 10
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 100
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 2
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 0
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1 &1632890195
 GameObject:
   m_ObjectHideFlags: 0
@@ -39222,7 +39297,7 @@ MonoBehaviour:
   Rigidbody: {fileID: 0}
   Transform: {fileID: 0}
   _speed: 15
-  _batteryChargeMax: 30
+  _batteryChargeMax: 100
   _intensity: 3
 --- !u!1 &1869055062
 GameObject:
@@ -57082,7 +57157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4804316476552151351}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -57206,7 +57281,7 @@ GameObject:
   - component: {fileID: 3248338879395528535}
   - component: {fileID: 2834078683305683844}
   - component: {fileID: 6806638068836878196}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Scorpion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57434,7 +57509,7 @@ GameObject:
   - component: {fileID: 7770467196142590641}
   - component: {fileID: 4962844295476159898}
   - component: {fileID: 5277962411831403175}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: M4A1_Sopmod_Magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57742,7 +57817,7 @@ GameObject:
   - component: {fileID: 547167919929557155}
   - component: {fileID: 7175487613583715809}
   - component: {fileID: 6835692822946956291}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: M4A1_Sopmod_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59348,7 +59423,7 @@ GameObject:
   - component: {fileID: 613292604}
   - component: {fileID: 8296172669039107710}
   - component: {fileID: 8296172669039107709}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Skorpion VZ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59482,7 +59557,7 @@ GameObject:
   - component: {fileID: 1110334493211995197}
   - component: {fileID: 7293293512415817703}
   - component: {fileID: 3015170114888026746}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: M4A1_Sopmod_Iron_Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}

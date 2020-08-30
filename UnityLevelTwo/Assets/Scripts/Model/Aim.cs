@@ -8,7 +8,7 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
     #region Fields
 
     [SerializeField] private float _hp = 100;
-    private readonly float _timeToDestroy = 5.0f;
+    private readonly float _timeToDestroy = 2.0f;
     private readonly float _scaleTarget = 0.01f;
     private bool _isDead;
 
@@ -72,11 +72,11 @@ public sealed class Aim : BaseObjectScene, ICollision, ISelectObj, ISelectObjIma
             //}
             //GetComponent<Animator>().enabled = false;
             _shakeCamera.ShakeCamera();
-            DestroyCube();
             ExplosionSound();
             Instantiate(_particleExplosion, transform.position, transform.rotation);
             OnPointChange.Invoke();
             _isDead = true;
+            DestroyCube();
         }
     }
 
