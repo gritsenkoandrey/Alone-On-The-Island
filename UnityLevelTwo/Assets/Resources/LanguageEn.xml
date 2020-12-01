@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Settings>
+
+  <meta>
+    <language>English</language>
+  </meta>
+
+  <group id="MainMenuItems">
+
+    <string id="NewGame">
+      <text>New Game</text>
+    </string>
+
+    <string id="Continue">
+      <text>Continue Game</text>
+    </string>
+
+    <string id="Options">
+      <text>Options</text>
+    </string>
+
+    <string id="Quit">
+      <text>Quit Game</text>
+    </string>
+
+    <string id="Language">
+      <text>Language</text>
+    </string>
+
+    <string id="Russian">
+      <text>Russian</text>
+    </string>
+
+    <string id="English">
+      <text>English</text>
+    </string>
+
+  </group>
+
+  <group id="OptionsMenuItems">
+
+    <string id="Video">
+      <text>Resolution</text>
+    </string>
+
+    <string id="Sound">
+      <text>Volume</text>
+    </string>
+
+    <string id="Game">
+      <text>Quality</text>
+    </string>
+
+    <string id="Back">
+      <text>Back</text>
+    </string>
+
+    <string id="Screen">
+      <text>Full Screen</text>
+    </string>
+
+  </group>
+
+  <group id="PauseMenu">
+
+    <string id="Resume">
+      <text>Resume</text>
+    </string>
+
+    <string id="Quit">
+      <text>Quit</text>
+    </string>
+
+    <string id="Volume">
+      <text>Volume</text>
+    </string>
+
+    <string id="MainMenu">
+      <text>Main Menu</text>
+    </string>
+
+    <string id="PauseMenu">
+      <text>Pause Menu</text>
+    </string>
+
+    <string id="GameOver">
+      <text>Game Over</text>
+    </string>
+
+    <string id="Language">
+      <text>Language</text>
+    </string>
+
+    <string id="Russian">
+      <text>Russian</text>
+    </string>
+
+    <string id="English">
+      <text>English</text>
+    </string>
+
+    <string id="TargetDestroyed">
+      <text>Target Destroyed</text>
+    </string>
+
+  </group>
+  
+</Settings>

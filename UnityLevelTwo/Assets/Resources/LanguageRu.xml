@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Settings>
+
+  <meta>
+    <language>Russian</language>
+  </meta>
+
+  <group id="MainMenuItems">
+
+    <string id="NewGame">
+      <text>Новая игра</text>
+    </string>
+
+    <string id="Continue">
+      <text>Продолжить игру</text>
+    </string>
+
+    <string id="Options">
+      <text>Настройки</text>
+    </string>
+
+    <string id="Quit">
+      <text>Выход</text>
+    </string>
+
+    <string id="Language">
+      <text>Язык</text>
+    </string>
+
+    <string id="Russian">
+      <text>Русский</text>
+    </string>
+
+    <string id="English">
+      <text>Английский</text>
+    </string>
+
+  </group>
+
+  <group id="OptionsMenuItems">
+
+    <string id="Video">
+      <text>Разрешение экрана</text>
+    </string>
+
+    <string id="Sound">
+      <text>Громкость</text>
+    </string>
+
+    <string id="Game">
+      <text>Настройка графики</text>
+    </string>
+
+    <string id="Back">
+      <text>Назад</text>
+    </string>
+
+    <string id="Screen">
+      <text>Полноэкранный</text>
+    </string>
+
+  </group>
+
+  <group id="PauseMenu">
+
+      <string id="Resume">
+        <text>Продолжить</text>
+      </string>
+
+      <string id="Quit">
+        <text>Выйти</text>
+      </string>
+
+      <string id="Volume">
+        <text>Громкость</text>
+      </string>
+
+    <string id="MainMenu">
+      <text>Главное меню</text>
+    </string>
+
+    <string id="PauseMenu">
+      <text>Пауза</text>
+    </string>
+
+    <string id="GameOver">
+      <text>Вы проиграли</text>
+    </string>
+
+    <string id="Language">
+      <text>Язык</text>
+    </string>
+
+    <string id="Russian">
+      <text>Русский</text>
+    </string>
+
+    <string id="English">
+      <text>Английский</text>
+    </string>
+
+    <string id="TargetDestroyed">
+      <text>Цель уничтожена</text>
+    </string>
+
+  </group>
+  
+</Settings>

@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: f6dee80b7cb3c4a41af1e59655aca884
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Rigidbody: {instanceID: 0}
+  - Transform: {instanceID: 0}
+  - Ammunition: {fileID: 3335088135734563039, guid: f5fe7245723d9fd4b8b2a00bb58ba260,
+      type: 3}
+  - AmmunitionRPG: {fileID: 1328181359089558098, guid: f6c4c0cbf2061124286b22901f1bd053,
+      type: 3}
+  - _barrelOne: {instanceID: 0}
+  - _barrelTwo: {instanceID: 0}
+  - _barrelThree: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
